@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>线性代数在前端的应用</title>
+    <link href="/2023/02/06/vector/"/>
+    <url>/2023/02/06/vector/</url>
+    
+    <content type="html"><![CDATA[<h2 id="向量是什么"><a href="#向量是什么" class="headerlink" title="向量是什么"></a>向量是什么</h2><ul><li>空间中的箭头，长度和方向</li><li>有序的数字列表</li><li>任何东西 只要相加 or 相乘是有意义的</li></ul><p>经常以原点作为起点</p><p>一个向量的坐标由一对数组成</p><p>$$<br>\begin{bmatrix}<br>-2 \<br>3<br>\end{bmatrix} \tag{x,y}<br>$$</p><p>这组数指导你如何从原点（向量起点）出发到达他的尖端（向量重点）</p><p>三维空间<br>$$<br>\begin{bmatrix}<br>-2 \<br>3   \<br>1<br>\end{bmatrix} \tag{x,y,z}<br>$$</p><p>向量加法和数乘<br>将二个向量的起点移动到第一个向量的重点<br>再画一个向量，从第一个向量的起点出发，指向第二个向量的重点</p><p>此处加法可以抽象为一种运动</p><p>沿着第一个向量运动，再沿着第二个的方向运动，和直接运动到第三个向量的方向无异</p><h2 id="向量的加法"><a href="#向量的加法" class="headerlink" title="向量的加法"></a>向量的加法</h2><p>$$<br>\begin{bmatrix}<br> x1\<br> y1<br>\end{bmatrix}<br>+<br>\begin{bmatrix}<br> x2\<br> y2<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br> x1+x2\<br> x2+y2<br>\end{bmatrix}<br>$$</p><h2 id="向量的数乘"><a href="#向量的数乘" class="headerlink" title="向量的数乘"></a>向量的数乘</h2><p>$$<br>2 * \begin{bmatrix}<br> x1\<br> y1<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br> 2x1\<br> 2y1<br>\end{bmatrix}<br>$$</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>’线性代数‘</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>requestAnimationFrame</title>
     <link href="/2023/02/04/requestAnimationFrame/"/>
     <url>/2023/02/04/requestAnimationFrame/</url>
