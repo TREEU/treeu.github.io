@@ -4,6 +4,38 @@
   
   
   <entry>
+    <title>fragmentaryRecord</title>
+    <link href="/2023/02/08/fragmentaryRecord/"/>
+    <url>/2023/02/08/fragmentaryRecord/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>fragmentaryRecord</title>
+    <link href="/2023/02/08/tryCatch/"/>
+    <url>/2023/02/08/tryCatch/</url>
+    
+    <content type="html"><![CDATA[<h2 id="阅读：错误处理与调试">阅读：错误处理与调试</h2> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 可能出错的代码</span><br>&#125; <span class="hljs-keyword">catch</span>(error) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>);<br>    <span class="hljs-comment">// 为保证跨平台性 最好只依赖message 因为只有message是唯一一个所有浏览器中都有的属性</span><br>    <span class="hljs-comment">// 出错之后要做什么</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>    <span class="hljs-comment">// 无论如何都要执行的代码，即使是上面的模块存在return; </span><br>    <span class="hljs-comment">// 存在finally块则catch为可选块</span><br>&#125;<br></code></pre></td></tr></table></figure><h3 id="错误类型">错误类型</h3><ul><li><p>Error 基类型<br>其他错误类继承该类型，所有的类型都共享相同的属性，该类型主要用于开发者抛出的自定义错误</p></li><li><p>InternalError<br>底层javascript引擎抛出异常时由浏览器抛出<br>例如：递归过多导致了栈溢出</p></li><li><p>EvalError<br>eval()函数发生异常时候抛出，基本上用不到</p></li><li><p>RangeError<br>数值越界的时候抛出，<br>例如：<code>let items2 = new Array(Number.MAX_VALUE)</code></p></li><li><p>ReferenceError<br>会在找不到对象时候发生<br>例如：<code>let obj = x</code></p></li><li><p>TypeError （常见）<br>变量不是预期类型，访问不存在的方法，等等<br>例如：let o = new 10</p></li><li><p>URIError<br>encodeURI()（URL转码） 或者 decodeURI() 传入了错误的URI结构</p></li></ul><h3 id="何时使用try-catch捕获错误">何时使用try/catch捕获错误</h3><p>在所有可能发生错误的地方使用try/catch</p><h3 id="何时抛出错误">何时抛出错误</h3><p>一般来说，错误应该要在应用程序的底层抛出，目的是为错误提供有关其发生原因的说明</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>错误处理与调试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>线性代数在前端的应用</title>
     <link href="/2023/02/06/vector/"/>
     <url>/2023/02/06/vector/</url>
