@@ -24,7 +24,7 @@
 <meta property="og:description" content="s webGPU 有异步函数尽量用异步函数处理 什么可怕的语言啊 真的要死哦 bindGroup 相关 着色器和绑定组布局 在 sharder 中全局变量的值（公共值）都会绑定一个 @group 和@bingding 多个@bingding 可以共享同一个 group 在给定的@group 中必须具有唯一的但是不一定是连续的@bingding 值 1@group(0) @binding(0) va">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-03T14:11:20.000Z">
-<meta property="article:modified_time" content="2023-05-03T12:17:31.996Z">
+<meta property="article:modified_time" content="2023-05-07T16:14:15.405Z">
 <meta property="article:author" content="Tree">
 <meta property="article:tag" content="webgpu">
 <meta name="twitter:card" content="summary_large_image">
@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"treeu.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"treeu.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -81,6 +81,21 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
   
@@ -222,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k words
+          6.8k words
         
       </span>
     
@@ -233,7 +248,7 @@
         
         
         
-          54 mins
+          57 mins
         
       </span>
     
@@ -272,6 +287,14 @@
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">webgpu</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on a few seconds ago
+                  
+                
+              </p>
             
             
               <div class="markdown-body">
@@ -362,6 +385,21 @@
 <p>多级渐远纹理</p>
 <p>这个不是很懂啊，纹理部分太薄弱了啊</p>
 <p>仔细一想不是跟 buffer 一样的吗 反正都是传递到 shader 中使用的东西</p>
+<h2 id="计算管线">计算管线</h2>
+<p>GPU 的并行计算效率更高</p>
+<p>使用计算管线并不需要去配置 canvas 的相关信息</p>
+<p>创建 pipeline <code>createComputepipelineAsync(descriptor)</code></p>
+<p>描述器：descriptor 就是指定 layout 和 compute</p>
+<p>webgpu 中有两种传递数据的方式</p>
+<p>顶点插槽和 bindGroup</p>
+<ul>
+<li>顶点插槽 setVertexBuffer 绑定顶点数据的 传递的都是 gpuBuffer</li>
+</ul>
+<p>两者有什么区别呢？</p>
+<p>方式问题吧 我们绘制图形肯定需要顶点信息 这个时候就使用顶点插槽<br>
+其他相关的辅助信息就丢到 bindgroup 里面去</p>
+<p>顶点插槽获取到的数据就是 main 的参数@location(0)</p>
+<p>bindGroup 我们一般作为全局变量</p>
 
                 
               </div>
