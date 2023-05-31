@@ -24,7 +24,7 @@
 <meta property="og:description" content="大 O 表示法 对算法的效率进行衡量 企业规模概述：小型&#x2F;中型&#x2F;大型 在不说明具体员工数量或者占地面积的情况下，我们可以通过大概这样（上述）的概率来描述企业的规模 在计算机中也可以通过类似的快捷方式来描述计算机算法的效率 也就是大 O 表示法 首先要知道 在数据量不同的情况下，算法的效率也是会变的 算法的效率： 算法的速度 与 数据量变化 之间的关系 其实也就是 我要找查找多少次才能找到我想要的数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-24T15:25:51.000Z">
-<meta property="article:modified_time" content="2023-05-30T15:57:04.636Z">
+<meta property="article:modified_time" content="2023-05-31T16:08:43.900Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k words
+          2.4k words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          18 mins
+          20 mins
         
       </span>
     
@@ -290,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a minute ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -392,6 +392,15 @@ Math.sqrt 开方<br>
 Math.pow(x, y) x 的 y 次幂</p>
 <h2 id="83-删除排序链表中的重复元素">83 删除排序链表中的重复元素</h2>
 <p>指针题，这里要注意的是链表的表头是不能跑的，所以需要再创建一个指针来指向相同的引用地址，这个指针是一直向后遍历的（向后走），遍历过程中根据条件去改变链表的数据，返回这个链表实际上还是返回这个链表的表头，链表由表头来进行表示</p>
+<h2 id="88-合并两个有序数组">88 合并两个有序数组</h2>
+<p>解法一：直接合并数组再进行排序<br>
+这里注意 splice 的使用 num.splice(start, delcount, replaceData1,replaceDate2)</p>
+<p>解法二：指针 这里其实倾向是考指针<br>
+指针相关的方法，我觉得最主要的考虑还是一个边界问题；</p>
+<ul>
+<li>双指针 从头开始，把两个数组当作两个队列，创建一个新的数据，长度 m+n,依次往里面添加元素</li>
+<li>逆向双指针 从末尾开始，该题目的前提是 num1 的长度是大于 m+nssm+nss, 这个感觉思维上不是那么好理解，再写可能还是会用正向的双指针,其实也就是正着来处理，你可能需要往原数组中添加元素，反着来不会去破坏数组结构，是一样的；</li>
+</ul>
 
                 
               </div>
@@ -453,6 +462,12 @@ Math.pow(x, y) x 的 y 次幂</p>
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/05/31/interview/" title="interview">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">interview</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
