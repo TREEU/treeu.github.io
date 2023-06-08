@@ -24,7 +24,7 @@
 <meta property="og:description" content="大 O 表示法 对算法的效率进行衡量 企业规模概述：小型&#x2F;中型&#x2F;大型 在不说明具体员工数量或者占地面积的情况下，我们可以通过大概这样（上述）的概率来描述企业的规模 在计算机中也可以通过类似的快捷方式来描述计算机算法的效率 也就是大 O 表示法 首先要知道 在数据量不同的情况下，算法的效率也是会变的 算法的效率： 算法的速度 与 数据量变化 之间的关系 其实也就是 我要找查找多少次才能找到我想要的数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-24T15:25:51.000Z">
-<meta property="article:modified_time" content="2023-06-08T15:59:45.973Z">
+<meta property="article:modified_time" content="2023-06-08T16:14:07.738Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -290,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a minute ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -350,7 +350,7 @@ O(2^n) 指数</p>
 </ul>
 <h2 id="35-搜索插入位置">35. 搜索插入位置</h2>
 <ul>
-<li>二分查找</li>
+<li>二分查找 前提 是一个有序序列，从中间找最重要的步骤就是指针 mid = left + ((right - left)&gt;&gt;1)</li>
 </ul>
 <h2 id="27-移除元素-2">27 移除元素</h2>
 <p>String 的相关操作<br>
@@ -372,10 +372,14 @@ js 已经封装的十进制与二进制的转换</p>
 <p>所以使用了 BigInt 处理，<br>
 这里还需要知道的是一个前缀，0B，0b 是二进制，0 是八进制，0X，0x 是十六进制<br>
 这个目前为只用了这个方式处理</p>
-<p>这里有个需要注意的地方 mid 的计算<br>
+<h2 id="69-x-的平方根">69 x 的平方根</h2>
+<ul>
+<li>二分查找<br>
+这里有个需要注意的地方 mid 的计算<br>
 超过最大或者最小范围就会溢出<br>
 这里我们需要考虑溢出情况 所以不使用 (right + left) &gt;&gt; 1<br>
-使用 left + ((right - left) &gt;&gt; 1)</p>
+使用 left + ((right - left) &gt;&gt; 1)</li>
+</ul>
 <p>考虑溢出 所以使用 x/mid &gt; mid 这样处理<br>
 解法二：牛顿迭代 这个没有特别仔细看</p>
 <h2 id="70-爬楼梯">70 爬楼梯</h2>
