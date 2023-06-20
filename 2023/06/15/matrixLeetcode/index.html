@@ -24,7 +24,7 @@
 <meta property="og:description" content="463. 岛屿的周长 首先要理解该题目 其次要理解二维数组 还要考虑二维数组的偏移索引 常规解法：迭代 如果是岛屿 我们就去找上下左右四个块 看看是不是水域或者边界，如果是水域或者边界，就+1，（边长） dfs: 深度遍历 dfs 遍历 实际上就是递归 一直往后找 该题目也是找上下左右，从岛屿 找到其他的水域或者边界，周长就+1 566 重塑矩阵 这个题目有两个重要的知识点  fill 的使用，这">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-14T16:17:16.000Z">
-<meta property="article:modified_time" content="2023-06-19T15:46:07.978Z">
+<meta property="article:modified_time" content="2023-06-20T16:17:45.029Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k words
+          1.6k words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          13 mins
+          14 mins
         
       </span>
     
@@ -290,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a minute ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -353,6 +353,14 @@ IOU 的交集 = 1 完全重叠<br>
 右下的 Xb 点 = Math.min(xm2,xn2)</p>
 <p>那么存在交点,同理 y 轴也一样<br>
 Xb - Xa &gt; 0</p>
+<h2 id="883-三维形体投影面积">883. 三维形体投影面积</h2>
+<p>此题用的暴力解法，没有技巧，只有暴力<br>
+如果不理解行和列可以把二维数组写为矩阵就很清晰<br>
+grid.length 为行<br>
+grid[0].length 为列<br>
+遍历得到 xy 区域的面积 grid[i][j] !== 0<br>
+遍历得到 xz 区域的面积 这里也就是求每列中的最大值<br>
+遍历得到 yz 区域的面积 这里求每行的最大值 先遍历列再遍历行</p>
 
                 
               </div>
