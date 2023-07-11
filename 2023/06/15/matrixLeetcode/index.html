@@ -24,7 +24,7 @@
 <meta property="og:description" content="463. 岛屿的周长 首先要理解该题目 其次要理解二维数组 还要考虑二维数组的偏移索引 常规解法：迭代 如果是岛屿 我们就去找上下左右四个块 看看是不是水域或者边界，如果是水域或者边界，就+1，（边长） dfs: 深度遍历 dfs 遍历 实际上就是递归 一直往后找 该题目也是找上下左右，从岛屿 找到其他的水域或者边界，周长就+1 566 重塑矩阵 这个题目有两个重要的知识点  fill 的使用，这">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-14T16:17:16.000Z">
-<meta property="article:modified_time" content="2023-06-25T15:12:25.503Z">
+<meta property="article:modified_time" content="2023-07-11T16:46:03.324Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k words
+          2.6k words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          21 mins
+          23 mins
         
       </span>
     
@@ -290,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on an hour ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -395,6 +395,16 @@ A B = x1<em>x2 + y1</em>y2<br>
 点积描述的是 A，B 的共线程度</li>
 <li>向量积 叉积 描述的是垂直程度</li>
 </ul>
+<h1>1266. 访问所有点的最小时间</h1>
+<h2 id="欧式距离、曼哈顿距离、切比雪夫距离相关解释">欧式距离、曼哈顿距离、切比雪夫距离相关解释</h2>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1524568">https://cloud.tencent.com/developer/article/1524568</a></p>
+<p>在这个题目中不要被这个看着很可怕的题目吓到了，这里也就是求最短移动距离，这里前后左右斜着走都是一样的为 1，显然走斜边会更快<br>
+所以这里我们使用切比雪夫距离 这个来做<br>
+假设点为<code>a:x1,y1</code>,<code>b:x2,y2</code><br>
+那么 a 移动到 b 的最短距离只和为<br>
+<code>dx = |x1 - x2|</code><br>
+<code>dy = |y1 - y2|</code><br>
+<code>max(dx,dy)</code></p>
 
                 
               </div>
