@@ -23,12 +23,10 @@
 <meta property="og:site_name" content="Treeu&#39;s blog">
 <meta property="og:description" content="463. 岛屿的周长 首先要理解该题目 其次要理解二维数组 还要考虑二维数组的偏移索引 常规解法：迭代 如果是岛屿 我们就去找上下左右四个块 看看是不是水域或者边界，如果是水域或者边界，就+1，（边长） dfs: 深度遍历 dfs 遍历 实际上就是递归 一直往后找 该题目也是找上下左右，从岛屿 找到其他的水域或者边界，周长就+1 566 重塑矩阵 这个题目有两个重要的知识点  fill 的使用，这">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2023/06/15/matrixLeetcode/2023-07-15-14-57-12.png">
 <meta property="article:published_time" content="2023-06-14T16:17:16.000Z">
-<meta property="article:modified_time" content="2023-07-15T06:57:19.024Z">
+<meta property="article:modified_time" content="2023-07-19T15:40:22.875Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2023/06/15/matrixLeetcode/2023-07-15-14-57-12.png">
   
   
   
@@ -238,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k words
+          3.2k words
         
       </span>
     
@@ -249,7 +247,7 @@
         
         
         
-          25 mins
+          27 mins
         
       </span>
     
@@ -292,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 minutes ago
+                    Last updated on 38 minutes ago
                   
                 
               </p>
@@ -315,7 +313,7 @@ dfs: 深度遍历 dfs 遍历 实际上就是递归 一直往后找 该题目也�
 <ul>
 <li>
 <p>二维数组的索引</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> array1 = [<br>	[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],<br>	[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],<br>];<br><span class="hljs-comment">// 当前数组中所有的数据长度 行*列</span><br><span class="hljs-keyword">const</span> data = array1.<span class="hljs-property">length</span> * array1[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>;<br><span class="hljs-comment">// 第x个元素的值</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; data.<span class="hljs-property">length</span>; i += <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-keyword">const</span> x = data[i];<br>	<span class="hljs-keyword">const</span> col = array1[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>;<br>	<span class="hljs-keyword">let</span> val = array[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(x / col)][x % col];<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> array1 = [<br>	[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],<br>	[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],<br>];<br><span class="hljs-comment">// 当前数组中所有的数据长度 行*列</span><br><span class="hljs-keyword">const</span> data = array1.<span class="hljs-property">length</span> * array1[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>;<br><span class="hljs-comment">// 第x个元素的值</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; data; i += <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-keyword">const</span> x = i;<br>	<span class="hljs-keyword">const</span> col = array1[<span class="hljs-number">0</span>].<span class="hljs-property">length</span>;<br>	<span class="hljs-keyword">let</span> val = array[<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(x / col)][x % col];<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="812-最大三角形的面积">812 最大三角形的面积</h2>
 <h2 id="向量的叉乘和点乘">向量的叉乘和点乘</h2>
 <h3 id="叉乘">叉乘</h3>
@@ -417,7 +415,23 @@ A B = x1<em>x2 + y1</em>y2<br>
 <p>所以如果<code>Math.min(ax2,bx2) &gt; Math.max(ax1,bx1)</code>这种情况下 一定是重叠，y 轴同理</p>
 <p>如果两个矩形存在重叠区域，我们依然可以画个图</p>
 <p>那么它重叠区域 x 的坐标 <code>Math.max(ax1,bx1)、 Math.min(ax2,bx2)</code>，y 值同理，画图非常直观</p>
-<p><img src="/2023/06/15/matrixLeetcode/2023-07-15-14-57-12.png" srcset="/img/loading.gif" lazyload alt></p>
+<h1>593 有效的正方形</h1>
+<p>本题有三种方法<br>
+1、先试用巧妙的旋转法</p>
+<ul>
+<li>找到中点坐标，移动到原点，记录所有点的坐标，旋转后也应该在该数组内</li>
+<li>旋转 90 度后所有的点都还在
+<h3 id="2D-平面下的旋转">2D 平面下的旋转</h3>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/scut_salmon/article/details/100406459">https://blog.csdn.net/scut_salmon/article/details/100406459</a></li>
+</ul>
+<p>2、找三个顶点，判断是否是直角三角形</p>
+<p>3、正方形判断定理</p>
+<ul>
+<li>斜边的中点相同，则说明两条斜边组成的四边形为平行四边形</li>
+<li>两条斜边的长度相同，说明为矩形</li>
+<li>两条斜边相互垂直，为正方形<br>
+这题看太久已经疲了 只用了解法 1 来处理，如果有需要后面再看看</li>
+</ul>
 
                 
               </div>
