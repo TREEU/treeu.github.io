@@ -24,7 +24,7 @@
 <meta property="og:description" content="记录力扣上刷的 js 题的知识点  无知并不可怕 可怕的是一直无知  for… in… 和 for … of 的区别 简单来说  for … in 用于遍历对象属性，主要用于对象 除 symbol 以外的可枚举属性 也就是 Object.keys 能获取到的  可枚举属性是什么 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;47291013  for … of 用于可迭代对象，像 Ar">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-19T15:56:58.000Z">
-<meta property="article:modified_time" content="2023-07-20T15:45:35.304Z">
+<meta property="article:modified_time" content="2023-08-22T16:35:44.653Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          629 words
+          1.2k words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          6 mins
+          11 mins
         
       </span>
     
@@ -290,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a month ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -328,6 +328,23 @@
 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7053055316899921934#heading-7">https://juejin.cn/post/7053055316899921934#heading-7</a></li>
 </ul>
 <p>数组的 toString 其实是覆盖 Object.toString()方法，实际上是调用的数组的 join()方法，如果没有 join 方法还是会调用 object 的</p>
+<h1>2649. 嵌套数组生成器</h1>
+<h2 id="生成器函数">生成器函数</h2>
+<p><code>function*</code> 生成器函数</p>
+<p>调用一个生成器函数 不会执行生成器函数里面的代码 会返回生成器的迭代器对象</p>
+<p>也就是只有 next().value 这样才能拿到值</p>
+<p>yield 也就是相当于生成器函数中的 retrun 只不过调用 next()就会往下走一个</p>
+<p>yield* 将执行权交给另一个生成器 暂停该生成器</p>
+<p>这里也就是相当于跳到另一个生成器里面去 用另一个生成器 yield 返回的值<br>
+等那个生成器的 yield 用完之后 再继续执行我们这个 把执行权拿回来</p>
+<p>迭代器 next()中如果传参，是传给上一个 yiled 左边的值</p>
+<p>如果用了 return 那就是正常的 return 返回 return 的值 然后 next().done = true</p>
+<p>这个生成器函数也叫迭代器函数 所以返回的是一个迭代器对象 就是名字这么叫而已</p>
+<p>这个迭代器对象还能再展开：(没看)<br>
+<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#iterator">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#iterator</a></p>
+<p>这个题目我还得到了一个 flag 的小技巧<br>
+<code>arr.flat(Infinity)</code> 这样不管是几维数组都可以被扁平化拍成一个数组了<br>
+不过这个目前看来在某些 ts 版本下是会报类型错误的，大概就是 ts 不认识 Infinity，所以他会给你尝试用各种组合，导致这个报错</p>
 
                 
               </div>
