@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://treeu.github.io/2023/05/24/leetcode/2023-08-09-00-03-57.png">
 <meta property="article:published_time" content="2023-05-24T15:25:51.000Z">
-<meta property="article:modified_time" content="2023-08-17T15:12:42.477Z">
+<meta property="article:modified_time" content="2023-09-07T14:49:14.136Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2023/05/24/leetcode/2023-08-09-00-03-57.png">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.3k words
+          4.6k words
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          36 mins
+          39 mins
         
       </span>
     
@@ -292,7 +292,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 21 days ago
+                    Last updated on 2 minutes ago
                   
                 
               </p>
@@ -512,6 +512,22 @@ p 左走 q 向右 p 右走 q 左走 对比值是否相等 相等继续往下找 
 <li>广度优先遍历 一层层去找</li>
 <li>深度有限遍历 一条路走到底</li>
 </ul>
+</li>
+</ul>
+<h1>581. 最短无序连续子数组</h1>
+<p>最近比较懈怠 这个是看 b 站左程云老师讲的<br>
+这个其实没什么特别的 一道双指针题<br>
+主要就是要想清楚 什么时候指针该动<br>
+以及 两个方向去遍历</p>
+<ul>
+<li>
+<p>从左到右去遍历 我们找最大值 如果下一个值比当前的最大值小 指针移动</p>
+</li>
+<li>
+<p>从右到左去遍历 我们找最小值 如果下个值比当前的最小值大 指针移动<br>
+特殊情况 注意数组为 1 的情况 不需要排序<br>
+其他情况 higt &gt; low ? higt - low + 1 : 0</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1CG411Z7zH/?spm_id_from=333.999.0.0&amp;vd_source=cce0370852a05575ac787ef99b1d8903">https://www.bilibili.com/video/BV1CG411Z7zH/?spm_id_from=333.999.0.0&amp;vd_source=cce0370852a05575ac787ef99b1d8903</a></p>
 </li>
 </ul>
 
