@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://treeu.github.io/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-09-12-23-07-02.png">
 <meta property="og:image" content="https://treeu.github.io/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-09-12-23-56-54.png">
 <meta property="article:published_time" content="2023-09-11T16:03:37.000Z">
-<meta property="article:modified_time" content="2023-09-14T15:49:09.773Z">
+<meta property="article:modified_time" content="2023-09-18T16:01:29.436Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-09-12-23-07-02.png">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          2.7k words
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          17 mins
+          23 mins
         
       </span>
     
@@ -362,26 +362,45 @@
 <p>要求时间复杂度 O(n) 空间复杂度 O(1)</p>
 <p>（js 的话就 indexOf 加一个数组对象{‘num’:次数}来处理）</p>
 <p>哈哈哈 让我们看看神奇的异或操作怎么写</p>
-<ul>
-<li>第一题解答</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> test = [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br><span class="hljs-keyword">let</span> eor = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; test.<span class="hljs-property">length</span>; i += <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-comment">// eor = eor ^ test[i];</span><br>	eor ^= test[i];<br>&#125;<br><span class="hljs-comment">// eor = 3</span><br></code></pre></td></tr></table></figure>
+<h2 id="第一题解答"><a href="#第一题解答" class="headerlink" title="第一题解答"></a>第一题解答</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> test = [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>];<br><span class="hljs-keyword">let</span> eor = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; test.<span class="hljs-property">length</span>; i += <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-comment">// eor = eor ^ test[i];</span><br>	eor ^= test[i];<br>&#125;<br><span class="hljs-comment">// eor = 3</span><br></code></pre></td></tr></table></figure>
 
 <p>为什么是这样<br>首先我们知道异或运算是不考虑位置关系的<br>所以这个数组在我们眼里可以看为 <code>[1,1,2,2,3,3,3]</code><br>再想想上面的性质 n^n &#x3D; 0 0 ^n &#x3D; n</p>
 <h2 id="为什么异或满足交换律和结合律"><a href="#为什么异或满足交换律和结合律" class="headerlink" title="为什么异或满足交换律和结合律"></a>为什么异或满足交换律和结合律</h2><p>用无进位相加来看（？？）</p>
 <p>最终的结果和 1 的位置有关，和顺序无关</p>
 <p>这里其实就是异或运算的原理 反正就是 <strong>相同为 0 不同为 1</strong> 跟顺序其实没有什么关系</p>
+<h2 id="第二道题解法"><a href="#第二道题解法" class="headerlink" title="第二道题解法"></a>第二道题解法</h2><p>前置知识：</p>
 <ul>
-<li><p>第二道题解法</p>
-<p>前置知识：</p>
+<li><p>js 进制之间的转换 又忘记了<br>这里首先我们得知道进制之间的转换是发生在数字之间的 所以一定是 Number 下的方法</p>
 <ul>
-<li>js 进制之间的转换 又忘记了</li>
-<li>取反 <code>~</code> 1011 取反 0100</li>
-<li>取反+1 <code>~+1</code> 这里的 ➕1 是进位的意思</li>
+<li><code>Number.parseInt(string,radix)</code><ul>
+<li>需要注意 parseInt 只能低进制转高进制，也就是二进制转八进制，八进制不能转二进制</li>
+</ul>
+</li>
+<li><code>Number.toString(radix)</code><ul>
+<li>需要注意 toString 是只能把十进制数字转换为其他进制的数字 radix 取值 2 ～ 36</li>
 </ul>
 </li>
 </ul>
+<p>另外我们还需要的知道的是 js 要么只能把其他进制转换为十进制，要么就是将十进制转换为其他进制，也可以理解为十进制是一个中间媒介</p>
+<p>比如我们看下面这个例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">0xa</span>; <span class="hljs-comment">// 16进制 会被转换为十进制数字 为10 bcdef+1</span><br><span class="hljs-keyword">var</span> b = <span class="hljs-number">010</span>; <span class="hljs-comment">// 8进制 会被转换为十进制 为8</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>取反 <code>~</code> 1011 取反 0100</p>
+<ul>
+<li>js 里面是取反得到的结果就是-(x+1)</li>
+</ul>
+</li>
+<li><p>取反+1 <code>~+1</code> 这里的 ➕1 是进位的意思</p>
+</li>
+<li><p>按位与 <code>&amp;</code> 都为 1 结果位才为 1，任何数字与 0 进行安位与都是 0</p>
+</li>
+</ul>
+<p>这个第二题也比较巧妙</p>
+<p>这个里面有一串神奇的代码<br>提取出最右边一个 1 来</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> eor = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-property">length</span>; i += <span class="hljs-number">1</span>) &#123;<br>	eor ^= arr[i];<br>&#125;<br><span class="hljs-comment">// 此时我们的eor = a^b</span><br><span class="hljs-comment">// a != b 所以 eor != 0 根据相同为0 不同为1 所以eor 必然在某一位上的位置上1</span><br><span class="hljs-keyword">const</span> rightone = eor &amp; (~eor + <span class="hljs-number">1</span>);<br><span class="hljs-comment">// 我们找到这个1 然后按照这个1 将数组数据再次分堆</span><br><span class="hljs-keyword">let</span> onlyone = <span class="hljs-number">0</span>; <span class="hljs-comment">//也就是eor‘</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; arr.<span class="hljs-property">length</span>; j += <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-comment">// 拿到这一位为0的 进行异或操作</span><br>	<span class="hljs-keyword">if</span> ((arr[j] &amp; rightone) === <span class="hljs-number">0</span>) &#123;<br>		onlyone ^= arr[kj];<br>	&#125;<br>&#125;<br><span class="hljs-comment">// 这里也就是 onlyone^otherone^onlyone = 0 ^ otherone = otherone</span><br><span class="hljs-keyword">let</span> otherone = eor ^ onlyone;<br></code></pre></td></tr></table></figure>
 
+<p><strong>位运算效率非常高</strong></p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2>
                 
               </div>
             
