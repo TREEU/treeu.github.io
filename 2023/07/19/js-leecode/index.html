@@ -16,12 +16,12 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录力扣上刷的 js 题的知识点  无知并不可怕 可怕的是一直无知  for… in… 和 for … of 的区别 简单来说  for … in 用于遍历对象属性，主要用于对象 除 symbol 以外的可枚举属性 也就是 Object.keys 能获取到的  可枚举属性是什么 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;47291013  for … of 用于可迭代对象，像 Ar">
+    <meta name="description" content="记录力扣上刷的 js 题的知识点 无知并不可怕 可怕的是一直无知  for.. in.. 和 for .. of 的区别简单来说  for .. in 用于遍历对象属性，主要用于对象 除 symbol 以外的可枚举属性 也就是 Object.keys 能获取到的  可枚举属性是什么https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;47291013  for .. of 用于可迭代对象，像">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js-leecode">
 <meta property="og:url" content="https://treeu.github.io/2023/07/19/js-leecode/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="记录力扣上刷的 js 题的知识点  无知并不可怕 可怕的是一直无知  for… in… 和 for … of 的区别 简单来说  for … in 用于遍历对象属性，主要用于对象 除 symbol 以外的可枚举属性 也就是 Object.keys 能获取到的  可枚举属性是什么 https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;47291013  for … of 用于可迭代对象，像 Ar">
+<meta property="og:description" content="记录力扣上刷的 js 题的知识点 无知并不可怕 可怕的是一直无知  for.. in.. 和 for .. of 的区别简单来说  for .. in 用于遍历对象属性，主要用于对象 除 symbol 以外的可枚举属性 也就是 Object.keys 能获取到的  可枚举属性是什么https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;47291013  for .. of 用于可迭代对象，像">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-19T15:56:58.000Z">
 <meta property="article:modified_time" content="2023-09-07T14:25:05.310Z">
@@ -298,53 +298,39 @@
             
               <div class="markdown-body">
                 
-                <h1>记录力扣上刷的 js 题的知识点</h1>
-<blockquote>
+                <h1 id="记录力扣上刷的-js-题的知识点"><a href="#记录力扣上刷的-js-题的知识点" class="headerlink" title="记录力扣上刷的 js 题的知识点"></a>记录力扣上刷的 js 题的知识点</h1><blockquote>
 <p>无知并不可怕 可怕的是一直无知</p>
 </blockquote>
-<h2 id="for…-in…-和-for-…-of-的区别">for… in… 和 for … of 的区别</h2>
-<p>简单来说</p>
+<h2 id="for-in-和-for-of-的区别"><a href="#for-in-和-for-of-的区别" class="headerlink" title="for.. in.. 和 for .. of 的区别"></a>for.. in.. 和 for .. of 的区别</h2><p>简单来说</p>
 <ul>
-<li>for … in 用于遍历对象属性，主要用于对象</li>
+<li>for .. in 用于遍历对象属性，主要用于对象</li>
 <li>除 symbol 以外的可枚举属性 也就是 Object.keys 能获取到的</li>
 </ul>
-<h2 id="可枚举属性是什么">可枚举属性是什么</h2>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47291013">https://zhuanlan.zhihu.com/p/47291013</a></p>
+<h2 id="可枚举属性是什么"><a href="#可枚举属性是什么" class="headerlink" title="可枚举属性是什么"></a>可枚举属性是什么</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47291013">https://zhuanlan.zhihu.com/p/47291013</a></p>
 <ul>
-<li>for … of 用于可迭代对象，像 Array、Map、Set、String、TypeArray</li>
+<li>for .. of 用于可迭代对象，像 Array、Map、Set、String、TypeArray</li>
 <li>区别</li>
 <li>for in 迭代的是可枚举的属性 也就是说如果是数组 这里得到的是索引而不是数组内的值，同时这里如果不做是否是自己的属性，会遍历包括继承得到的属性</li>
 <li>for of 是遍历可迭代对象</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of</a></p>
-<h2 id="可迭代对象是什么">可迭代对象是什么</h2>
-<p>现在比较模糊的理解就是像数组那样的数据结构</p>
-<h1>2695.包装数组</h1>
-<p>这里涉及到 Js 的隐式类型转换，<br>
-对象进行运算的时候会先尝试用调用对象的 valueof 方法，获取到值然后再进行 Number()的转换处理<br>
-字符串操作的时候会尝试调用对象的 toString 方法</p>
+<h2 id="可迭代对象是什么"><a href="#可迭代对象是什么" class="headerlink" title="可迭代对象是什么"></a>可迭代对象是什么</h2><p>现在比较模糊的理解就是像数组那样的数据结构</p>
+<h1 id="2695-包装数组"><a href="#2695-包装数组" class="headerlink" title="2695.包装数组"></a>2695.包装数组</h1><p>这里涉及到 Js 的隐式类型转换，<br>对象进行运算的时候会先尝试用调用对象的 valueof 方法，获取到值然后再进行 Number()的转换处理<br>字符串操作的时候会尝试调用对象的 toString 方法</p>
 <ul>
-<li>隐式类型转换<br>
-<a target="_blank" rel="noopener" href="https://juejin.cn/post/7053055316899921934#heading-7">https://juejin.cn/post/7053055316899921934#heading-7</a></li>
+<li>隐式类型转换<br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7053055316899921934#heading-7">https://juejin.cn/post/7053055316899921934#heading-7</a></li>
 </ul>
 <p>数组的 toString 其实是覆盖 Object.toString()方法，实际上是调用的数组的 join()方法，如果没有 join 方法还是会调用 object 的</p>
-<h1>2649. 嵌套数组生成器</h1>
-<h2 id="生成器函数">生成器函数</h2>
-<p><code>function*</code> 生成器函数</p>
+<h1 id="2649-嵌套数组生成器"><a href="#2649-嵌套数组生成器" class="headerlink" title="2649. 嵌套数组生成器"></a>2649. 嵌套数组生成器</h1><h2 id="生成器函数"><a href="#生成器函数" class="headerlink" title="生成器函数"></a>生成器函数</h2><p><code>function*</code> 生成器函数</p>
 <p>调用一个生成器函数 不会执行生成器函数里面的代码 会返回生成器的迭代器对象</p>
 <p>也就是只有 next().value 这样才能拿到值</p>
 <p>yield 也就是相当于生成器函数中的 retrun 只不过调用 next()就会往下走一个</p>
 <p>yield* 将执行权交给另一个生成器 暂停该生成器</p>
-<p>这里也就是相当于跳到另一个生成器里面去 用另一个生成器 yield 返回的值<br>
-等那个生成器的 yield 用完之后 再继续执行我们这个 把执行权拿回来</p>
+<p>这里也就是相当于跳到另一个生成器里面去 用另一个生成器 yield 返回的值<br>等那个生成器的 yield 用完之后 再继续执行我们这个 把执行权拿回来</p>
 <p>迭代器 next()中如果传参，是传给上一个 yiled 左边的值</p>
-<p>如果用了 return 那就是正常的 return 返回 return 的值 然后 next().done = true</p>
+<p>如果用了 return 那就是正常的 return 返回 return 的值 然后 next().done &#x3D; true</p>
 <p>这个生成器函数也叫迭代器函数 所以返回的是一个迭代器对象 就是名字这么叫而已</p>
-<p>这个迭代器对象还能再展开：(没看)<br>
-<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#iterator">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#iterator</a></p>
-<p>这个题目我还得到了一个 flag 的小技巧<br>
-<code>arr.flat(Infinity)</code> 这样不管是几维数组都可以被扁平化拍成一个数组了<br>
-不过这个目前看来在某些 ts 版本下是会报类型错误的，大概就是 ts 不认识 Infinity，所以他会给你尝试用各种组合，导致这个报错</p>
+<p>这个迭代器对象还能再展开：(没看)<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#iterator">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#iterator</a></p>
+<p>这个题目我还得到了一个 flag 的小技巧<br><code>arr.flat(Infinity)</code> 这样不管是几维数组都可以被扁平化拍成一个数组了<br>不过这个目前看来在某些 ts 版本下是会报类型错误的，大概就是 ts 不认识 Infinity，所以他会给你尝试用各种组合，导致这个报错</p>
 
                 
               </div>
