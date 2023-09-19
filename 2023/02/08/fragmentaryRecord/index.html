@@ -16,12 +16,12 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Mac homedrew 安装使用大佬写的一键安装脚本 &#x2F;bin&#x2F;zsh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;gitee.com&#x2F;cunkai&#x2F;HomebrewCN&#x2F;raw&#x2F;master&#x2F;Homebrew.sh)&quot;  地址：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;111014448 encodeURI() 与 encodeURIComponent">
+    <meta name="description" content="Mac homedrew 安装 使用大佬写的一键安装脚本 &#x2F;bin&#x2F;zsh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;gitee.com&#x2F;cunkai&#x2F;HomebrewCN&#x2F;raw&#x2F;master&#x2F;Homebrew.sh)&quot;  地址：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;111014448 encodeURI() 与 encodeURIComponen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fragmentaryRecord">
 <meta property="og:url" content="https://treeu.github.io/2023/02/08/fragmentaryRecord/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="Mac homedrew 安装使用大佬写的一键安装脚本 &#x2F;bin&#x2F;zsh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;gitee.com&#x2F;cunkai&#x2F;HomebrewCN&#x2F;raw&#x2F;master&#x2F;Homebrew.sh)&quot;  地址：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;111014448 encodeURI() 与 encodeURIComponent">
+<meta property="og:description" content="Mac homedrew 安装 使用大佬写的一键安装脚本 &#x2F;bin&#x2F;zsh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;gitee.com&#x2F;cunkai&#x2F;HomebrewCN&#x2F;raw&#x2F;master&#x2F;Homebrew.sh)&quot;  地址：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;111014448 encodeURI() 与 encodeURIComponen">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-02-08T15:52:51.000Z">
 <meta property="article:modified_time" content="2023-04-03T14:18:01.740Z">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          1k words
         
       </span>
     
@@ -291,7 +291,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -299,24 +299,34 @@
             
               <div class="markdown-body">
                 
-                <h2 id="Mac-homedrew-安装"><a href="#Mac-homedrew-安装" class="headerlink" title="Mac homedrew 安装"></a>Mac homedrew 安装</h2><p>使用大佬写的一键安装脚本</p>
+                <h2 id="Mac-homedrew-安装">Mac homedrew 安装</h2>
+<p>使用大佬写的一键安装脚本</p>
 <p><code>/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot; </code></p>
 <p>地址：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/111014448">https://zhuanlan.zhihu.com/p/111014448</a></p>
-<h2 id="encodeURI-与-encodeURIComponent"><a href="#encodeURI-与-encodeURIComponent" class="headerlink" title="encodeURI() 与 encodeURIComponent()"></a>encodeURI() 与 encodeURIComponent()</h2><ul>
-<li>元字符<br><code>; , / ? : @ &amp; = + $ # </code></li>
-<li>语义字符<br><code>a-z A-Z 0-9 - _ . ! ~ * &#39; ()</code></li>
+<h2 id="encodeURI-与-encodeURIComponent">encodeURI() 与 encodeURIComponent()</h2>
+<ul>
+<li>元字符<br>
+<code>; , / ? : @ &amp; = + $ # </code></li>
+<li>语义字符<br>
+<code>a-z A-Z 0-9 - _ . ! ~ * ' ()</code></li>
 </ul>
-<h3 id="encodeURI"><a href="#encodeURI" class="headerlink" title="encodeURI()"></a>encodeURI()</h3><p>使用：用于转码整个 URL<br>不会对 URL 的元字符和语义字符进行转义</p>
-<h3 id="encodeURIComponent"><a href="#encodeURIComponent" class="headerlink" title="encodeURIComponent()"></a>encodeURIComponent()</h3><p>使用：通常指用于转码 URL 组成部分，比如‘？’后面的部分<br>会转码除语义字符串以外所有的字符，即元字符也会被转义</p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>无特殊参数的链接，都可以使用 encodeURI()进行转码<br>特殊参数，比如链接里面还有一个回调地址</p>
+<h3 id="encodeURI">encodeURI()</h3>
+<p>使用：用于转码整个 URL<br>
+不会对 URL 的元字符和语义字符进行转义</p>
+<h3 id="encodeURIComponent">encodeURIComponent()</h3>
+<p>使用：通常指用于转码 URL 组成部分，比如‘？’后面的部分<br>
+会转码除语义字符串以外所有的字符，即元字符也会被转义</p>
+<h3 id="使用场景">使用场景</h3>
+<p>无特殊参数的链接，都可以使用 encodeURI()进行转码<br>
+特殊参数，比如链接里面还有一个回调地址</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 原URL：https://treeu.github.io/?returnURL=“https://treeu.github.io/111”</span><br><br><span class="hljs-string">`https://treeu.github.io/?returnURL=<span class="hljs-subst">$&#123;<span class="hljs-built_in">encodeURIComponent</span>(</span></span><br><span class="hljs-subst"><span class="hljs-string">	<span class="hljs-string">&#x27;https://treeu.github.io/111&#x27;</span></span></span><br><span class="hljs-subst"><span class="hljs-string">)&#125;</span>`</span>;<br><br><span class="hljs-comment">// 输出：&quot;https://treeu.github.io/?returnURL=https%3A%2F%2Ftreeu.github.io%2F111&quot;</span><br></code></pre></td></tr></table></figure>
-
 <p>例：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">encodeURI</span>(<span class="hljs-string">&#x27;https://treeu.github.io/啊啊啊&#x27;</span>);<br><br><span class="hljs-comment">// &quot;https://treeu.github.io/%E5%95%8A%E5%95%8A%E5%95%8A 仅转义了中文部分&quot;</span><br><br><span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-string">&#x27;https://treeu.github.io/啊啊啊&#x27;</span>);<br><br><span class="hljs-comment">// &quot;https%3A%2F%2Ftreeu.github.io%2F%E5%95%8A%E5%95%8A%E5%95%8A 中文和斜杠都被转义了&quot;</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="打开-ssh-的地址"><a href="#打开-ssh-的地址" class="headerlink" title="打开 ssh 的地址"></a>打开 ssh 的地址</h2><p><code>open ~/.ssh</code></p>
-<h2 id="链接远程地址"><a href="#链接远程地址" class="headerlink" title="链接远程地址"></a>链接远程地址</h2><p><code>git add .</code></p>
-<p><code>git commit -m &#39;xxx&#39;</code></p>
+<h2 id="打开-ssh-的地址">打开 ssh 的地址</h2>
+<p><code>open ~/.ssh</code></p>
+<h2 id="链接远程地址">链接远程地址</h2>
+<p><code>git add .</code></p>
+<p><code>git commit -m 'xxx'</code></p>
 <p><code>git remote add origin git@github.com:TREEU/xxx.git</code></p>
 
                 

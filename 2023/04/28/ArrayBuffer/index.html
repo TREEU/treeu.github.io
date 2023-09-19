@@ -16,12 +16,12 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ArrayBuffer 二进制的数组对固定长度连续内存空间的引用 里面是一个内存区域，存储了什么，无从判断 操作 ArrayBuffer 需要使用视图对象 Unit8Array TypedArray所以视图的通用术语是 TypedArray 12&#x2F;&#x2F; 分配一个16个字节的内存let buffer &#x3D; new ArrayBuffer(16);  视图使用上分为以下几种情况 1、使用 arrayBuf">
+    <meta name="description" content="ArrayBuffer 二进制的数组 对固定长度连续内存空间的引用 里面是一个内存区域，存储了什么，无从判断 操作 ArrayBuffer 需要使用视图对象 Unit8Array TypedArray 所以视图的通用术语是 TypedArray 12&#x2F;&#x2F; 分配一个16个字节的内存let buffer &#x3D; new ArrayBuffer(16); 视图使用上分为以下几种情况 1、使用 arrayBu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ArrayBuffer">
 <meta property="og:url" content="https://treeu.github.io/2023/04/28/ArrayBuffer/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="ArrayBuffer 二进制的数组对固定长度连续内存空间的引用 里面是一个内存区域，存储了什么，无从判断 操作 ArrayBuffer 需要使用视图对象 Unit8Array TypedArray所以视图的通用术语是 TypedArray 12&#x2F;&#x2F; 分配一个16个字节的内存let buffer &#x3D; new ArrayBuffer(16);  视图使用上分为以下几种情况 1、使用 arrayBuf">
+<meta property="og:description" content="ArrayBuffer 二进制的数组 对固定长度连续内存空间的引用 里面是一个内存区域，存储了什么，无从判断 操作 ArrayBuffer 需要使用视图对象 Unit8Array TypedArray 所以视图的通用术语是 TypedArray 12&#x2F;&#x2F; 分配一个16个字节的内存let buffer &#x3D; new ArrayBuffer(16); 视图使用上分为以下几种情况 1、使用 arrayBu">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-28T14:34:20.000Z">
 <meta property="article:modified_time" content="2023-04-28T14:34:34.684Z">
@@ -298,32 +298,33 @@
             
               <div class="markdown-body">
                 
-                <h2 id="ArrayBuffer-二进制的数组"><a href="#ArrayBuffer-二进制的数组" class="headerlink" title="ArrayBuffer 二进制的数组"></a>ArrayBuffer 二进制的数组</h2><p>对固定长度连续内存空间的引用</p>
+                <h2 id="ArrayBuffer-二进制的数组">ArrayBuffer 二进制的数组</h2>
+<p>对固定长度连续内存空间的引用</p>
 <p>里面是一个内存区域，存储了什么，无从判断</p>
 <p>操作 ArrayBuffer 需要使用视图对象</p>
 <p>Unit8Array</p>
-<h2 id="TypedArray"><a href="#TypedArray" class="headerlink" title="TypedArray"></a>TypedArray</h2><p>所以视图的通用术语是 TypedArray</p>
+<h2 id="TypedArray">TypedArray</h2>
+<p>所以视图的通用术语是 TypedArray</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 分配一个16个字节的内存</span><br><span class="hljs-keyword">let</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">16</span>);<br></code></pre></td></tr></table></figure>
-
 <p>视图使用上分为以下几种情况</p>
-<h3 id="1、使用-arrayBuffer"><a href="#1、使用-arrayBuffer" class="headerlink" title="1、使用 arrayBuffer"></a>1、使用 arrayBuffer</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 将buffer视为一个32位的整数序列 打印可以看到转换为了四个为0的整数</span><br><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>(buffer);<br><span class="hljs-comment">// 设置偏移字节为4 也就是从第四个字节开始读 也就是跳过第一个数据，读取两个数据长度 这里的偏移一定要和约束的字节长度一致 比如当前uint32Array 是以每四个字节作为一个数</span><br><span class="hljs-keyword">let</span> view2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>(buffer, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
-
-<h3 id="2、使用数组"><a href="#2、使用数组" class="headerlink" title="2、使用数组"></a>2、使用数组</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);<br><span class="hljs-comment">// 这里是已经转换成为视图的数据 所以我们能直接看到塞了四个整数</span><br><span class="hljs-comment">// 这种情况下 存在的字节数量是4*4 这里就不存在什么偏移了 因为不是buffer</span><br><span class="hljs-comment">// 通过view[0]之类的数组操作可以直接拿到数组数据</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="3、使用另一个视图"><a href="#3、使用另一个视图" class="headerlink" title="3、使用另一个视图"></a>3、使用另一个视图</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>]);<br><span class="hljs-keyword">let</span> view2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(view);<br><span class="hljs-comment">// 相当于是一个复制操作 但是这种不同字节长度的需要注意 比如Uint8Array的字节范围是0-255 这个1000就塞不进去 会转换成别的，这里转换为的是232 原因如下</span><br></code></pre></td></tr></table></figure>
-
+<h3 id="1、使用-arrayBuffer">1、使用 arrayBuffer</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 将buffer视为一个32位的整数序列 打印可以看到转换为了四个为0的整数</span><br><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>(buffer);<br><span class="hljs-comment">// 设置偏移字节为4 也就是从第四个字节开始读 也就是跳过第一个数据，读取两个数据长度 这里的偏移一定要和约束的字节长度一致 比如当前uint32Array 是以每四个字节作为一个数</span><br><span class="hljs-keyword">let</span> view2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>(buffer, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+<h3 id="2、使用数组">2、使用数组</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);<br><span class="hljs-comment">// 这里是已经转换成为视图的数据 所以我们能直接看到塞了四个整数</span><br><span class="hljs-comment">// 这种情况下 存在的字节数量是4*4 这里就不存在什么偏移了 因为不是buffer</span><br><span class="hljs-comment">// 通过view[0]之类的数组操作可以直接拿到数组数据</span><br></code></pre></td></tr></table></figure>
+<h3 id="3、使用另一个视图">3、使用另一个视图</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>]);<br><span class="hljs-keyword">let</span> view2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(view);<br><span class="hljs-comment">// 相当于是一个复制操作 但是这种不同字节长度的需要注意 比如Uint8Array的字节范围是0-255 这个1000就塞不进去 会转换成别的，这里转换为的是232 原因如下</span><br></code></pre></td></tr></table></figure>
 <p>转化的问题 存在一个越界行为的约束</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num = <span class="hljs-number">1000</span>;<br><span class="hljs-comment">// 转化为2进制</span><br><span class="hljs-keyword">let</span> num2 = num.<span class="hljs-title function_">toString</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">// 1111101000</span><br><span class="hljs-comment">// uint8最多只能保存8位的二进制数所以范围为0-255</span><br><span class="hljs-comment">// 所以只保留最后8位 其他部分切掉</span><br><span class="hljs-comment">// 切掉后重新转换为转换为2进制数 232</span><br><span class="hljs-built_in">parseInt</span>(num2, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
-
-<h3 id="4、直接使用数字"><a href="#4、直接使用数字" class="headerlink" title="4、直接使用数字"></a>4、直接使用数字</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint16Array</span>(<span class="hljs-number">4</span>);<br><span class="hljs-comment">// 相当于就是创建了4个为0的整数数据 字节长度是 4*2 数据长度是4</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="5、不带任何参数"><a href="#5、不带任何参数" class="headerlink" title="5、不带任何参数"></a>5、不带任何参数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>();<br><span class="hljs-comment">// 创建一个长度 字节数都为0的类型化数组</span><br></code></pre></td></tr></table></figure>
-
+<h3 id="4、直接使用数字">4、直接使用数字</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint16Array</span>(<span class="hljs-number">4</span>);<br><span class="hljs-comment">// 相当于就是创建了4个为0的整数数据 字节长度是 4*2 数据长度是4</span><br></code></pre></td></tr></table></figure>
+<h3 id="5、不带任何参数">5、不带任何参数</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>();<br><span class="hljs-comment">// 创建一个长度 字节数都为0的类型化数组</span><br></code></pre></td></tr></table></figure>
 <p>虽然我们可以直接创建 TypedArray，没有自己去创建 ArrayBuffer，但是视图层是离不开底层 ArrayBuffer 的，在没提供 ArrayBuffer 的场景下，都会自动创建</p>
-<p>可以通过<code>arr.buffer</code> 查看引用的是哪个<br>可以通过<code>arr.byteLength</code> 查看引用 buffer 的长度</p>
-<p>视图之间可以进行相互转化<br>这是什么意思呢 我们可以知道视图是服务于 ArrayBuffer,只要我们拿到一个 buffer，可以用各种不同的方式去查看她</p>
+<p>可以通过<code>arr.buffer</code> 查看引用的是哪个<br>
+可以通过<code>arr.byteLength</code> 查看引用 buffer 的长度</p>
+<p>视图之间可以进行相互转化<br>
+这是什么意思呢 我们可以知道视图是服务于 ArrayBuffer,只要我们拿到一个 buffer，可以用各种不同的方式去查看她</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr8 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);<br><span class="hljs-comment">// [0,1,2,3]</span><br><span class="hljs-keyword">let</span> arr16 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint16Array</span>(arr8.<span class="hljs-property">buffer</span>);<br><span class="hljs-comment">// [256, 770]</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>至于怎么转化的现在还不知道</strong></p>
 <p>TypedArray 具有常规的数组方法</p>
 <p>可以进行遍历 map slice(切分 返回一个新的数组，前面的索引包含，后面的索引不包含) find ruduce 之类的</p>
@@ -335,14 +336,18 @@
 <p>简单来说类数组的大小是固定的 改变内存大小这些方法是没有的</p>
 <p>新增的</p>
 <ul>
-<li><p>arr.set(forArr, [offset]) offset 的处理不太明白</p>
+<li>
+<p>arr.set(forArr, [offset]) offset 的处理不太明白</p>
 <p>这里 offset 可以理解为下标索引 并且要考虑长度</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr16 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint16Array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">1001</span>, <span class="hljs-number">1002</span>]);<br><span class="hljs-keyword">let</span> arr18 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint16Array</span>([<span class="hljs-number">2</span>, <span class="hljs-number">2000</span>]);<br>arr16.<span class="hljs-title function_">set</span>(arr18, [<span class="hljs-number">1</span>]); <span class="hljs-comment">// 从索引1的位置开始复制</span><br><span class="hljs-comment">// [1,2,200,1002]</span><br><span class="hljs-comment">// 设置一个不同视图的会进行转换 转换还是不知道为什么</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>arr.subarray([begin, end]) begin 包括 end 不包括<br>?? 这个测试之后有些不对 传递不同的参数并没有什么变化</p>
+<li>
+<p>arr.subarray([begin, end]) begin 包括 end 不包括<br>
+?? 这个测试之后有些不对 传递不同的参数并没有什么变化</p>
 </li>
 </ul>
-<h2 id="DataView"><a href="#DataView" class="headerlink" title="DataView"></a>DataView</h2><p>看上去是能够轻松获取到 buffer 中的值</p>
+<h2 id="DataView">DataView</h2>
+<p>看上去是能够轻松获取到 buffer 中的值</p>
 
                 
               </div>

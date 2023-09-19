@@ -16,12 +16,12 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="阅读：错误处理与调试1234567891011try &amp;#123;    &#x2F;&#x2F; 可能出错的代码&amp;#125; catch(error) &amp;#123;    &#x2F;&#x2F; 出错之后要做什么    console.log(error.message);    &#x2F;&#x2F; 最好只依赖message    &#x2F;&#x2F; 因为只有message是唯一一个所有浏览器中都有的属性 保证跨平台性&amp;#125; finally &amp;#123;">
+    <meta name="description" content="阅读：错误处理与调试 1234567891011try &amp;#123;    &#x2F;&#x2F; 可能出错的代码&amp;#125; catch(error) &amp;#123;    &#x2F;&#x2F; 出错之后要做什么    console.log(error.message);    &#x2F;&#x2F; 最好只依赖message    &#x2F;&#x2F; 因为只有message是唯一一个所有浏览器中都有的属性 保证跨平台性&amp;#125; finally &amp;#123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阅读错误处理与调试">
 <meta property="og:url" content="https://treeu.github.io/2023/02/08/try-catch/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="阅读：错误处理与调试1234567891011try &amp;#123;    &#x2F;&#x2F; 可能出错的代码&amp;#125; catch(error) &amp;#123;    &#x2F;&#x2F; 出错之后要做什么    console.log(error.message);    &#x2F;&#x2F; 最好只依赖message    &#x2F;&#x2F; 因为只有message是唯一一个所有浏览器中都有的属性 保证跨平台性&amp;#125; finally &amp;#123;">
+<meta property="og:description" content="阅读：错误处理与调试 1234567891011try &amp;#123;    &#x2F;&#x2F; 可能出错的代码&amp;#125; catch(error) &amp;#123;    &#x2F;&#x2F; 出错之后要做什么    console.log(error.message);    &#x2F;&#x2F; 最好只依赖message    &#x2F;&#x2F; 因为只有message是唯一一个所有浏览器中都有的属性 保证跨平台性&amp;#125; finally &amp;#123">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-02-08T15:38:19.000Z">
 <meta property="article:modified_time" content="2023-02-09T14:47:44.364Z">
@@ -299,24 +299,38 @@
             
               <div class="markdown-body">
                 
-                <h2 id="阅读：错误处理与调试"><a href="#阅读：错误处理与调试" class="headerlink" title="阅读：错误处理与调试"></a>阅读：错误处理与调试</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 可能出错的代码</span><br>&#125; <span class="hljs-keyword">catch</span>(error) &#123;<br>    <span class="hljs-comment">// 出错之后要做什么</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>);<br>    <span class="hljs-comment">// 最好只依赖message</span><br>    <span class="hljs-comment">// 因为只有message是唯一一个所有浏览器中都有的属性 保证跨平台性</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>    <span class="hljs-comment">// 无论如何都要执行的代码，即使是上面的模块存在return;</span><br>    <span class="hljs-comment">// 存在finally块则catch为可选块</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="错误类型"><a href="#错误类型" class="headerlink" title="错误类型"></a>错误类型</h3><h4 id="Error-基类型"><a href="#Error-基类型" class="headerlink" title="Error 基类型"></a>Error 基类型</h4><p>其他错误类继承该类型，所有的类型都共享相同的属性，该类型主要用于开发者抛出的自定义错误</p>
-<h4 id="InternalError"><a href="#InternalError" class="headerlink" title="InternalError"></a>InternalError</h4><p>底层 javascript 引擎抛出异常时由浏览器抛出<br>例如：递归过多导致了栈溢出</p>
-<h4 id="EvalError"><a href="#EvalError" class="headerlink" title="EvalError"></a>EvalError</h4><p>eval()函数发生异常时候抛出，基本上用不到</p>
-<h4 id="RangeError"><a href="#RangeError" class="headerlink" title="RangeError"></a>RangeError</h4><p>数值越界的时候抛出，<br>例如：<code>let items2 = new Array(Number.MAX_VALUE)</code></p>
-<h4 id="ReferenceError"><a href="#ReferenceError" class="headerlink" title="ReferenceError"></a>ReferenceError</h4><p>会在找不到对象时候发生<br>例如：<code>let obj = x</code></p>
-<h4 id="TypeError-（常见）"><a href="#TypeError-（常见）" class="headerlink" title="TypeError （常见）"></a>TypeError （常见）</h4><p>变量不是预期类型，访问不存在的方法，等等<br>例如：let o &#x3D; new 10</p>
-<h4 id="URIError"><a href="#URIError" class="headerlink" title="URIError"></a>URIError</h4><p>encodeURI()（URL 转码） 或者 decodeURI() 传入了错误的 URI 结构</p>
+                <h2 id="阅读：错误处理与调试">阅读：错误处理与调试</h2>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 可能出错的代码</span><br>&#125; <span class="hljs-keyword">catch</span>(error) &#123;<br>    <span class="hljs-comment">// 出错之后要做什么</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>);<br>    <span class="hljs-comment">// 最好只依赖message</span><br>    <span class="hljs-comment">// 因为只有message是唯一一个所有浏览器中都有的属性 保证跨平台性</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>    <span class="hljs-comment">// 无论如何都要执行的代码，即使是上面的模块存在return;</span><br>    <span class="hljs-comment">// 存在finally块则catch为可选块</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="错误类型">错误类型</h3>
+<h4 id="Error-基类型">Error 基类型</h4>
+<p>其他错误类继承该类型，所有的类型都共享相同的属性，该类型主要用于开发者抛出的自定义错误</p>
+<h4 id="InternalError">InternalError</h4>
+<p>底层 javascript 引擎抛出异常时由浏览器抛出<br>
+例如：递归过多导致了栈溢出</p>
+<h4 id="EvalError">EvalError</h4>
+<p>eval()函数发生异常时候抛出，基本上用不到</p>
+<h4 id="RangeError">RangeError</h4>
+<p>数值越界的时候抛出，<br>
+例如：<code>let items2 = new Array(Number.MAX_VALUE)</code></p>
+<h4 id="ReferenceError">ReferenceError</h4>
+<p>会在找不到对象时候发生<br>
+例如：<code>let obj = x</code></p>
+<h4 id="TypeError-（常见）">TypeError （常见）</h4>
+<p>变量不是预期类型，访问不存在的方法，等等<br>
+例如：let o = new 10</p>
+<h4 id="URIError">URIError</h4>
+<p>encodeURI()（URL 转码） 或者 decodeURI() 传入了错误的 URI 结构</p>
 <p>可以使用 instanceof 来确定错误的类型，来进行对应的处理</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">try</span> &#123;<br>	<span class="hljs-comment">//dosomething</span><br>&#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>	<span class="hljs-keyword">if</span> (error <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">TypeError</span>) &#123;<br>		<span class="hljs-comment">// dosomething</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="使用-try-catch-捕获错误"><a href="#使用-try-catch-捕获错误" class="headerlink" title="使用 try&#x2F;catch 捕获错误"></a>使用 try&#x2F;catch 捕获错误</h3><p>在所有可能发生错误的地方使用 try&#x2F;catch</p>
-<h3 id="抛出错误"><a href="#抛出错误" class="headerlink" title="抛出错误"></a>抛出错误</h3><p><code>thorw new TypeError(&quot;error&quot;)</code></p>
+<h3 id="使用-try-catch-捕获错误">使用 try/catch 捕获错误</h3>
+<p>在所有可能发生错误的地方使用 try/catch</p>
+<h3 id="抛出错误">抛出错误</h3>
+<p><code>thorw new TypeError(&quot;error&quot;)</code></p>
 <p>一般来说，错误应该要在应用程序的底层抛出，目的是为错误提供有关其发生原因的说明，在已知函数无法正确执行的情况下抛出错误</p>
-<h3 id="创建一个自定义类型的错误"><a href="#创建一个自定义类型的错误" class="headerlink" title="创建一个自定义类型的错误"></a>创建一个自定义类型的错误</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">customError</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Error</span> &#123;<br>	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">message</span>) &#123;<br>		<span class="hljs-variable language_">super</span>(message);<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;CustomError&#x27;</span>;<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span> = message;<br>	&#125;<br>&#125;<br><br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">customError</span>(<span class="hljs-string">&#x27;111&#x27;</span>);<br><span class="hljs-comment">// Uncaught CustomError: 11</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="window-onerror"><a href="#window-onerror" class="headerlink" title="window.onerror"></a>window.onerror</h3><p>任何没有被 try&#x2F;catch 语句处理的错误都会在 window 对象上触发 error 事件</p>
+<h3 id="创建一个自定义类型的错误">创建一个自定义类型的错误</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">customError</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Error</span> &#123;<br>	<span class="hljs-title function_">constructor</span>(<span class="hljs-params">message</span>) &#123;<br>		<span class="hljs-variable language_">super</span>(message);<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;CustomError&#x27;</span>;<br>		<span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span> = message;<br>	&#125;<br>&#125;<br><br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">customError</span>(<span class="hljs-string">&#x27;111&#x27;</span>);<br><span class="hljs-comment">// Uncaught CustomError: 11</span><br></code></pre></td></tr></table></figure>
+<h3 id="window-onerror">window.onerror</h3>
+<p>任何没有被 try/catch 语句处理的错误都会在 window 对象上触发 error 事件</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onerror</span> = <span class="hljs-function">(<span class="hljs-params">message, url, line</span>) =&gt;</span> &#123;<br>	consolog.<span class="hljs-title function_">log</span>(message);<br>	<span class="hljs-keyword">return</span> falss; <span class="hljs-comment">// 阻止浏览器默认报告错误的行为</span><br>&#125;;<br><br><span class="hljs-literal">null</span> == <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// true</span><br><span class="hljs-literal">null</span> === <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
 
                 
