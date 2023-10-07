@@ -25,8 +25,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://treeu.github.io/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-09-12-23-07-02.png">
 <meta property="og:image" content="https://treeu.github.io/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-09-12-23-56-54.png">
+<meta property="og:image" content="https://treeu.github.io/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-10-07-22-52-54.png">
+<meta property="og:image" content="https://treeu.github.io/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-10-07-23-52-04.png">
 <meta property="article:published_time" content="2023-09-11T16:03:37.000Z">
-<meta property="article:modified_time" content="2023-09-27T16:11:22.931Z">
+<meta property="article:modified_time" content="2023-10-07T15:52:14.497Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-09-12-23-07-02.png">
@@ -239,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k words
+          4.7k words
         
       </span>
     
@@ -250,7 +252,7 @@
         
         
         
-          34 mins
+          40 mins
         
       </span>
     
@@ -293,7 +295,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 minutes ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -443,7 +445,38 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getMax</span>(<span class="hljs-params">arr</span>) &#123;<br>	<span class="hljs-keyword">const</span> max = <span class="hljs-title function_">process</span>(arr, <span class="hljs-number">0</span>, arr.<span class="hljs-property">lenghth</span> - <span class="hljs-number">1</span>);<br>	<span class="hljs-keyword">return</span> max;<br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">process</span>(<span class="hljs-params">arr, l, r</span>) &#123;<br>	<span class="hljs-keyword">if</span> (l === r) &#123;<br>		<span class="hljs-keyword">return</span> arr[l];<br>	&#125;<br>	<span class="hljs-keyword">let</span> mid = arr[(l + (r - l)) &gt;&gt; <span class="hljs-number">1</span>];<br>	<span class="hljs-keyword">let</span> leftMax = <span class="hljs-title function_">process</span>(arr, l, mid);<br>	<span class="hljs-keyword">let</span> rightMax = <span class="hljs-title function_">process</span>(arr, mid + <span class="hljs-number">1</span>, r);<br>	<span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(leftMax, rightMax);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>我们再来去分解这个递归 我们把递归做一个分解 同时递归 &#x3D; 数学归纳法<br>发现其实就是一种进栈出栈（难怪说递归基本上都能改写为栈模式）<br>在一个高度上进行压栈</p>
-<h2 id="master-公式的使用"><a href="#master-公式的使用" class="headerlink" title="master 公式的使用"></a>master 公式的使用</h2>
+<h2 id="master-公式的使用"><a href="#master-公式的使用" class="headerlink" title="master 公式的使用"></a>master 公式的使用</h2><h3 id="master-公式用来干嘛的"><a href="#master-公式用来干嘛的" class="headerlink" title="master 公式用来干嘛的"></a>master 公式用来干嘛的</h3><p>用来求解时间复杂度的</p>
+<p><code>T(n) = a * T(n/b) + O(n^d)</code></p>
+<p>母问题 n 个 数据 &#x3D; a 调用次数 * n&#x2F;b 子问题的规模 + 除子问题外剩下的过程</p>
+<p>这个子问题的规模也就是我们把母问题的数据如何拆分 比如上述题目 我们是拆分为 1&#x2F;2 * n 调用两次</p>
+<p><strong>要满足 master 公式的重要条件是 子问题的规模数量要相同</strong></p>
+<p>logb^a &lt; d &#x3D;&#x3D;&#x3D; O(N^d)</p>
+<p>logb^a &gt; d &#x3D;&#x3D;&#x3D; O(N^logb^a)</p>
+<p>logb^a &#x3D; d &#x3D;&#x3D;&#x3D; O(N^d * logN)</p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><ul>
+<li>1、左边排好序</li>
+<li>2、右边排好序</li>
+<li>3、整合<br>这个整合 我们准备一个辅助空间 准备两个指针 把左右两边进行比较 拷贝小的 如果相等就拿左边的 也就是移动左边的指针</li>
+</ul>
+<p>先递归二分，再 merge，merge 的时候考虑边界，也就是哪个指针先走完</p>
+<p><img src="/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-10-07-22-52-54.png" srcset="/img/loading.gif" lazyload></p>
+<p>为什么说 O(n^2)的不好，是因为大量的比较只能确定一个数，太浪费了</p>
+<h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><ul>
+<li>小和问题</li>
+</ul>
+<p>这个题目也就是给你一个数组 [3,2,1] 找到数组中每个值前面比它小的值，然后累加起来</p>
+<p>这个题目 up 主给出的思路</p>
+<p>转换一下想法 找当前这个数 右侧比它大的数据</p>
+<p><code>[1,3,4,2,5]</code></p>
+<p>以当前数组作为例子<br>依次看<br>1 后面有四个数都比它大 1<em>4<br>3 后面有两个数比它大 2</em>3<br>…</p>
+<p>使用归并排序 然后在 merge 的时候 记录小和数据</p>
+<p>注意点 左组数与右组数指针指向的值数量相等的时候，要保证右组先拷贝，其实也就是两边都排好序了，然后我以左侧作为基准，在右边去找，这样才是准确的</p>
+<p><strong>唯一区别 上述的是找左边的</strong></p>
+<p><img src="/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/2023-10-07-23-52-04.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>逆序对问题</li>
+</ul>
+
                 
               </div>
             
