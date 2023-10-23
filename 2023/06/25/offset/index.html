@@ -16,12 +16,12 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="折线曲线偏移算法 最近在研究折线曲线偏移算法 也就是外扩内缩算法 目前的参考论文有几下几篇 An offset algorithm for polyline curves   文档地址 https:&#x2F;&#x2F;sci-hub.se&#x2F;10.1016&#x2F;j.compind.2006.06.002   代码实现 https:&#x2F;&#x2F;github.com&#x2F;jbuckmccready&#x2F;CavalierContours">
+    <meta name="description" content="折线曲线偏移算法最近在研究折线曲线偏移算法 也就是外扩内缩算法 目前的参考论文有几下几篇 An offset algorithm for polyline curves 文档地址 https:&#x2F;&#x2F;sci-hub.se&#x2F;10.1016&#x2F;j.compind.2006.06.002  代码实现 https:&#x2F;&#x2F;github.com&#x2F;jbuckmccready&#x2F;CavalierContours   A n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="offset">
 <meta property="og:url" content="https://treeu.github.io/2023/06/25/offset/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="折线曲线偏移算法 最近在研究折线曲线偏移算法 也就是外扩内缩算法 目前的参考论文有几下几篇 An offset algorithm for polyline curves   文档地址 https:&#x2F;&#x2F;sci-hub.se&#x2F;10.1016&#x2F;j.compind.2006.06.002   代码实现 https:&#x2F;&#x2F;github.com&#x2F;jbuckmccready&#x2F;CavalierContours">
+<meta property="og:description" content="折线曲线偏移算法最近在研究折线曲线偏移算法 也就是外扩内缩算法 目前的参考论文有几下几篇 An offset algorithm for polyline curves 文档地址 https:&#x2F;&#x2F;sci-hub.se&#x2F;10.1016&#x2F;j.compind.2006.06.002  代码实现 https:&#x2F;&#x2F;github.com&#x2F;jbuckmccready&#x2F;CavalierContours   A n">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-25T15:13:51.000Z">
 <meta property="article:modified_time" content="2023-06-25T16:41:09.230Z">
@@ -290,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 3 months ago
+                    Last updated on 4 months ago
                   
                 
               </p>
@@ -298,25 +298,18 @@
             
               <div class="markdown-body">
                 
-                <h1>折线曲线偏移算法</h1>
-<p>最近在研究折线曲线偏移算法 也就是外扩内缩算法</p>
+                <h1 id="折线曲线偏移算法"><a href="#折线曲线偏移算法" class="headerlink" title="折线曲线偏移算法"></a>折线曲线偏移算法</h1><p>最近在研究折线曲线偏移算法 也就是外扩内缩算法</p>
 <p>目前的参考论文有几下几篇</p>
-<h2 id="An-offset-algorithm-for-polyline-curves">An offset algorithm for polyline curves</h2>
-<ul>
-<li>
-<p>文档地址 <a target="_blank" rel="noopener" href="https://sci-hub.se/10.1016/j.compind.2006.06.002">https://sci-hub.se/10.1016/j.compind.2006.06.002</a></p>
+<h2 id="An-offset-algorithm-for-polyline-curves"><a href="#An-offset-algorithm-for-polyline-curves" class="headerlink" title="An offset algorithm for polyline curves"></a>An offset algorithm for polyline curves</h2><ul>
+<li><p>文档地址 <a target="_blank" rel="noopener" href="https://sci-hub.se/10.1016/j.compind.2006.06.002">https://sci-hub.se/10.1016/j.compind.2006.06.002</a></p>
 </li>
-<li>
-<p>代码实现 <a target="_blank" rel="noopener" href="https://github.com/jbuckmccready/CavalierContours">https://github.com/jbuckmccready/CavalierContours</a></p>
+<li><p>代码实现 <a target="_blank" rel="noopener" href="https://github.com/jbuckmccready/CavalierContours">https://github.com/jbuckmccready/CavalierContours</a></p>
 </li>
 </ul>
-<h2 id="A-new-offset-algorithm-for-closed-2D-lines-with-Islands">A new offset algorithm for closed 2D lines with Islands</h2>
-<ul>
-<li>
-<p>文档地址 <a target="_blank" rel="noopener" href="https://www.docin.com/p-1356454361.html">https://www.docin.com/p-1356454361.html</a></p>
+<h2 id="A-new-offset-algorithm-for-closed-2D-lines-with-Islands"><a href="#A-new-offset-algorithm-for-closed-2D-lines-with-Islands" class="headerlink" title="A new offset algorithm for closed 2D lines with Islands"></a>A new offset algorithm for closed 2D lines with Islands</h2><ul>
+<li><p>文档地址 <a target="_blank" rel="noopener" href="https://www.docin.com/p-1356454361.html">https://www.docin.com/p-1356454361.html</a></p>
 </li>
-<li>
-<p>代码实现 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41261251/article/details/114462696">https://blog.csdn.net/qq_41261251/article/details/114462696</a></p>
+<li><p>代码实现 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41261251/article/details/114462696">https://blog.csdn.net/qq_41261251/article/details/114462696</a></p>
 </li>
 </ul>
 <p>本篇论文提出了两种算法</p>
@@ -324,41 +317,26 @@
 <li>1、使用平分线的新偏移算法</li>
 <li>2、一种无效偏移边缘处理算法</li>
 </ul>
-<h2 id="具体算法">具体算法</h2>
-<ul>
-<li>
-<p>1、判断顶点是凸点还是凹点，利用角平分线得到偏移角</p>
+<h2 id="具体算法"><a href="#具体算法" class="headerlink" title="具体算法"></a>具体算法</h2><ul>
+<li><p>1、判断顶点是凸点还是凹点，利用角平分线得到偏移角</p>
 </li>
-<li>
-<p>2、偏移边的有效性，如果偏移边的方向与原始边的方向相反，则为无效边</p>
+<li><p>2、偏移边的有效性，如果偏移边的方向与原始边的方向相反，则为无效边</p>
 <ul>
-<li>原始偏移曲线由偏移点按顺序连接起来，但是无效边不应该在其中<br>
-无效偏移边的处理算法有分两种情况
-<ul>
-<li>不存在连续的无效偏移边<br>
-找到无效偏移边的前向边和后向边，前向边顺着偏移边的方向往后找到的第一个有效偏移边，后向边，偏移边的逆方向找到的第一个有效边<br>
-延长前向边和后向边得到交点，将这个交点作为前向边的起点，后向边的终点</li>
-<li>存在连续的无效偏移边<br>
-还是找到这个前向边和后向边<br>
-找到无效偏移边的原始边，检查所选边是否与有效偏移边是否存在交点，存在交点，偏移该所选边，得到与前向边和后向边的交点，连接成一条新的线</li>
+<li>原始偏移曲线由偏移点按顺序连接起来，但是无效边不应该在其中<br>无效偏移边的处理算法有分两种情况<ul>
+<li>不存在连续的无效偏移边<br>找到无效偏移边的前向边和后向边，前向边顺着偏移边的方向往后找到的第一个有效偏移边，后向边，偏移边的逆方向找到的第一个有效边<br>延长前向边和后向边得到交点，将这个交点作为前向边的起点，后向边的终点</li>
+<li>存在连续的无效偏移边<br>还是找到这个前向边和后向边<br>找到无效偏移边的原始边，检查所选边是否与有效偏移边是否存在交点，存在交点，偏移该所选边，得到与前向边和后向边的交点，连接成一条新的线</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>
-<p>3、无效环的处理<br>
-这里不是很明白 需要问一下<br>
-大致就是会定义一个路径方向，比如为顺时针，如果我们得到的环的方向为逆时针哪就是无效循环，无效的循环会被移除掉</p>
+<li><p>3、无效环的处理<br>这里不是很明白 需要问一下<br>大致就是会定义一个路径方向，比如为顺时针，如果我们得到的环的方向为逆时针哪就是无效循环，无效的循环会被移除掉</p>
 </li>
 </ul>
-<h2 id="2D-Curve-Offset-Algorithm-for-Pockets-with-Islands-using-a-Vertex-Offset">2D Curve Offset Algorithm for Pockets with Islands using a Vertex Offset</h2>
-<ul>
+<h2 id="2D-Curve-Offset-Algorithm-for-Pockets-with-Islands-using-a-Vertex-Offset"><a href="#2D-Curve-Offset-Algorithm-for-Pockets-with-Islands-using-a-Vertex-Offset" class="headerlink" title="2D Curve Offset Algorithm for Pockets with Islands using a Vertex Offset"></a>2D Curve Offset Algorithm for Pockets with Islands using a Vertex Offset</h2><ul>
 <li>文档地址 <a target="_blank" rel="noopener" href="https://sci-hub.se/10.1007/s12541-009-0037-9">https://sci-hub.se/10.1007/s12541-009-0037-9</a></li>
 </ul>
-<h2 id="业务场景">业务场景</h2>
-<p>我这边处理的只是轮廊 轮廊包含折线和曲线</p>
-<h2 id="补充知识">补充知识</h2>
-<p>求线段交点 可使用叉积处理</p>
+<h2 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h2><p>我这边处理的只是轮廊 轮廊包含折线和曲线</p>
+<h2 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h2><p>求线段交点 可使用叉积处理</p>
 <p>求线段方向有效性 可以用点积处理（疑惑点，曲线怎么求有效方向, 曲线似乎一定是）</p>
 
                 
