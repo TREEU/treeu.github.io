@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>SDF</title>
+    <link href="/2023/10/24/sdf/"/>
+    <url>/2023/10/24/sdf/</url>
+    
+    <content type="html"><![CDATA[<p>最近工作需求安排要摸一个 sdf</p><h1 id="SDF"><a href="#SDF" class="headerlink" title="SDF"></a>SDF</h1><ul><li>快</li><li>需要大量的存储</li></ul><p>距离场</p><p>二维平面上我们说物体的表面就是物体的轮廓</p><p>sdf 是一个安全距离 在此期间都不会发生碰撞</p><p>sdf 考虑的是场景中的任意一个点</p><p>已知轮廊 怎么算 sdf</p><ul><li>唉 摸不动了 痛苦万分</li></ul><p>SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离</p><p>符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0</p><p>怎么做</p><p>8ssedt</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>系统学习算法</title>
     <link href="/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/"/>
     <url>/2023/09/12/%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</url>
