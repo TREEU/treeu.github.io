@@ -16,15 +16,15 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最近工作需求安排要摸一个 sdf SDF  快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 已知轮廊 怎么算 sdf  唉 摸不动了 痛苦万分  SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离 符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0 怎么做 8ssedt 先">
+    <meta name="description" content="最近工作需求安排要摸一个 sdf SDF 快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 已知轮廊 怎么算 sdf  唉 摸不动了 痛苦万分  SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离 符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0 怎么做 8ssedt 先渲">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SDF">
 <meta property="og:url" content="https://treeu.github.io/2023/10/24/sdf/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="最近工作需求安排要摸一个 sdf SDF  快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 已知轮廊 怎么算 sdf  唉 摸不动了 痛苦万分  SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离 符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0 怎么做 8ssedt 先">
+<meta property="og:description" content="最近工作需求安排要摸一个 sdf SDF 快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 已知轮廊 怎么算 sdf  唉 摸不动了 痛苦万分  SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离 符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0 怎么做 8ssedt 先渲">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-24T15:13:30.000Z">
-<meta property="article:modified_time" content="2023-10-28T03:20:25.921Z">
+<meta property="article:modified_time" content="2023-11-14T15:30:27.418Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          206 words
+          290 words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          2 mins
+          3 mins
         
       </span>
     
@@ -290,7 +290,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 3 days ago
+                    Last updated on an hour ago
                   
                 
               </p>
@@ -299,8 +299,7 @@
               <div class="markdown-body">
                 
                 <p>最近工作需求安排要摸一个 sdf</p>
-<h1>SDF</h1>
-<ul>
+<h1 id="SDF"><a href="#SDF" class="headerlink" title="SDF"></a>SDF</h1><ul>
 <li>快</li>
 <li>需要大量的存储</li>
 </ul>
@@ -316,8 +315,10 @@
 <p>符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0</p>
 <p>怎么做</p>
 <p>8ssedt</p>
-<p>先渲染一个离屏的 canvas 宽高就是 bbox 绘制出来之后把它弄成图片<br>
-根据</p>
+<p>先渲染一个离屏的 canvas 宽高就是 bbox 绘制出来之后把它弄成图片<br>根据</p>
+<h2 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h2><h3 id="mipmap"><a href="#mipmap" class="headerlink" title="mipmap"></a>mipmap</h3><p>主图按特定比例缩小细节的复制品</p>
+<p>也就是预先就生成了不同尺寸的小副本， 用于加快渲染</p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-sg/Mipmap">https://zh.wikipedia.org/zh-sg/Mipmap</a></p>
 
                 
               </div>
