@@ -16,17 +16,21 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最近工作需求安排要摸一个 sdf SDF 快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 已知轮廊 怎么算 sdf  唉 摸不动了 痛苦万分  SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离 符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0 怎么做 8ssedt 先渲">
+    <meta name="description" content="最近工作需求安排要摸一个 sdf SDF简单介绍 快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 每个像素记录自己与距离自己最近的物体边界的距离 符号体现在像素点在物体内距离为负 刚好在物体边界上为 0 大于为正数 生成算法目前找到的在 CPU 上能够在线性时间内（时间复杂度 O(n)）将二">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SDF">
 <meta property="og:url" content="https://treeu.github.io/2023/10/24/sdf/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="最近工作需求安排要摸一个 sdf SDF 快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 已知轮廊 怎么算 sdf  唉 摸不动了 痛苦万分  SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离 符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0 怎么做 8ssedt 先渲">
+<meta property="og:description" content="最近工作需求安排要摸一个 sdf SDF简单介绍 快 需要大量的存储  距离场 二维平面上我们说物体的表面就是物体的轮廓 sdf 是一个安全距离 在此期间都不会发生碰撞 sdf 考虑的是场景中的任意一个点 每个像素记录自己与距离自己最近的物体边界的距离 符号体现在像素点在物体内距离为负 刚好在物体边界上为 0 大于为正数 生成算法目前找到的在 CPU 上能够在线性时间内（时间复杂度 O(n)）将二">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://treeu.github.io/2023/10/24/sdf/2023-11-30-00-42-06.png">
+<meta property="og:image" content="https://treeu.github.io/2023/10/24/sdf/2023-11-30-00-45-30.png">
+<meta property="og:image" content="https://treeu.github.io/2023/10/24/sdf/2023-11-30-00-51-51.png">
 <meta property="article:published_time" content="2023-10-24T15:13:30.000Z">
-<meta property="article:modified_time" content="2023-11-14T15:30:27.418Z">
+<meta property="article:modified_time" content="2023-11-29T16:56:44.746Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://treeu.github.io/2023/10/24/sdf/2023-11-30-00-42-06.png">
   
   
   
@@ -236,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          290 words
+          987 words
         
       </span>
     
@@ -247,7 +251,7 @@
         
         
         
-          3 mins
+          9 mins
         
       </span>
     
@@ -290,7 +294,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on an hour ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -299,7 +303,7 @@
               <div class="markdown-body">
                 
                 <p>最近工作需求安排要摸一个 sdf</p>
-<h1 id="SDF"><a href="#SDF" class="headerlink" title="SDF"></a>SDF</h1><ul>
+<h1 id="SDF"><a href="#SDF" class="headerlink" title="SDF"></a>SDF</h1><h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><ul>
 <li>快</li>
 <li>需要大量的存储</li>
 </ul>
@@ -307,18 +311,49 @@
 <p>二维平面上我们说物体的表面就是物体的轮廓</p>
 <p>sdf 是一个安全距离 在此期间都不会发生碰撞</p>
 <p>sdf 考虑的是场景中的任意一个点</p>
-<p>已知轮廊 怎么算 sdf</p>
+<p>每个像素记录自己与距离自己最近的物体边界的距离</p>
+<p>符号体现在像素点在物体内距离为负 刚好在物体边界上为 0 大于为正数</p>
+<h1 id="生成算法"><a href="#生成算法" class="headerlink" title="生成算法"></a>生成算法</h1><p>目前找到的在 CPU 上能够在线性时间内（时间复杂度 O(n)）将二值图转换为 sdf 图的算法有两种</p>
+<p>我们必须理解的一个前提</p>
+<p>当前像素点里面是存了初始化的距离值的 0 &#x2F; 无穷大</p>
+<p>当前像素点的 sdf &#x3D; min(当前像素点的 sdf，目标点的 sdf + distance(像素点，目标点))</p>
+<p>这个距离就是点与点之间的距离</p>
+<p>(x - x’)^2 + (y - y’)^2</p>
+<h2 id="8ssedt"><a href="#8ssedt" class="headerlink" title="8ssedt"></a>8ssedt</h2><p>算法核心思路</p>
+<h3 id="1、创建两个网格"><a href="#1、创建两个网格" class="headerlink" title="1、创建两个网格"></a>1、创建两个网格</h3><p>遍历位图</p>
 <ul>
-<li>唉 摸不动了 痛苦万分</li>
+<li><p>Grid1 用于计算物体外到物体内到距离 标记白色像素距离为 0 黑色像素为一个超大数</p>
+</li>
+<li><p>Grid2 用于计算物体内到物体外的距离 白色像素距离为超大数 黑色像素为 0</p>
+</li>
 </ul>
-<p>SDF 贴图，每个像素记录自己与距离自己最近的物体边界的距离</p>
-<p>符号体现在 像素点在物体内距离为负，刚好在物体边界上为 0</p>
-<p>怎么做</p>
-<p>8ssedt</p>
-<p>先渲染一个离屏的 canvas 宽高就是 bbox 绘制出来之后把它弄成图片<br>根据</p>
+<p>推导过程是一个像素分别和周边的八个像素进行比较</p>
+<p>为每个网格都执行一遍 pass0 和 pass1</p>
+<ul>
+<li>pass0 按照从上到下 从左到右 从右到左</li>
+<li>pass1 按照从下到上 从右到左 从左到右</li>
+</ul>
+<p>然后将 Grid1 - Grid2 就得到了最终的结果</p>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41835314/article/details/128548073">https://blog.csdn.net/qq_41835314/article/details/128548073</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/518292475">https://zhuanlan.zhihu.com/p/518292475</a></p>
+<h2 id="欧几里得距离算法"><a href="#欧几里得距离算法" class="headerlink" title="欧几里得距离算法"></a>欧几里得距离算法</h2><p>同样也是分为两个表格</p>
+<p>二维情况下 像素(x,y)到形状的距离</p>
+<p>可以拆分为两个一维操作</p>
+<p>也就是</p>
+<p><img src="/2023/10/24/sdf/2023-11-30-00-42-06.png" srcset="/img/loading.gif" lazyload></p>
+<p>这里我们可以发现这是一个二次函数 一个抛物线函数</p>
+<p><img src="/2023/10/24/sdf/2023-11-30-00-45-30.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后我们要做什么 我们可以从图中看出 蓝色区域就是我们可能的距离值</p>
+<p><img src="/2023/10/24/sdf/2023-11-30-00-51-51.png" srcset="/img/loading.gif" lazyload></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/651108382?utm_psn=1710953023390494720">https://zhuanlan.zhihu.com/p/651108382?utm_psn=1710953023390494720</a></p>
 <h2 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h2><h3 id="mipmap"><a href="#mipmap" class="headerlink" title="mipmap"></a>mipmap</h3><p>主图按特定比例缩小细节的复制品</p>
 <p>也就是预先就生成了不同尺寸的小副本， 用于加快渲染</p>
 <p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-sg/Mipmap">https://zh.wikipedia.org/zh-sg/Mipmap</a></p>
+<h2 id="位图和矢量图"><a href="#位图和矢量图" class="headerlink" title="位图和矢量图"></a>位图和矢量图</h2><h3 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h3><p>像素阵列，jpe.png 之类的</p>
+<h3 id="矢量图"><a href="#矢量图" class="headerlink" title="矢量图"></a>矢量图</h3><p>矢量图保存的是对图案内容的抽象描述，而不是具体的每个像素的颜色信息</p>
+<p>例如：svg</p>
+<p>我们在这里生成的 sdf 也就是矢量图</p>
+<h2 id="光栅化"><a href="#光栅化" class="headerlink" title="光栅化"></a>光栅化</h2><p>也就是将矢量图数据转换为位图数据的过程</p>
 
                 
               </div>
