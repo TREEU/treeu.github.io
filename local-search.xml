@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>redbook</title>
+    <link href="/2024/02/05/redbook/"/>
+    <url>/2024/02/05/redbook/</url>
+    
+    <content type="html"><![CDATA[<h1 id="阅读红宝石书"><a href="#阅读红宝石书" class="headerlink" title="阅读红宝石书"></a>阅读红宝石书</h1><h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="脚本语言（script）"><a href="#脚本语言（script）" class="headerlink" title="脚本语言（script）"></a>脚本语言（script）</h2><p>就是解释性语言</p><ul><li>脚本语言 读一行，执行一行，运行到报错的地方才会报错</li><li>非脚本语言 需要读取所有代码进行编译（检查代码中的错误）通过后再进行执行</li></ul><h2 id="Javcascript-实现"><a href="#Javcascript-实现" class="headerlink" title="Javcascript 实现"></a>Javcascript 实现</h2><ul><li><p>核心（ECMAScript）</p><ul><li>由 ECMA-262 定义并提供核心功能<ul><li>语法</li><li>类型</li><li>语句</li><li>关键字</li><li>保留字</li><li>操作符</li><li>全局对象<br>举例：ES6 ECAMA-262 第 6 版</li></ul></li></ul></li><li><p>文档对象模型（DOM）<br>提供与网页内容交互的方法和接口</p><ul><li>DOM 将页面抽象成分层节点</li><li>使用 DOM API 可以轻松的删除、添加、替换、修改节点</li><li>有些语言发布了自己的 DOM 标准，增加了该语言独有的 DOM 方法和接口，比如 SVG；</li><li>鼠标事件等</li></ul></li><li><p>浏览器对象模型（BOM）<br>提供与浏览器交互的方法和接口</p><ul><li>用于访问和操作浏览器的窗口和子窗口（frame）<ul><li>弹出新浏览器窗口，window 对象</li><li>移动、缩放和关闭浏览器窗口</li><li>navigator 对象，提供关于浏览器的详尽信息</li><li>location 对象，提供浏览器加载页面的详尽信息</li></ul></li><li>javascript 版本 9<ul><li>screen 对象，提供关于用户屏幕分辨率的详尽信息；</li><li>performance 对象，提供浏览器内存占用、导航行为和时间统计的详尽信息</li><li>对 cookie 的支持</li></ul></li></ul></li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>js内存相关</title>
     <link href="/2023/12/03/js%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/"/>
     <url>/2023/12/03/js%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/</url>
