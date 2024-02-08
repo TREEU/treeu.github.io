@@ -25,8 +25,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-42-58.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-22-31-35.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-22-59-02.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-23-20-41.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-23-35-28.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-23-51-43.png">
 <meta property="article:published_time" content="2024-02-05T04:55:10.000Z">
-<meta property="article:modified_time" content="2024-02-07T16:59:08.950Z">
+<meta property="article:modified_time" content="2024-02-08T16:04:51.654Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
@@ -239,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          3.6k words
         
       </span>
     
@@ -250,7 +255,7 @@
         
         
         
-          27 mins
+          30 mins
         
       </span>
     
@@ -293,7 +298,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a few seconds ago
+                    Last updated on 17 minutes ago
                   
                 
               </p>
@@ -453,10 +458,30 @@
 <p>接受任意参数，先尝试转换为数字，<br>注意 boolean true 可以转换为 0</p>
 <p><img src="/2024/02/05/redbook/2024-02-08-00-42-58.png" srcset="/img/loading.gif" lazyload></p>
 <h5 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h5><ul>
-<li><code>Number()</code></li>
-<li><code>parseInt()</code></li>
-<li><code>parseFloat()</code></li>
+<li><code>Number()</code><ul>
+<li>布尔值 0 1</li>
+<li>number 类型 直接返回</li>
+<li>null 0</li>
+<li>undefined 返回 NaN</li>
+<li>字符串<ul>
+<li><img src="/2024/02/05/redbook/2024-02-08-22-31-35.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
+</li>
+<li>对象先调用 valueof()方法，以上述规则返回值，如果是 NaN，则调用 toString()方法<br>注意：一元加操作符与 Number()函数遵循相同的转换规则</li>
+</ul>
+</li>
+<li><code>parseInt()</code><br>需要得到整数时使用<br><strong>从非空格字符串开始检测，直到检测到末尾或者碰到非数字字符</strong><br>parseInt 更关注于字符串是否包含数值模式<br><img src="/2024/02/05/redbook/2024-02-08-22-59-02.png" srcset="/img/loading.gif" lazyload><br>有两个参数，第二个参数指定解析的进制数<br><img src="/2024/02/05/redbook/2024-02-08-23-20-41.png" srcset="/img/loading.gif" lazyload><br>为了避免解析出错，建议始终传给它第二个参数</li>
+<li><code>parseFloat()</code><br>工作方式和 parseInt 类似，注意只能解析十进制值，不能指定底数，也就是没有二个参数可以传递<br>区别：<ul>
+<li>只有第一次出现的小数点是有效的</li>
+<li>会忽略开头的 0,只能解析十进制数，所以传 0x 开头的数值只会返回 0</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/02/05/redbook/2024-02-08-23-35-28.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="String-类型"><a href="#String-类型" class="headerlink" title="String 类型"></a>String 类型</h5><p>先要科普一下 Unicode</p>
+<p>它为每种语言周末的字符设定了统一且唯一的二进制编码</p>
+<p>简单来说就是把普通字符串标准化了</p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/12/unicode.html">https://www.ruanyifeng.com/blog/2014/12/unicode.html</a><br><img src="/2024/02/05/redbook/2024-02-08-23-51-43.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
