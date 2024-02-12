@@ -54,8 +54,11 @@
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-11-22-39-28.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-11-22-52-42.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-11-23-17-12.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-12-22-49-28.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-12-23-46-59.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-12-23-52-36.png">
 <meta property="article:published_time" content="2024-02-05T04:55:10.000Z">
-<meta property="article:modified_time" content="2024-02-11T15:27:05.674Z">
+<meta property="article:modified_time" content="2024-02-12T15:57:21.025Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
@@ -268,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8k words
+          8.8k words
         
       </span>
     
@@ -279,7 +282,7 @@
         
         
         
-          67 mins
+          74 mins
         
       </span>
     
@@ -322,7 +325,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 5 minutes ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -646,7 +649,44 @@
 <p>接上面的，位操作符应用的时候，后台会发生转换，也就是会有一个 64 位转换到 32 为数值再转回 64 位的过程</p>
 <p>这个转换会有一个负作用<br>特殊值：NaN 和 infinity 在位操作中会被当成 0 处理</p>
 <p>位操作符应用到非数值，首先会使用 Number()函数将该值转换为数值（自动执行），再应用位操作</p>
-<h5 id="按位非"><a href="#按位非" class="headerlink" title="按位非"></a>按位非</h5>
+<p>注意这里的位操作符是从右往左读的，也就是第一位是最右边的，对于有符号整数，第三十二位表示数值的符号，0 表示正，1 表示负</p>
+<h5 id="按位非（-）"><a href="#按位非（-）" class="headerlink" title="按位非（~）"></a>按位非（~）</h5><p>对数值取反（取负数）再进行减-操作<br>位操作会快很多 因为位操作是直接操作数值底层表示上完成的</p>
+<h5 id="按位与（-）"><a href="#按位与（-）" class="headerlink" title="按位与（&amp;）"></a>按位与（&amp;）</h5><p>只有都为 1 的时候才为 1<br>有 0 则是 0</p>
+<h5 id="按位或（｜）"><a href="#按位或（｜）" class="headerlink" title="按位或（｜）"></a>按位或（｜）</h5><p>有 1 则为 1</p>
+<h5 id="按位异或（-）"><a href="#按位异或（-）" class="headerlink" title="按位异或（^）"></a>按位异或（^）</h5><p>相同为 0 不同为 1</p>
+<h5 id="左移（"><a href="#左移（" class="headerlink" title="左移（&lt;&lt;）"></a>左移（&lt;&lt;）</h5><p>注意这里是整体向左移动 5 位<br>例如：2 &lt;&lt; 5<br>2 换成二进制就是 10，然后整体向左移动 5 位 1000000 &#x3D; 64</p>
+<p>这里会保留操作符的正负号</p>
+<h5 id="有符号右移（-）"><a href="#有符号右移（-）" class="headerlink" title="有符号右移（&gt;&gt;）"></a>有符号右移（&gt;&gt;）</h5><p>注意这里第一个 bit 位固定是符号位，有符号的右移是整体向右移动，左边的空位补 0</p>
+<p>也就是符号位是固定的</p>
+<h5 id="无符号右移（-）"><a href="#无符号右移（-）" class="headerlink" title="无符号右移（&gt;&gt;&gt;）"></a>无符号右移（&gt;&gt;&gt;）</h5><p>无符号就不会去固定符号位，而是直接 32 位整体移动，对于负数符号位为 1，整体右移之后数据就会有很大的差异<br>例子：<br><img src="/2024/02/05/redbook/2024-02-12-22-49-28.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="布尔操作符"><a href="#布尔操作符" class="headerlink" title="布尔操作符"></a>布尔操作符</h4><ul>
+<li><p>逻辑非<br>可应用给任何值，始终返回布尔值<br>先将操作数转换为布尔值，再进行取反</p>
+<ul>
+<li>! 一个感叹号<ul>
+<li>对象 false</li>
+<li>‘’ 空字符串 true</li>
+<li>非空字符串 false</li>
+<li>数值 0 true</li>
+<li>非零数值（包括 infinity），返回 false 注意</li>
+<li>null true</li>
+<li>NaN true 注意</li>
+<li>undefined true</li>
+</ul>
+</li>
+<li>!! 两个感叹号<br>相当于调用了转型函数 Boolean()，第一个！总会返回布尔值，第二个叹号取反</li>
+</ul>
+</li>
+<li><p>逻辑与（&amp;&amp;）<br>可以用于任何类型的操作数<br>逻辑与并不一定返回布尔值<br>注意：</p>
+<ul>
+<li>只要第一个操作数是假值，就直接返回对应的假值</li>
+<li>第一个值为 true 才考虑第二个操作数<br><img src="/2024/02/05/redbook/2024-02-12-23-46-59.png" srcset="/img/loading.gif" lazyload><br>我们可以看到逻辑与是短路操作符，如果第一个操作数决定了操作结果 false，就不会去看第二个操作数，即使这个第二份操作数可能不存在<br><img src="/2024/02/05/redbook/2024-02-12-23-52-36.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><p>逻辑或（||）</p>
+<p>基本和逻辑或的类似，也存在短路特性，只是这里是或运算，如果第一个操作数为 true 就不管第二个了<br>在实际开发中使用场景可以是备选值<code>let res = a || b</code></p>
+</li>
+</ul>
+
                 
               </div>
             
