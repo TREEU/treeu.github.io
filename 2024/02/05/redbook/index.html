@@ -57,8 +57,10 @@
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-12-22-49-28.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-12-23-46-59.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-12-23-52-36.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-11-57-59.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-13-21-39.png">
 <meta property="article:published_time" content="2024-02-05T04:55:10.000Z">
-<meta property="article:modified_time" content="2024-02-12T15:57:21.025Z">
+<meta property="article:modified_time" content="2024-02-13T06:17:43.753Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
@@ -271,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.8k words
+          9.3k words
         
       </span>
     
@@ -282,7 +284,7 @@
         
         
         
-          74 mins
+          78 mins
         
       </span>
     
@@ -519,6 +521,7 @@
 <li>null 和 undefined 没有 toString()方法，会产生报错<br>注意：如果 toString()的对象是 number 类型，我们可以使用传入参数（底数）来返回对应的进制数，其他对象不会有变化</li>
 <li>Object 就直接返回’[object Object]’</li>
 <li>数组会进行连接，相当于 Array.join（’,’）</li>
+<li>NaN.toString() NaN</li>
 </ul>
 </li>
 <li>String()<br>如果一个值不确定是不是 null 或 undefined 的时候，就是用 String()转型函数<br>区别:<ul>
@@ -686,7 +689,37 @@
 <p>基本和逻辑或的类似，也存在短路特性，只是这里是或运算，如果第一个操作数为 true 就不管第二个了<br>在实际开发中使用场景可以是备选值<code>let res = a || b</code></p>
 </li>
 </ul>
-
+<h4 id="乘性操作符"><a href="#乘性操作符" class="headerlink" title="乘性操作符"></a>乘性操作符</h4><p>就是乘法运算符啦，用于两个数值的运算</p>
+<ul>
+<li>超出范围的（无法表示乘积的）就返回 Infinit 或者-Infinit</li>
+<li>有 NaN 的就返回 NaN</li>
+<li>注意 Infinity * Infiniy 返回 Infinity</li>
+<li>不是数值的操作数，先在后台用 Number()将其转换为数值</li>
+</ul>
+<h4 id="除法操作符"><a href="#除法操作符" class="headerlink" title="除法操作符"></a>除法操作符</h4><p>就是除法运算啦<br>基本上跟乘法运算差不多的</p>
+<p>注意几个区别</p>
+<ul>
+<li>0 &#x2F; 0 NaN</li>
+<li>非 0 &#x2F; 0 根据第一个操作符返回 Infinity 或 -Infinit</li>
+<li>Infinity &#x2F; Infinity NaN</li>
+</ul>
+<h4 id="取模操作符-（-）"><a href="#取模操作符-（-）" class="headerlink" title="取模操作符 （%）"></a>取模操作符 （%）</h4><p>取模就是取余，跟除法操作符类似<br>首先得知道除数和被除数<br><img src="/2024/02/05/redbook/2024-02-13-11-57-59.png" srcset="/img/loading.gif" lazyload><br>以下是一些特殊规则</p>
+<ul>
+<li>被除数无限值，除数有限值，NaN</li>
+<li>被除数有限值，除数 0，NaN</li>
+<li>Infinity % Infinity NaN</li>
+<li>被除数有限值，除数无限值，返回被除数<br>10 % Infinity &#x3D; 10</li>
+<li>被除数是 0，除数不是 0，返回 0</li>
+</ul>
+<h4 id="指数操作符"><a href="#指数操作符" class="headerlink" title="指数操作符"></a>指数操作符</h4><p>Math.pow(); ‘**‘</p>
+<p>还可以**&#x3D;&#x3D;直接这样负值</p>
+<h4 id="加性操作符"><a href="#加性操作符" class="headerlink" title="加性操作符"></a>加性操作符</h4><p>注意<br><img src="/2024/02/05/redbook/2024-02-13-13-21-39.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="操作数是字符串"><a href="#操作数是字符串" class="headerlink" title="操作数是字符串"></a>操作数是字符串</h5><ul>
+<li>两个都是字符串，进行拼接</li>
+<li>一个是字符串，另一个操作数转换为字符串，实际上就是用 String()函数</li>
+</ul>
+<p>注意这里其实都会从左到右顺序执行<br>如果想优先执行，可以使用一对括号</p>
+<h4 id="减法操作符"><a href="#减法操作符" class="headerlink" title="减法操作符"></a>减法操作符</h4>
                 
               </div>
             
