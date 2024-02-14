@@ -60,7 +60,7 @@
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-11-57-59.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-13-21-39.png">
 <meta property="article:published_time" content="2024-02-05T04:55:10.000Z">
-<meta property="article:modified_time" content="2024-02-13T06:17:43.753Z">
+<meta property="article:modified_time" content="2024-02-14T04:49:17.678Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.3k words
+          9.7k words
         
       </span>
     
@@ -284,7 +284,7 @@
         
         
         
-          78 mins
+          82 mins
         
       </span>
     
@@ -327,7 +327,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a few seconds ago
+                    Last updated on 7 hours ago
                   
                 
               </p>
@@ -719,7 +719,26 @@
 <li>一个是字符串，另一个操作数转换为字符串，实际上就是用 String()函数</li>
 </ul>
 <p>注意这里其实都会从左到右顺序执行<br>如果想优先执行，可以使用一对括号</p>
-<h4 id="减法操作符"><a href="#减法操作符" class="headerlink" title="减法操作符"></a>减法操作符</h4>
+<h4 id="减法操作符"><a href="#减法操作符" class="headerlink" title="减法操作符"></a>减法操作符</h4><p>注意</p>
+<ul>
+<li>Infinity - Infinity &#x3D; 0</li>
+</ul>
+<p>tips：NaN 做任何操作都是返回 NaN</p>
+<h4 id="关系操作符"><a href="#关系操作符" class="headerlink" title="关系操作符"></a>关系操作符</h4><p>就是&lt;、&gt;、&lt;&#x3D;、&gt;&#x3D;</p>
+<p>注意，任一操作符是数值，不是数值的一端就会被转换为数值</p>
+<p>比较字符串的时候比较的是对应字符的编码</p>
+<p>任何关系操作符涉及比较 NaN 时都返回 false</p>
+<h4 id="相等操作符"><a href="#相等操作符" class="headerlink" title="相等操作符"></a>相等操作符</h4><h5 id="等于和不等于"><a href="#等于和不等于" class="headerlink" title="等于和不等于"></a>等于和不等于</h5><p>会在比较前进行类型转换<br>这里其实可以看作是转换为数值<br>比如布尔值，会转换为 0 和 1<br>字符串会转换为数值再进行比较</p>
+<p>注意 null 和 undefined 相等<br>任意一个数是 NaN，&#x3D;&#x3D; 就返回 false，即使两个数都数 NaN 也是 false</p>
+<ul>
+<li>&#x3D;&#x3D;</li>
+<li>!&#x3D;</li>
+</ul>
+<h6 id="全等和不全等"><a href="#全等和不全等" class="headerlink" title="全等和不全等"></a>全等和不全等</h6><p>全等操作符和不全等操作符主要区别是，全等操作符不会对操作数进行类型转换</p>
+<h4 id="条件操作符"><a href="#条件操作符" class="headerlink" title="条件操作符"></a>条件操作符</h4><p><code>let a = true ? 1:2</code></p>
+<h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><p>就是 🟰<br><code>*= /= %= += &lt;&lt;=...</code><br>只是简写而已<br>没什么特别之处</p>
+<h4 id="逗号操作符"><a href="#逗号操作符" class="headerlink" title="逗号操作符"></a>逗号操作符</h4><p><code>let num1 = 1, num2 = 2, num3 = 3;</code><br><code>let num = (5,1,4,8,0)</code></p>
+<h2 id><a href="#" class="headerlink" title></a></h2>
                 
               </div>
             
@@ -780,6 +799,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/" title="位运算的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">位运算的使用</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
