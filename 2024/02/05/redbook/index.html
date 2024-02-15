@@ -29,6 +29,8 @@
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-22-59-02.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-23-20-41.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-23-35-28.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-15-15-07-59.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-15-15-16-04.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-09-11-27-47.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-09-15-36-21.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-09-17-01-03.png">
@@ -60,7 +62,7 @@
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-11-57-59.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-13-21-39.png">
 <meta property="article:published_time" content="2024-02-05T04:55:10.000Z">
-<meta property="article:modified_time" content="2024-02-14T16:03:18.701Z">
+<meta property="article:modified_time" content="2024-02-15T07:30:31.726Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
@@ -273,7 +275,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.9k words
+          11k words
         
       </span>
     
@@ -284,7 +286,7 @@
         
         
         
-          83 mins
+          96 mins
         
       </span>
     
@@ -327,7 +329,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a few seconds ago
+                    Last updated on 6 minutes ago
                   
                 
               </p>
@@ -474,19 +476,24 @@
 <li>2、确定符号位，确定有效小数，确定指数（2*n 次幂）</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://fasionchan.com/posts/ieee754-traps/">https://fasionchan.com/posts/ieee754-traps/</a></p>
-<h5 id="值的范围"><a href="#值的范围" class="headerlink" title="值的范围"></a>值的范围</h5><p>由于内存限制<br>将最大值和最小值存在<code>Number.MIN_VALUE/Number.MAX_VALUE</code>,</p>
+<h4 id="值的范围"><a href="#值的范围" class="headerlink" title="值的范围"></a>值的范围</h4><p>由于内存限制<br>将最大值和最小值存在<code>Number.MIN_VALUE/Number.MAX_VALUE</code>,</p>
+<p>最大安全整数：Number.MAX_SAFE_INTEGER（2^53 - 1）<br>最小安全整数：Number.MIN_SAFE_INTEGER (-(2^53 - 1))</p>
 <p>如果超出了 Javascript 可以表示的范围，这个数值会被自动转换为一个特殊的 Infinity，正负号分别表示正无穷和负无穷</p>
 <p>注意，正无穷和负无穷不能再进一步用于计算</p>
 <p>isFinite() 用于确定一个值是不是有限大,计算非常大或非常小的数值时，有必要检测一下计算结果是否超范围</p>
-<p><code>Number.NAGATIVE_INFINITY Number.POSITIVE_INFINITY</code></p>
-<h5 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h5><p>Not a Number<br>用来表示本来要返回数值的操作失败了</p>
+<p>在溢出时返回该值</p>
+<ul>
+<li><code>Number.NAGATIVE_INFINITY</code> 特殊的负无穷大值</li>
+<li><code>Number.POSITIVE_INFINITY</code> 特殊的正无穷大值</li>
+</ul>
+<h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4><p>Not a Number<br>用来表示本来要返回数值的操作失败了</p>
 <p>注意 0&#x2F;0 -0 返回的是 NaN，0 作为分母是 infinity&#x2F;-infinity<br><img src="/2024/02/05/redbook/2024-02-08-00-20-30.png" srcset="/img/loading.gif" lazyload></p>
 <p>设计到 NaN 的操作始终返回 NaN<br>注意 NaN 不等于 NaN 在内的任何值</p>
 <p><code>NaN == NaN</code> false</p>
 <p>不能直接这样进行比较，所以提供了 isNaN()函数</p>
 <p>接受任意参数，先尝试转换为数字，<br>注意 boolean true 可以转换为 0</p>
 <p><img src="/2024/02/05/redbook/2024-02-08-00-42-58.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h5><ul>
+<h4 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h4><ul>
 <li><code>Number()</code><ul>
 <li>布尔值 0 1</li>
 <li>number 类型 直接返回</li>
@@ -507,6 +514,15 @@
 </li>
 </ul>
 <p><img src="/2024/02/05/redbook/2024-02-08-23-35-28.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="BigInt"><a href="#BigInt" class="headerlink" title="BigInt"></a>BigInt</h3><p>新增加的 BigInt<br>是一个内置对象，提供一种方法来表示任意大小的整数<br>注意：某些方面类似于 Number，不能使用 Math 对象中的方法，不能和任何 Number()实例混合运算，两者必须转换成同一类型，BigInt 变量转换成 Number 变量时可能会丢失精度</p>
+<p>使用方法<br><img src="/2024/02/05/redbook/2024-02-15-15-07-59.png" srcset="/img/loading.gif" lazyload></p>
+<p>bigInt 是有符号的，所以不能用无符号右移，除法是向零取整</p>
+<p>tips：向零取整也称为“截断取整”</p>
+<ul>
+<li>正数：取整数部分</li>
+<li>负数：取其绝对值的整数部分添加负号</li>
+</ul>
+<p><img src="/2024/02/05/redbook/2024-02-15-15-16-04.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="String-类型"><a href="#String-类型" class="headerlink" title="String 类型"></a>String 类型</h3><p>先要科普一下 Unicode</p>
 <p>它为每种语言周末的字符设定了统一且唯一的二进制编码</p>
 <p>简单来说就是把普通字符标准化了，这样就不会显示为乱码</p>
@@ -745,7 +761,33 @@
 <h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>先测试循环语句</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">while</span> (i &lt; <span class="hljs-number">10</span>) &#123;<br>	i += <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>先测试后循环语句<br>while 实现不了的，for 也无法实现，for 只是将循环封装了一些</p>
+<p>for 的初始化代码不一定都要写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (;;) &#123;<br>	<span class="hljs-comment">// 无穷循环</span><br>	<span class="hljs-title function_">doSomething</span>();<br>&#125;<br><span class="hljs-keyword">let</span> count = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (; i &lt; count; ) &#123;<br>	i++;<br>	<span class="hljs-title function_">doSomething</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="for-in"><a href="#for-in" class="headerlink" title="for-in"></a>for-in</h3><p>用于进行枚举对象中的非符号键属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> propName <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span>) &#123;<br>	<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(propName);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里推荐使用 const 这里的变量不会被改变</p>
+<h3 id="for-of"><a href="#for-of" class="headerlink" title="for-of"></a>for-of</h3><p>这里是用于遍历可迭代的对象，比如数组，属性之类的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> el <span class="hljs-keyword">of</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]) &#123;<br>	<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(el);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>for-await-of,支持 promise 异步可迭代对象</p>
+<h3 id="标签语句"><a href="#标签语句" class="headerlink" title="标签语句"></a>标签语句</h3><p>用于给语句加标签，在后面可以通过 break 或者 continue 语句引用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">start</span>: <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用场景是多嵌套循环，也就多个 for 循环中，跳出外层循环</p>
+<h3 id="break-和-continue-语句"><a href="#break-和-continue-语句" class="headerlink" title="break 和 continue 语句"></a>break 和 continue 语句</h3><p>这里主要注意一下标签语句的应用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> num = <span class="hljs-number">0</span>;<br><span class="hljs-attr">outer</span>: <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">10</span>; j++) &#123;<br>		<span class="hljs-keyword">if</span> (i == <span class="hljs-number">5</span> &amp;&amp; j == <span class="hljs-number">5</span>) &#123;<br>			<span class="hljs-comment">// 这里直接跳到最外层循环继续执行</span><br>			<span class="hljs-keyword">continue</span> outer;<br>		&#125;<br>		num++;<br>	&#125;<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num); <span class="hljs-comment">//95</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="with-语句"><a href="#with-语句" class="headerlink" title="with 语句"></a>with 语句</h3><p>已经废弃，不推荐使用<br>将代码作用域设定为指定对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> qs = location.<span class="hljs-property">search</span>.<span class="hljs-title function_">substring</span>(<span class="hljs-number">1</span>);<br><span class="hljs-keyword">with</span> (location) &#123;<br>	<span class="hljs-keyword">let</span> qs = search.<span class="hljs-title function_">substring</span>(<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><p>switch 语句在进行条件比较的时候使用的是全等操作符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">switch</span> (num) &#123;<br>	<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>);<br>		<span class="hljs-keyword">break</span>;<br>	<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: &#123;<br>		<span class="hljs-comment">// 如果需要使用块级作用域</span><br>		<span class="hljs-keyword">let</span> message = <span class="hljs-string">&#x27;hi&#x27;</span>;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message);<br>		<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-attr">default</span>:<br>		<span class="hljs-comment">// 位置可以变动，不满足任何条件的时候进这里</span><br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;default&#x27;</span>);<br>		<span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>这里简单介绍了函数，只讲了 函数的 return；return 不赋值的时候默认是返回 undefined</p>
+
                 
               </div>
             
