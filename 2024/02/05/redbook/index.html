@@ -61,8 +61,13 @@
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-12-23-52-36.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-11-57-59.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-13-13-21-39.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-22-09-05.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-22-11-03.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-22-42-57.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-22-57-30.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-23-13-55.png">
 <meta property="article:published_time" content="2024-02-05T04:55:10.000Z">
-<meta property="article:modified_time" content="2024-02-15T08:06:53.547Z">
+<meta property="article:modified_time" content="2024-02-18T15:15:46.280Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
@@ -275,7 +280,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k words
+          14k words
         
       </span>
     
@@ -286,7 +291,7 @@
         
         
         
-          96 mins
+          114 mins
         
       </span>
     
@@ -329,7 +334,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on a few seconds ago
+                    Last updated on 2 minutes ago
                   
                 
               </p>
@@ -787,6 +792,68 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">switch</span> (num) &#123;<br>	<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>);<br>		<span class="hljs-keyword">break</span>;<br>	<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: &#123;<br>		<span class="hljs-comment">// 如果需要使用块级作用域</span><br>		<span class="hljs-keyword">let</span> message = <span class="hljs-string">&#x27;hi&#x27;</span>;<br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message);<br>		<span class="hljs-keyword">break</span>;<br>	&#125;<br>	<span class="hljs-attr">default</span>:<br>		<span class="hljs-comment">// 位置可以变动，不满足任何条件的时候进这里</span><br>		<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;default&#x27;</span>);<br>		<span class="hljs-keyword">break</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>这里简单介绍了函数，只讲了 函数的 return；return 不赋值的时候默认是返回 undefined</p>
+<h1 id="第四章-变量、作用域与内存"><a href="#第四章-变量、作用域与内存" class="headerlink" title="第四章 变量、作用域与内存"></a>第四章 变量、作用域与内存</h1><h2 id="原始值与引用值"><a href="#原始值与引用值" class="headerlink" title="原始值与引用值"></a>原始值与引用值</h2><p>js 可以包含两种不同类型的数据</p>
+<ul>
+<li>原始值 最简单的数据类型<br>Undefined Null Boolean Number String Symbol BigInt<br>对于原始值，按值访问，操作的就是实际值</li>
+<li>引用值<br>由多个值构成的对象 Object<br>保存引用值的变量是按引用访问的</li>
+</ul>
+<h3 id="动态属性"><a href="#动态属性" class="headerlink" title="动态属性"></a>动态属性</h3><p>定义原始值或者引用值都是创建变量来赋值，区别在于这个变量保存了这个值以后能做什么大有不同</p>
+<ul>
+<li>引用值可以随时添加和删除属性方法等</li>
+<li>原始值没有属性，即使强制加上属性不报错但是是找不到这个属性的</li>
+</ul>
+<p>注意，原始类型的初始化就只是用原始值字面量形式，如果使用 new 关键字，则会创建一个 Object 实例，会被认为是 object</p>
+<h3 id="复制值"><a href="#复制值" class="headerlink" title="复制值"></a>复制值</h3><p>复制值也就是一个变量赋值给另一个变量</p>
+<ul>
+<li>原始值的复制是把旧变量的值直接复制到新变量的位置，变成两个独立变量</li>
+</ul>
+<p><img src="/2024/02/05/redbook/2024-02-18-22-09-05.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>引用值的复制<br>复制的其实只是一个指针，指向存储在堆内存中的对象，所以一个对象的变化会在另一个对象上反映出来<br><img src="/2024/02/05/redbook/2024-02-18-22-11-03.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h3><p>这里指的就是函数的传参，传参意味着值会被复制到一个局部变量（即一个命名空间，就是 arguments 中一个槽位）可以理解为就是创建了一个新的变量</p>
+<p>函数的传参都是按值传递的，这里的值传递我们可以理解为栈值传递，对于原始值对于引用值，这里传的是指针地址</p>
+<p>tips：</p>
+<ul>
+<li>形参 函数定义时的参数</li>
+<li>实参 函数调用时传递的参数</li>
+</ul>
+<p>所以会表现为</p>
+<ul>
+<li>对于原始值，直接进行值的复制操作，函数内对本地变量的影响不会反应到外部</li>
+<li>对于引用值，复制的是指针地址，所以函数内对本地变量的操作会反应到外部，因为指针地址是一致的，如果一旦重新给本地变量分配新的堆内存地址，本地变量与外部变量的关系就断掉了就会出现不会影响外部变量</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj1 = &#123; <span class="hljs-attr">a</span>: <span class="hljs-string">&#x27;1&#x27;</span> &#125;;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">obj</span>) &#123;<br>	obj.<span class="hljs-property">time</span> = <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-title function_">test</span>(obj1);<br><span class="hljs-comment">// obj &#123;a:&#x27;1&#x27;, time:1&#125;</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">test1</span>(<span class="hljs-params">obj</span>) &#123;<br>	obj = &#123;&#125;;<br>	obj.<span class="hljs-property">time</span> = <span class="hljs-number">2</span>;<br>&#125;<br><span class="hljs-title function_">test1</span>(obj1);<br><span class="hljs-comment">// 无变化 obj &#123;a:&#x27;1&#x27;, time:1&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="确定类型"><a href="#确定类型" class="headerlink" title="确定类型"></a>确定类型</h3><p>typeof 最适合判断一个变量是否是原始类型 具体来说就是：number boolean undefined，string，不太适合用于判断 object，因为我们通常更想知道它是什么类型的对象</p>
+<p>tips：typeof 操作符在检测函数时会返回’function’, 在部分浏览器中对于正则表达式 RegExp 也会返回 function，IE 和火狐可能回返回 ‘object’</p>
+<h3 id="instanceof-操作符"><a href="#instanceof-操作符" class="headerlink" title="instanceof 操作符"></a>instanceof 操作符</h3><p>如果变量是给定引用类型的实例，instanceof 操作符返回 true</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript">colors instansof <span class="hljs-title class_">Array</span>;<br><span class="hljs-comment">// 变量color是Array吗</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="执行上下文与作用域"><a href="#执行上下文与作用域" class="headerlink" title="执行上下文与作用域"></a>执行上下文与作用域</h2><p>简称上下文，变量或函数的上下文决定了它们可以访问哪些数据，以及行为</p>
+<p>每个上下文都有一个关联的变量对象（无法通过代码访问变量对象，但后台处理数据会用到）,在上下文中定义的所有的变量和函数都存在于这个对象上</p>
+<p>全局上下文是最外层的上下文，ECMAScript 实现的宿主环境不同，表示全局上下文的对象可能不一样</p>
+<p>在浏览器中，全局上下文就是我们说的 window 对象，var 定义的全局变量都会成为 window 对象的属性和方法，let 和 const 不会</p>
+<p><img src="/2024/02/05/redbook/2024-02-18-22-42-57.png" srcset="/img/loading.gif" lazyload></p>
+<p>上下文的所有代码都会在执行完毕后被销毁，包括定义在它上面的所有变量和函数<br>注意，全局上下文只有在应用程序退出前才会被销毁，比如关闭网页或退出浏览器</p>
+<p>每个函数都有自己的上下文，当代码执行流进入函数时，函数的上下文被推到一个上下文栈上，函数执行完毕后，上下文栈回弹出该函数的上下文，将控制权返还给之前的执行上下文，ECMAScript 程序执行流就是通过这个上下文栈进行控制的</p>
+<p>上下文代码在执行的时候，会创建变量对象的一个作用域链，这个作用域链决定了各级上下文中代码访问变量和函数时的顺序，正在执行的上下文变量对象始终位于作用域链的最前端</p>
+<p>如果上下文是函数，其活动对象用作变量对象，活动对象最初只有一个定义变量 arguments（全局上下文没有这个对象）</p>
+<p>全局上下文变量对象始终是作用域链的最后一个变量对象</p>
+<p>代码执行时的标识符解析是通过沿作用域链逐级搜索标识符名称完成的，搜索过程始终从作用域链的最前端开始，逐级向后，直到找到，没找到会报错</p>
+<p>简单来说，就是我们能访问到函数外部的变量是因为我们在作用域链找到了该变量</p>
+<p>例子：<br><img src="/2024/02/05/redbook/2024-02-18-22-57-30.png" srcset="/img/loading.gif" lazyload></p>
+<p>图中每个矩形框表示不同的上下文</p>
+<p>再简单点说，先在自己的上下文变量对象中找，找不到就逐级取上一级上下文变量对象中找</p>
+<p>内部上下文可以通过作用域链访问外部上下文中的一切，但外部上下文无法访问内部的上下文</p>
+<p>注意：函数参数也被认为是当前上下文中的变量，也就是函数变量是属于函数局部的上下文，也同样的上级上下文无法访问</p>
+<h3 id="作用域链增强"><a href="#作用域链增强" class="headerlink" title="作用域链增强"></a>作用域链增强</h3><p>这里提到了</p>
+<ul>
+<li>try&#x2F;catch 语句中的 catch 语句</li>
+<li>with 语句</li>
+</ul>
+<p>仅做了解，这里的作用域链增强其实就是回将特有变量增加到当前作用域链的前端，从而能达到在外部访问内部作用域的情况，不会这么使用</p>
+<p>catch 的 看起来是这么个情况<br><img src="/2024/02/05/redbook/2024-02-18-23-13-55.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
