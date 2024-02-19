@@ -66,8 +66,11 @@
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-22-42-57.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-22-57-30.png">
 <meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-18-23-13-55.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-19-21-36-34.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-19-22-00-34.png">
+<meta property="og:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-19-22-03-38.png">
 <meta property="article:published_time" content="2024-02-05T04:55:10.000Z">
-<meta property="article:modified_time" content="2024-02-18T15:15:46.280Z">
+<meta property="article:modified_time" content="2024-02-19T14:08:43.940Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/02/05/redbook/2024-02-08-00-20-30.png">
@@ -291,7 +294,7 @@
         
         
         
-          114 mins
+          119 mins
         
       </span>
     
@@ -334,7 +337,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2 minutes ago
+                    Last updated on a minute ago
                   
                 
               </p>
@@ -854,6 +857,24 @@
 </ul>
 <p>仅做了解，这里的作用域链增强其实就是回将特有变量增加到当前作用域链的前端，从而能达到在外部访问内部作用域的情况，不会这么使用</p>
 <p>catch 的 看起来是这么个情况<br><img src="/2024/02/05/redbook/2024-02-18-23-13-55.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><h4 id="var-函数作用域声明"><a href="#var-函数作用域声明" class="headerlink" title="var 函数作用域声明"></a>var 函数作用域声明</h4><p>变量会被自动添加到最接近的上下文，如果是在函数中，最接近的上下文就是函数局部上下文</p>
+<p>注意这里，如果未声明变量会被添加到全局上下文，在严格模式下会报错</p>
+<p><img src="/2024/02/05/redbook/2024-02-19-21-36-34.png" srcset="/img/loading.gif" lazyload></p>
+<p>var 声明会被拿到函数或全局作用域的顶部，位于作用域中所有代码之前，这个现象叫“提升”，也就是变量提升</p>
+<p>会产生什么现象呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(name); <span class="hljs-comment">// 不会报错;</span><br>name = <span class="hljs-string">&#x27;Jake&#x27;</span>;<br><span class="hljs-keyword">var</span> name;<br><span class="hljs-comment">// 等价于</span><br><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;Jake&#x27;</span>;<br><span class="hljs-comment">// var 声明的变量会被提升到最顶端</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="let-块级作用域声明"><a href="#let-块级作用域声明" class="headerlink" title="let 块级作用域声明"></a>let 块级作用域声明</h4><p>块级作用域：由最近的一对包含花括号{}界定</p>
+<p>let 与 var 除了变量提升的区别还有一个区别是同一个作用域内不能声明两次，重复的 var 声明会被忽略；重复的 let 声明会抛出错误</p>
+<h4 id="使用-const-的常量声明"><a href="#使用-const-的常量声明" class="headerlink" title="使用 const 的常量声明"></a>使用 const 的常量声明</h4><p>使用 const 声明的变量必须同时初始化为某个值，一经声明，在其生命周期的任何时候都不能在重新赋值</p>
+<p>其他和 let 一样</p>
+<p>对于对象来说，赋值为对象的 const 变量不能再被重新赋值为其他引用值，但对象的健不受影响</p>
+<p>怎么理解呢，也就是只要对象的引用地址不发生变化就可以</p>
+<p><img src="/2024/02/05/redbook/2024-02-19-22-00-34.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果想让整个对象都不能修改可以使用<code>Object.freeze(&#123;&#125;)</code></p>
+<p><img src="/2024/02/05/redbook/2024-02-19-22-03-38.png" srcset="/img/loading.gif" lazyload></p>
+<p>const 声明暗示变量的值是单一类型且不可修改</p>
+<h3 id="标识符的查找（变量的查找）"><a href="#标识符的查找（变量的查找）" class="headerlink" title="标识符的查找（变量的查找）"></a>标识符的查找（变量的查找）</h3><p>先在局部作用域中查找，到找了搜索结束；没找到继续沿作用域链搜索，一直持续到搜索到全局上下文的变量对象</p>
 
                 
               </div>
