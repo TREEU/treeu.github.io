@@ -16,30 +16,21 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n 的运算">
+    <meta name="description" content="webgpu 绘制流程首先我们需要canvas需要一块画布 我们使用 webgpu 的 api，需要请求一个适配器(adapter),然后从适配器中请求一个设备（device） 12345const adapter &#x3D; await navigator?.gpu?.requestAdapter();const device &#x3D; await adapter?.requestDevice();if (!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="位运算的使用">
-<meta property="og:url" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="webgpu绘制流程">
+<meta property="og:url" content="https://treeu.github.io/2024/02/20/webgpu%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n 的运算">
+<meta property="og:description" content="webgpu 绘制流程首先我们需要canvas需要一块画布 我们使用 webgpu 的 api，需要请求一个适配器(adapter),然后从适配器中请求一个设备（device） 12345const adapter &#x3D; await navigator?.gpu?.requestAdapter();const device &#x3D; await adapter?.requestDevice();if (!">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png">
-<meta property="og:image" content="https://treeu.github.io/2024-02-15-15-36-08.png">
-<meta property="article:published_time" content="2024-02-14T04:50:19.000Z">
-<meta property="article:modified_time" content="2024-02-15T07:36:36.983Z">
+<meta property="article:published_time" content="2024-02-20T15:24:05.000Z">
+<meta property="article:modified_time" content="2024-02-20T16:57:26.483Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
   
   
   
-  <title>位运算的使用 - Treeu&#39;s blog</title>
+  <title>webgpu绘制流程 - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="位运算的使用"></span>
+            <span id="subtitle" data-typed-text="webgpu绘制流程"></span>
           
         </div>
 
@@ -233,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-14 12:50" pubdate>
-          February 14, 2024 pm
+        <time datetime="2024-02-20 23:24" pubdate>
+          February 20, 2024 pm
         </time>
       </span>
     
@@ -245,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          924 words
+          2.1k words
         
       </span>
     
@@ -256,7 +247,7 @@
         
         
         
-          8 mins
+          18 mins
         
       </span>
     
@@ -294,12 +285,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">位运算的使用</h1>
+            <h1 style="display: none">webgpu绘制流程</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 5 days ago
+                    Last updated on 3 minutes ago
                   
                 
               </p>
@@ -307,45 +298,24 @@
             
               <div class="markdown-body">
                 
-                <h1 id="位运算的使用"><a href="#位运算的使用" class="headerlink" title="位运算的使用"></a>位运算的使用</h1><h2 id="按位非（-）"><a href="#按位非（-）" class="headerlink" title="按位非（~）"></a>按位非（~）</h2><p>这个就是 0 变 1，1 变 0<br>得到的结果就是 <code>-val -1</code></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：</p>
-<ul>
-<li>求相反数 ~a+1<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png" srcset="/img/loading.gif" lazyload></li>
-<li>双非位取整<br>原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数<br><code>~~3.14 == 3</code></li>
-</ul>
-<h2 id="左移"><a href="#左移" class="headerlink" title="&lt;&lt; 左移"></a>&lt;&lt; 左移</h2><p>整体左移<br><code>6 &lt;&lt; 2 = 24</code><br>这里其实就是<code>val * 2^n</code><br>使用场景: 就是做*2^n 的运算，位运算的效率更高<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="右移"><a href="#右移" class="headerlink" title="&gt;&gt; 右移"></a>&gt;&gt; 右移</h2><p>这里是有符号的右移</p>
-<p>和左移相反，这里是整体向右边移动<br>这里需要注意的</p>
-<p>如果是正数，右移之后补 0<br>如果是负数，右移之后是补一<br>这里还有需要注意的 低位是在右边，和基础数值一致</p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：这里就是做 &#x2F;2^n 的运算,注意这里会向下取整<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png" srcset="/img/loading.gif" lazyload></p>
-<p>左移动和右移需要注意长度限制，实际的位移只能在 0-31 之间，第 31 位是符号位</p>
-<h2 id="按位与（-）"><a href="#按位与（-）" class="headerlink" title="按位与（&amp;）"></a>按位与（&amp;）</h2><p>11 为 1 , 其他都为 0</p>
-<p>使用场景：</p>
-<ul>
-<li>清零 与 0 进行位运算结果为 0</li>
-<li>判断整数的奇偶性，对于二进制数而言，偶数的末尾一定是 0，奇数的末尾一定是 1，与 1 进行按位与运算就能判断奇偶性</li>
-<li>取一个二进制数的指定位，比如<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png" srcset="/img/loading.gif" lazyload></li>
-<li>与右移混合使用获取二进制数的某一位,获取 a 的第 b 位<br><code>(a &gt;&gt; b) &amp; 1</code></li>
-</ul>
-<h2 id="按位或（｜）"><a href="#按位或（｜）" class="headerlink" title="按位或（｜）"></a>按位或（｜）</h2><p>有 1 则为 1<br>使用场景：</p>
-<ul>
-<li>将指定位值设置为 1，与上面的与运算类似，只是改为或运算</li>
-<li>取整, 这里需要注意，这里其实是向 0 取整，对于正数是向下取整，对于负数是取绝对值再做向下取整<br>简单理解我们可以理解为就是不要小数部分了<br><img src="/2024-02-15-15-36-08.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-<h2 id="按位异或（-）"><a href="#按位异或（-）" class="headerlink" title="按位异或（^）"></a>按位异或（^）</h2><p>相同为 0，不同为 1</p>
-<p>使用场景：</p>
-<ul>
-<li>进行变量交换</li>
-<li>最后一位取反：X^1</li>
-<li>判断两个整数是否相等</li>
-</ul>
-<p>牢记位操作操作的实际上是整数</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6900710763657166855">https://juejin.cn/post/6900710763657166855</a></p>
-<p><a target="_blank" rel="noopener" href="https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93">https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tinys-top/p/11648535.html">https://www.cnblogs.com/tinys-top/p/11648535.html</a></p>
+                <h1 id="webgpu-绘制流程"><a href="#webgpu-绘制流程" class="headerlink" title="webgpu 绘制流程"></a>webgpu 绘制流程</h1><p>首先我们需要<code>canvas</code>需要一块画布</p>
+<p>我们使用 webgpu 的 api，需要请求一个适配器(adapter),然后从适配器中请求一个设备（device）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> adapter = <span class="hljs-keyword">await</span> navigator?.<span class="hljs-property">gpu</span>?.<span class="hljs-title function_">requestAdapter</span>();<br><span class="hljs-keyword">const</span> device = <span class="hljs-keyword">await</span> adapter?.<span class="hljs-title function_">requestDevice</span>();<br><span class="hljs-keyword">if</span> (!device) &#123;<br>	<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后我们需要找到我们的画布，创建 webgpu 上下文</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;canvas&#x27;</span>);<br><span class="hljs-comment">// 获取webgpu上下文</span><br><span class="hljs-keyword">const</span> context = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;webgpu&#x27;</span>);<br><span class="hljs-comment">// 询问系统的首选画布格式是什么 可能是rgba8unorm</span><br><span class="hljs-keyword">const</span> persentationFormat = navigator.<span class="hljs-property">gpu</span>.<span class="hljs-title function_">getPreferredCanvasFormat</span>();<br><span class="hljs-comment">// 配置到webgpu上下文，把device也传入画布，将device与画布关联起来</span><br>context.<span class="hljs-title function_">configure</span>(&#123;<br>	device,<br>	<span class="hljs-attr">format</span>: persentationFormat,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>创建一个着色器模块，包括定点着色器和片段着色器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-variable language_">module</span> = device.<span class="hljs-title function_">createShaderModule</span>(&#123;<br>	<span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;our module&#x27;</span>,<br>	<span class="hljs-attr">code</span>: <span class="hljs-string">``</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>创建一个渲染管道</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> pipeline = device.<span class="hljs-title function_">createRenderPipeline</span>(&#123;<br>	<span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;our pipeline&#x27;</span>,<br>	<span class="hljs-attr">layout</span>: <span class="hljs-string">&#x27;auto&#x27;</span>, <span class="hljs-comment">// 要求webgpu从着色器中推断出数据布局</span><br>	<span class="hljs-comment">// 使用的顶点着色器</span><br>	<span class="hljs-attr">vertex</span>: &#123;<br>		<span class="hljs-variable language_">module</span>,<br>		<span class="hljs-attr">entryPoint</span>: <span class="hljs-string">&#x27;vs&#x27;</span>, <span class="hljs-comment">// 使用的是哪个函数</span><br>	&#125;,<br>	<span class="hljs-attr">fragment</span>: &#123;<br>		<span class="hljs-variable language_">module</span>,<br>		<span class="hljs-attr">entryPoint</span>: <span class="hljs-string">&#x27;fs&#x27;</span>,<br>		<span class="hljs-comment">// 渲染目标的格式</span><br>		<span class="hljs-attr">targets</span>: [&#123; <span class="hljs-attr">format</span>: presentationFormat &#125;],<br>	&#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>准备一个渲染通道描述，描述我们要绘制的纹理和如何使用（我们往 canvas 画布上绘制其实就可以理解为在往画布上绘制纹理）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> renderPassDescriptor = &#123;<br>	<span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;our basic canvas renderpass&#x27;</span>,<br>    <span class="hljs-comment">// 用于存储（或者临时存储图像信息）我们通常只会把渲染通道的结果存成一份，也就是只渲染到一个目标中，但是在某些高级渲染技巧中，我们需要把渲染结果储存成多份，也就是渲染到多个目标上，因此类型是一个数组。</span><br>	<span class="hljs-attr">colorAttachments</span>: [<br>		&#123;<br>			<span class="hljs-comment">// view:绘制时填充</span><br>            clearValue：[<span class="hljs-number">0.3</span>,<span class="hljs-number">0.3</span>,<span class="hljs-number">0.3</span>,<span class="hljs-number">1</span>];<br>            <span class="hljs-attr">loadOp</span>:<span class="hljs-string">&#x27;clear&#x27;</span> | <span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-comment">// 在绘制前清除｜在已有内容上绘图</span><br>            <span class="hljs-attr">storeOp</span>:<span class="hljs-string">&#x27;store&#x27;</span> | <span class="hljs-string">&#x27;discard&#x27;</span>, <span class="hljs-comment">// 存储结果/丢弃结果</span><br>		&#125;,<br>	],<br>&#125;;<br><br><span class="hljs-comment">// https://www.51cto.com/article/698100.html</span><br></code></pre></td></tr></table></figure>
+
+<p>准备就绪进入渲染流程</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-comment">// 从画布上下文中获取纹理，并将其设置为需要渲染的纹理，也就是指定需要渲染的目标，</span><br>	renderPassDescriptor.<span class="hljs-property">colorAttachments</span>[<span class="hljs-number">0</span>].<span class="hljs-property">view</span> = context.<span class="hljs-title function_">getCurrentTexture</span>();<br><br>	<span class="hljs-comment">// 创建一个编码器</span><br>	<span class="hljs-keyword">const</span> encoder = device.<span class="hljs-title function_">createCommandEncoder</span>(&#123; <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;our encoder&#x27;</span> &#125;);<br>	<span class="hljs-comment">// 进行编码</span><br>	<span class="hljs-comment">// 开启一个渲染通道，告诉它我们要渲染到哪个纹理</span><br>	<span class="hljs-keyword">const</span> pass = encoder.<span class="hljs-title function_">beginRenderPass</span>(renderPassDescriptor);<br>	<span class="hljs-comment">// 配置渲染管道</span><br>	pass.<span class="hljs-title function_">setPipeline</span>(pipeline);<br>	<span class="hljs-comment">// 执行顶点着色器三次，默认情况下每执行三次就会通过连接顶点着色器返回到3个值来绘制一个三角形</span><br>	pass.<span class="hljs-title function_">draw</span>(<span class="hljs-number">3</span>);<br>	pass.<span class="hljs-title function_">end</span>();<br><br>	<span class="hljs-keyword">const</span> commandBuffer = encoder.<span class="hljs-title function_">finish</span>();<br>	device.<span class="hljs-property">queue</span>.<span class="hljs-title function_">submit</span>([commandBuffer]);<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -363,8 +333,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>位运算的使用</div>
-      <div>https://treeu.github.io/2024/02/14/位运算的使用/</div>
+      <div>webgpu绘制流程</div>
+      <div>https://treeu.github.io/2024/02/20/webgpu绘制流程/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +346,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 14, 2024</div>
+          <div>February 20, 2024</div>
         </div>
       
       
@@ -408,18 +378,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/20/webgpu%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" title="webgpu绘制流程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">webgpu绘制流程</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/05/redbook/" title="redbook">
-                        <span class="hidden-mobile">redbook</span>
+                      <a href="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/" title="位运算的使用">
+                        <span class="hidden-mobile">位运算的使用</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
