@@ -16,30 +16,21 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n 的运算">
+    <meta name="description" content="模版测试指定区域渲染 123456789101112&#x2F;&#x2F; 清除着色器与深度缓冲clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);&#x2F;&#x2F; 清除模板缓冲clear(gl.STENCIL_BUFFER_BIT);&#x2F;&#x2F; 关闭深度测试disable(gl.DEPTH_TEST);&#x2F;&#x2F; 允许模板测试enable(gl.STENCIL_TEST);&#x2F;&#x2F; 设置模版测试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="位运算的使用">
-<meta property="og:url" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="模版测试&#x2F;深度测试">
+<meta property="og:url" content="https://treeu.github.io/2024/02/25/%E6%A8%A1%E7%89%88%E6%B5%8B%E8%AF%95-%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n 的运算">
+<meta property="og:description" content="模版测试指定区域渲染 123456789101112&#x2F;&#x2F; 清除着色器与深度缓冲clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);&#x2F;&#x2F; 清除模板缓冲clear(gl.STENCIL_BUFFER_BIT);&#x2F;&#x2F; 关闭深度测试disable(gl.DEPTH_TEST);&#x2F;&#x2F; 允许模板测试enable(gl.STENCIL_TEST);&#x2F;&#x2F; 设置模版测试">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png">
-<meta property="og:image" content="https://treeu.github.io/2024-02-15-15-36-08.png">
-<meta property="article:published_time" content="2024-02-14T04:50:19.000Z">
-<meta property="article:modified_time" content="2024-02-15T07:36:36.983Z">
+<meta property="article:published_time" content="2024-02-25T05:56:40.000Z">
+<meta property="article:modified_time" content="2024-02-25T10:40:48.811Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
   
   
   
-  <title>位运算的使用 - Treeu&#39;s blog</title>
+  <title>模版测试/深度测试 - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="位运算的使用"></span>
+            <span id="subtitle" data-typed-text="模版测试/深度测试"></span>
           
         </div>
 
@@ -233,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-14 12:50" pubdate>
-          February 14, 2024 pm
+        <time datetime="2024-02-25 13:56" pubdate>
+          February 25, 2024 pm
         </time>
       </span>
     
@@ -245,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          924 words
+          1.3k words
         
       </span>
     
@@ -256,7 +247,7 @@
         
         
         
-          8 mins
+          11 mins
         
       </span>
     
@@ -294,12 +285,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">位运算的使用</h1>
+            <h1 style="display: none">模版测试/深度测试</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 10 days ago
+                    Last updated on 9 minutes ago
                   
                 
               </p>
@@ -307,45 +298,60 @@
             
               <div class="markdown-body">
                 
-                <h1 id="位运算的使用"><a href="#位运算的使用" class="headerlink" title="位运算的使用"></a>位运算的使用</h1><h2 id="按位非（-）"><a href="#按位非（-）" class="headerlink" title="按位非（~）"></a>按位非（~）</h2><p>这个就是 0 变 1，1 变 0<br>得到的结果就是 <code>-val -1</code></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：</p>
+                <h2 id="模版测试"><a href="#模版测试" class="headerlink" title="模版测试"></a>模版测试</h2><p>指定区域渲染</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 清除着色器与深度缓冲</span><br><span class="hljs-title function_">clear</span>(gl.<span class="hljs-property">COLOR_BUFFER_BIT</span> | gl.<span class="hljs-property">DEPTH_BUFFER_BIT</span>);<br><span class="hljs-comment">// 清除模板缓冲</span><br><span class="hljs-title function_">clear</span>(gl.<span class="hljs-property">STENCIL_BUFFER_BIT</span>);<br><span class="hljs-comment">// 关闭深度测试</span><br><span class="hljs-title function_">disable</span>(gl.<span class="hljs-property">DEPTH_TEST</span>);<br><span class="hljs-comment">// 允许模板测试</span><br><span class="hljs-title function_">enable</span>(gl.<span class="hljs-property">STENCIL_TEST</span>);<br><span class="hljs-comment">// 设置模版测试参数</span><br><span class="hljs-title function_">stencilFunc</span>(gl.<span class="hljs-property">ALWAYS</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br><span class="hljs-comment">// 设置模版测试后的操作</span><br>gl.<span class="hljs-title function_">stencilOp</span>(gl.<span class="hljs-property">KEEP</span>, gl.<span class="hljs-property">KEEP</span>, gl.<span class="hljs-property">REPLACE</span>);<br></code></pre></td></tr></table></figure>
+
+<p>模版缓冲区是一个 buffer</p>
+<p>这个 buffer 为每个 fragment 提供 8 位的存储空间，</p>
+<p>可以理解为每个像素块里面能存一个字节的数字，最多可以存储 256 个不同的数值</p>
+<p>对于简单的模型裁剪效果，1 跟 0 就足够了</p>
+<h2 id="gl-stencilFunc"><a href="#gl-stencilFunc" class="headerlink" title="gl.stencilFunc"></a>gl.stencilFunc</h2><p>控制模版测试的方法，也就是怎么样才能通过测试</p>
+<p>三个参数</p>
 <ul>
-<li>求相反数 ~a+1<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png" srcset="/img/loading.gif" lazyload></li>
-<li>双非位取整<br>原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数<br><code>~~3.14 == 3</code></li>
-</ul>
-<h2 id="左移"><a href="#左移" class="headerlink" title="&lt;&lt; 左移"></a>&lt;&lt; 左移</h2><p>整体左移<br><code>6 &lt;&lt; 2 = 24</code><br>这里其实就是<code>val * 2^n</code><br>使用场景: 就是做*2^n 的运算，位运算的效率更高<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="右移"><a href="#右移" class="headerlink" title="&gt;&gt; 右移"></a>&gt;&gt; 右移</h2><p>这里是有符号的右移</p>
-<p>和左移相反，这里是整体向右边移动<br>这里需要注意的</p>
-<p>如果是正数，右移之后补 0<br>如果是负数，右移之后是补一<br>这里还有需要注意的 低位是在右边，和基础数值一致</p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：这里就是做 &#x2F;2^n 的运算,注意这里会向下取整<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png" srcset="/img/loading.gif" lazyload></p>
-<p>左移动和右移需要注意长度限制，实际的位移只能在 0-31 之间，第 31 位是符号位</p>
-<h2 id="按位与（-）"><a href="#按位与（-）" class="headerlink" title="按位与（&amp;）"></a>按位与（&amp;）</h2><p>11 为 1 , 其他都为 0</p>
-<p>使用场景：</p>
+<li><p>第一个参数设置比较条件</p>
 <ul>
-<li>清零 与 0 进行位运算结果为 0</li>
-<li>判断整数的奇偶性，对于二进制数而言，偶数的末尾一定是 0，奇数的末尾一定是 1，与 1 进行按位与运算就能判断奇偶性</li>
-<li>取一个二进制数的指定位，比如<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png" srcset="/img/loading.gif" lazyload></li>
-<li>与右移混合使用获取二进制数的某一位,获取 a 的第 b 位<br><code>(a &gt;&gt; b) &amp; 1</code></li>
+<li>always</li>
+<li>less</li>
 </ul>
-<h2 id="按位或（｜）"><a href="#按位或（｜）" class="headerlink" title="按位或（｜）"></a>按位或（｜）</h2><p>有 1 则为 1<br>使用场景：</p>
+</li>
+<li><p>第二个参数用于测试的参考值</p>
+</li>
+<li><p>第三个参数是指定操作的掩码<br>会先将第二个参数和当前参数进行与运算，最后将两个结果进行比较，比较的方式就是第一个参数指定的</p>
+</li>
+</ul>
+<h2 id="gl-stencilOp"><a href="#gl-stencilOp" class="headerlink" title="gl.stencilOp"></a>gl.stencilOp</h2><p>指定通过测试和未通过测试时要怎么处理</p>
+<p>stencilOp(fail, zfail, zpass)</p>
+<p>三个参数</p>
 <ul>
-<li>将指定位值设置为 1，与上面的与运算类似，只是改为或运算</li>
-<li>取整, 这里需要注意，这里其实是向 0 取整，对于正数是向下取整，对于负数是取绝对值再做向下取整<br>简单理解我们可以理解为就是不要小数部分了<br><img src="/2024-02-15-15-36-08.png" srcset="/img/loading.gif" lazyload></li>
+<li>模版测试未通过时的行为</li>
+<li>模版测试通过但是深度测试未通过时的行为</li>
+<li>模版测试通过且深度测试也通过时的行为，或者当模版测试通过且深度测试并没有开启的行为</li>
 </ul>
-<h2 id="按位异或（-）"><a href="#按位异或（-）" class="headerlink" title="按位异或（^）"></a>按位异或（^）</h2><p>相同为 0，不同为 1</p>
-<p>使用场景：</p>
+<h2 id="glStencilMask"><a href="#glStencilMask" class="headerlink" title="glStencilMask"></a>glStencilMask</h2><p>模板掩码</p>
 <ul>
-<li>进行变量交换</li>
-<li>最后一位取反：X^1</li>
-<li>判断两个整数是否相等</li>
+<li>0xFF 每一位写入模版缓冲时都保持原样</li>
+<li>0x00 每一位在写入模版缓冲的时候都会变成 0（禁用写入）</li>
 </ul>
-<p>牢记位操作操作的实际上是整数</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6900710763657166855">https://juejin.cn/post/6900710763657166855</a></p>
-<p><a target="_blank" rel="noopener" href="https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93">https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tinys-top/p/11648535.html">https://www.cnblogs.com/tinys-top/p/11648535.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv23430911/">https://www.bilibili.com/read/cv23430911/</a></p>
+<p>对于模版缓冲的使用大致步骤：</p>
+<ul>
+<li>启用模板缓冲的写入</li>
+<li>渲染物体，更新模板缓冲的内容</li>
+<li>禁用模板缓冲的写入</li>
+<li>渲染（其它）物体，这次根据模板缓冲的内容丢弃特定的片段。</li>
+</ul>
+<p>也就是我需要创建一个模版缓冲 buffer，然后我需要往这个 buffer 里面写入内容，但是我不进行绘制，然后渲染其他物体根据我已有的模版缓冲内容丢弃特定的片段</p>
+<h2 id="三角形的正面和反面"><a href="#三角形的正面和反面" class="headerlink" title="三角形的正面和反面"></a>三角形的正面和反面</h2><p>wegl 的图元就只有点&#x2F;线&#x2F;三角形</p>
+<ul>
+<li>三角形<br>复杂图形都是有三角形组成的</li>
+<li>直线</li>
+<li>点<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/535433259">https://zhuanlan.zhihu.com/p/535433259</a></li>
+</ul>
+<h2 id="深度测试"><a href="#深度测试" class="headerlink" title="深度测试"></a>深度测试</h2><p>先进行模版测试，再进行深度测试</p>
+<p>深度测试也是一样的，存在深度缓冲区</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/529965155">https://zhuanlan.zhihu.com/p/529965155</a></p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><a target="_blank" rel="noopener" href="http://bingqx.cn/post/WebGPU%E5%AD%A6%E4%B9%A0%EF%BC%885%EF%BC%89---%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95%E5%92%8C%E7%BA%B9%E7%90%86">http://bingqx.cn/post/WebGPU%E5%AD%A6%E4%B9%A0%EF%BC%885%EF%BC%89---%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95%E5%92%8C%E7%BA%B9%E7%90%86</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/438468463">https://zhuanlan.zhihu.com/p/438468463</a></p>
 
                 
               </div>
@@ -363,8 +369,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>位运算的使用</div>
-      <div>https://treeu.github.io/2024/02/14/位运算的使用/</div>
+      <div>模版测试/深度测试</div>
+      <div>https://treeu.github.io/2024/02/25/模版测试-深度测试/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +382,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 14, 2024</div>
+          <div>February 25, 2024</div>
         </div>
       
       
@@ -408,18 +414,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/20/webgpu%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" title="webgpu绘制流程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">webgpu绘制流程</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/05/redbook/" title="redbook">
-                        <span class="hidden-mobile">redbook</span>
+                      <a href="/2024/02/20/webgpu%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" title="webgpu绘制流程">
+                        <span class="hidden-mobile">webgpu绘制流程</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
