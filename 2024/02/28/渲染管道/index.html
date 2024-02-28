@@ -16,30 +16,21 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n 的运算">
+    <meta name="description" content="webGpu 渲染管道主要是记录一些里面的配置项 混合1234567891011121314151617181920212223242526272829303132333435363738&#x2F;&#x2F; 注意 我们的着色器和layout都是写在渲染管道里面的const pipeline &#x3D; device.createRenderPipeline(&amp;#123;	label: &amp;#x27;hardcoded t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="位运算的使用">
-<meta property="og:url" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="渲染管道">
+<meta property="og:url" content="https://treeu.github.io/2024/02/28/%E6%B8%B2%E6%9F%93%E7%AE%A1%E9%81%93/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n 的运算">
+<meta property="og:description" content="webGpu 渲染管道主要是记录一些里面的配置项 混合1234567891011121314151617181920212223242526272829303132333435363738&#x2F;&#x2F; 注意 我们的着色器和layout都是写在渲染管道里面的const pipeline &#x3D; device.createRenderPipeline(&amp;#123;	label: &amp;#x27;hardcoded t">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png">
-<meta property="og:image" content="https://treeu.github.io/2024-02-15-15-36-08.png">
-<meta property="article:published_time" content="2024-02-14T04:50:19.000Z">
-<meta property="article:modified_time" content="2024-02-15T07:36:36.983Z">
+<meta property="article:published_time" content="2024-02-28T15:56:08.000Z">
+<meta property="article:modified_time" content="2024-02-28T16:08:43.445Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
   
   
   
-  <title>位运算的使用 - Treeu&#39;s blog</title>
+  <title>渲染管道 - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="位运算的使用"></span>
+            <span id="subtitle" data-typed-text="渲染管道"></span>
           
         </div>
 
@@ -233,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-14 12:50" pubdate>
-          February 14, 2024 pm
+        <time datetime="2024-02-28 23:56" pubdate>
+          February 28, 2024 pm
         </time>
       </span>
     
@@ -245,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          924 words
+          930 words
         
       </span>
     
@@ -294,12 +285,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">位运算的使用</h1>
+            <h1 style="display: none">渲染管道</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 13 days ago
+                    Last updated on 17 minutes ago
                   
                 
               </p>
@@ -307,45 +298,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="位运算的使用"><a href="#位运算的使用" class="headerlink" title="位运算的使用"></a>位运算的使用</h1><h2 id="按位非（-）"><a href="#按位非（-）" class="headerlink" title="按位非（~）"></a>按位非（~）</h2><p>这个就是 0 变 1，1 变 0<br>得到的结果就是 <code>-val -1</code></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：</p>
-<ul>
-<li>求相反数 ~a+1<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png" srcset="/img/loading.gif" lazyload></li>
-<li>双非位取整<br>原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数<br><code>~~3.14 == 3</code></li>
-</ul>
-<h2 id="左移"><a href="#左移" class="headerlink" title="&lt;&lt; 左移"></a>&lt;&lt; 左移</h2><p>整体左移<br><code>6 &lt;&lt; 2 = 24</code><br>这里其实就是<code>val * 2^n</code><br>使用场景: 就是做*2^n 的运算，位运算的效率更高<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="右移"><a href="#右移" class="headerlink" title="&gt;&gt; 右移"></a>&gt;&gt; 右移</h2><p>这里是有符号的右移</p>
-<p>和左移相反，这里是整体向右边移动<br>这里需要注意的</p>
-<p>如果是正数，右移之后补 0<br>如果是负数，右移之后是补一<br>这里还有需要注意的 低位是在右边，和基础数值一致</p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：这里就是做 &#x2F;2^n 的运算,注意这里会向下取整<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png" srcset="/img/loading.gif" lazyload></p>
-<p>左移动和右移需要注意长度限制，实际的位移只能在 0-31 之间，第 31 位是符号位</p>
-<h2 id="按位与（-）"><a href="#按位与（-）" class="headerlink" title="按位与（&amp;）"></a>按位与（&amp;）</h2><p>11 为 1 , 其他都为 0</p>
-<p>使用场景：</p>
-<ul>
-<li>清零 与 0 进行位运算结果为 0</li>
-<li>判断整数的奇偶性，对于二进制数而言，偶数的末尾一定是 0，奇数的末尾一定是 1，与 1 进行按位与运算就能判断奇偶性</li>
-<li>取一个二进制数的指定位，比如<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png" srcset="/img/loading.gif" lazyload></li>
-<li>与右移混合使用获取二进制数的某一位,获取 a 的第 b 位<br><code>(a &gt;&gt; b) &amp; 1</code></li>
-</ul>
-<h2 id="按位或（｜）"><a href="#按位或（｜）" class="headerlink" title="按位或（｜）"></a>按位或（｜）</h2><p>有 1 则为 1<br>使用场景：</p>
-<ul>
-<li>将指定位值设置为 1，与上面的与运算类似，只是改为或运算</li>
-<li>取整, 这里需要注意，这里其实是向 0 取整，对于正数是向下取整，对于负数是取绝对值再做向下取整<br>简单理解我们可以理解为就是不要小数部分了<br><img src="/2024-02-15-15-36-08.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-<h2 id="按位异或（-）"><a href="#按位异或（-）" class="headerlink" title="按位异或（^）"></a>按位异或（^）</h2><p>相同为 0，不同为 1</p>
-<p>使用场景：</p>
-<ul>
-<li>进行变量交换</li>
-<li>最后一位取反：X^1</li>
-<li>判断两个整数是否相等</li>
-</ul>
-<p>牢记位操作操作的实际上是整数</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6900710763657166855">https://juejin.cn/post/6900710763657166855</a></p>
-<p><a target="_blank" rel="noopener" href="https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93">https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tinys-top/p/11648535.html">https://www.cnblogs.com/tinys-top/p/11648535.html</a></p>
+                <h1 id="webGpu-渲染管道"><a href="#webGpu-渲染管道" class="headerlink" title="webGpu 渲染管道"></a>webGpu 渲染管道</h1><p>主要是记录一些里面的配置项</p>
+<h2 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 注意 我们的着色器和layout都是写在渲染管道里面的</span><br><span class="hljs-keyword">const</span> pipeline = device.<span class="hljs-title function_">createRenderPipeline</span>(&#123;<br>	<span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;hardcoded textured quad pipeline&#x27;</span>,<br>	<span class="hljs-attr">layout</span>: pipelineLayout,<br>	<span class="hljs-attr">vertex</span>: &#123;<br>		<span class="hljs-variable language_">module</span>,<br>		<span class="hljs-attr">entryPoint</span>: <span class="hljs-string">&#x27;vs&#x27;</span>,<br>	&#125;,<br>	<span class="hljs-comment">// 注意混合是在片元着色器里面的</span><br>	<span class="hljs-attr">fragment</span>: &#123;<br>		<span class="hljs-variable language_">module</span>,<br>		<span class="hljs-attr">entryPoint</span>: <span class="hljs-string">&#x27;fs&#x27;</span>,<br>		<span class="hljs-comment">// targets实际上可以理解为绘制区域的画布</span><br>		<span class="hljs-comment">// 混合的结果公式如下，src上片元着色器返回的值，dst还不太清楚，翻译写的是正在绘制的纹理的已有值</span><br>		<span class="hljs-comment">// result = operation((src * srcFactor),  (dst * dstFactor))</span><br>		<span class="hljs-comment">// 例如：operation is &#x27;add&#x27;, srcFactor is &#x27;one&#x27; and dstFactor is &#x27;zero&#x27;</span><br>		<span class="hljs-comment">// result = add((src * 1), (dst * 0))</span><br>		<span class="hljs-attr">targets</span>: [<br>			&#123;<br>				<span class="hljs-attr">format</span>: presentationFormat,<br>				<span class="hljs-attr">blend</span>: &#123;<br>					<span class="hljs-comment">// rgb部分的设置</span><br>					<span class="hljs-attr">color</span>: &#123;<br>						<span class="hljs-attr">operation</span>: <span class="hljs-string">&#x27;add&#x27;</span>,<br>						<span class="hljs-attr">srcFactor</span>: <span class="hljs-string">&#x27;one&#x27;</span>,<br>						<span class="hljs-attr">dstFactor</span>: <span class="hljs-string">&#x27;one-minus-src-alpha&#x27;</span>,<br>					&#125;,<br>					<span class="hljs-comment">// alpha部分的设置</span><br>					<span class="hljs-attr">alpha</span>: &#123;<br>						<span class="hljs-attr">operation</span>: <span class="hljs-string">&#x27;add&#x27;</span>,<br>						<span class="hljs-attr">srcFactor</span>: <span class="hljs-string">&#x27;one&#x27;</span>,<br>						<span class="hljs-attr">dstFactor</span>: <span class="hljs-string">&#x27;one-minus-src-aplha&#x27;</span>,<br>					&#125;,<br>				&#125;,<br>			&#125;,<br>		],<br>	&#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -363,8 +317,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>位运算的使用</div>
-      <div>https://treeu.github.io/2024/02/14/位运算的使用/</div>
+      <div>渲染管道</div>
+      <div>https://treeu.github.io/2024/02/28/渲染管道/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +330,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 14, 2024</div>
+          <div>February 28, 2024</div>
         </div>
       
       
@@ -408,18 +362,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/20/webgpu%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" title="webgpu绘制流程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">webgpu绘制流程</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/05/redbook/" title="redbook">
-                        <span class="hidden-mobile">redbook</span>
+                      <a href="/2024/02/25/%E6%A8%A1%E7%89%88%E6%B5%8B%E8%AF%95-%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95/" title="模版测试/深度测试">
+                        <span class="hidden-mobile">模版测试/深度测试</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
