@@ -16,23 +16,23 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字节1B(字节) &#x3D; 8 bit 1KB &#x3D; 1024B 1M &#x3D; 1024KB (2^10B) 128 * 128 &#x3D; 16384 &#x2F; 1024 &#x3D; 16K 内存泄漏不再用到的内存 没有及时释放 就叫做内存泄漏 垃圾回收机制程序提供的自动内存管理 减轻程序员的负担 垃圾回收机制如何知道哪些内存不再需要？引用计数 垃圾回收机制会处理的场景">
+    <meta name="description" content="webgpu顶点着色器三个顶点 绘制出一个三角形 片元着色器顶点之间的颜色处理 计算着色器就只是一个函数 我们来确认执行多少次 inter-stage 变量也就是 wgsl 中的location 可以理解为自己加上的变量 可以根据索引进行传递 builtin 内置变量 这里注意 position 顶点着色器输出的内置变量 position 和 片元着色器输入的 position 不是一个东西输出一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js内存相关">
-<meta property="og:url" content="https://treeu.github.io/2023/12/03/js%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:title" content="webgpu文档知识点">
+<meta property="og:url" content="https://treeu.github.io/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="字节1B(字节) &#x3D; 8 bit 1KB &#x3D; 1024B 1M &#x3D; 1024KB (2^10B) 128 * 128 &#x3D; 16384 &#x2F; 1024 &#x3D; 16K 内存泄漏不再用到的内存 没有及时释放 就叫做内存泄漏 垃圾回收机制程序提供的自动内存管理 减轻程序员的负担 垃圾回收机制如何知道哪些内存不再需要？引用计数 垃圾回收机制会处理的场景">
+<meta property="og:description" content="webgpu顶点着色器三个顶点 绘制出一个三角形 片元着色器顶点之间的颜色处理 计算着色器就只是一个函数 我们来确认执行多少次 inter-stage 变量也就是 wgsl 中的location 可以理解为自己加上的变量 可以根据索引进行传递 builtin 内置变量 这里注意 position 顶点着色器输出的内置变量 position 和 片元着色器输入的 position 不是一个东西输出一">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2023/12/03/js%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/2023-12-03-23-35-56.png">
-<meta property="article:published_time" content="2023-12-03T14:37:42.000Z">
-<meta property="article:modified_time" content="2023-12-03T16:09:06.899Z">
+<meta property="og:image" content="https://treeu.github.io/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/2024-04-06-23-52-11.png">
+<meta property="article:published_time" content="2024-04-06T15:34:20.000Z">
+<meta property="article:modified_time" content="2024-04-06T16:06:59.208Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2023/12/03/js%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/2023-12-03-23-35-56.png">
+<meta name="twitter:image" content="https://treeu.github.io/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/2024-04-06-23-52-11.png">
   
   
   
-  <title>js内存相关 - Treeu&#39;s blog</title>
+  <title>webgpu文档知识点 - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="js内存相关"></span>
+            <span id="subtitle" data-typed-text="webgpu文档知识点"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-03 22:37" pubdate>
-          December 3, 2023 pm
+        <time datetime="2024-04-06 23:34" pubdate>
+          April 6, 2024 pm
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k words
+          1.7k words
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          12 mins
+          15 mins
         
       </span>
     
@@ -287,12 +287,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">js内存相关</h1>
+            <h1 style="display: none">webgpu文档知识点</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 4 months ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -300,45 +300,52 @@
             
               <div class="markdown-body">
                 
-                <h1 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h1><p>1B(字节) &#x3D; 8 bit</p>
-<p>1KB &#x3D; 1024B</p>
-<p>1M &#x3D; 1024KB (2^10B)</p>
-<p>128 * 128 &#x3D; 16384 &#x2F; 1024 &#x3D; 16K</p>
-<h1 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h1><p>不再用到的内存 没有及时释放 就叫做内存泄漏</p>
-<h2 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h2><p>程序提供的自动内存管理 减轻程序员的负担</p>
-<h3 id="垃圾回收机制如何知道哪些内存不再需要？"><a href="#垃圾回收机制如何知道哪些内存不再需要？" class="headerlink" title="垃圾回收机制如何知道哪些内存不再需要？"></a>垃圾回收机制如何知道哪些内存不再需要？</h3><h4 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h4><ul>
-<li><p>垃圾回收机制会处理的场景<br>如果一个值的引用次数数是 0 就表示这个值不会再用到了 因此可以将这块的内存释放</p>
-</li>
-<li><p>需要主动检查是否存在引用进行解除引用</p>
-</li>
-</ul>
-<p>如果一个值不再需要了 引用值却不为 0 垃圾回收机制就无法释放这块的内存 导致内存泄漏</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 占用内存</span><br><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];<br><span class="hljs-comment">// 解除引用 释放内存</span><br>arr = <span class="hljs-literal">null</span>;<br></code></pre></td></tr></table></figure>
+                <h1 id="webgpu"><a href="#webgpu" class="headerlink" title="webgpu"></a>webgpu</h1><h2 id="顶点着色器"><a href="#顶点着色器" class="headerlink" title="顶点着色器"></a>顶点着色器</h2><p>三个顶点 绘制出一个三角形</p>
+<h2 id="片元着色器"><a href="#片元着色器" class="headerlink" title="片元着色器"></a>片元着色器</h2><p>顶点之间的颜色处理</p>
+<h2 id="计算着色器"><a href="#计算着色器" class="headerlink" title="计算着色器"></a>计算着色器</h2><p>就只是一个函数 我们来确认执行多少次</p>
+<h2 id="inter-stage-变量"><a href="#inter-stage-变量" class="headerlink" title="inter-stage 变量"></a>inter-stage 变量</h2><p>也就是 wgsl 中的<br>location 可以理解为自己加上的变量 可以根据索引进行传递</p>
+<p>builtin 内置变量</p>
+<p>这里注意 position 顶点着色器输出的内置变量 position 和 片元着色器输入的 position 不是一个东西<br>输出一致 这样写只是方便</p>
+<p>position 片元着色器的输入需要注意不是整数 这个像素点是中点是小数</p>
+<h2 id="uniforms"><a href="#uniforms" class="headerlink" title="uniforms"></a>uniforms</h2><p>这里讲的 uniformsBuffer 的使用<br>需要注意一点的是<br>比如：当我 writeBuffer 完，这时候命令只会放到命令缓冲区中<br>遍历中会遇到这种情况</p>
+<p>只有当我 finish 然后 submit 的时候才会真正执行</p>
+<p>如果一个个创建命令缓冲区，然后再执行会很慢</p>
+<p>最佳实践是在一个缓冲区内完成更多的工作</p>
+<p>我们知道 buffer 是通过绑定组来进行使用的</p>
+<p>我们只要把绑定关系处理对 然后再统一进行绘制就可以了</p>
+<p>代码案例对应的就是我们业务代码中的动态绑定组</p>
+<p>可以自由引用多个 uniform 缓冲区</p>
+<p>我们把 uniforms 可以分为一次需要设置一次的 uniforms<br>和每次绘制都要更新的 uniforms 可以节约时间</p>
+<h2 id="存储缓冲区"><a href="#存储缓冲区" class="headerlink" title="存储缓冲区"></a>存储缓冲区</h2><p>与 uniform 的区别<br>1、uniform 速度上可能更快<br>2、uniform 缓冲区很小，最大大小至少为 64kb，存储缓冲区最大大小至少为 128M<br>3、uniform 缓冲区只能读，存储缓冲区可读写</p>
+<p>tips：通过存储缓冲区传递顶点的方式很受欢迎，不过听说在一些较老的设备上，这种方式比传统方式要慢</p>
+<p>注意：颜色附件我们也可以有多个，location(1),location(2)</p>
+<h2 id="顶点缓冲区"><a href="#顶点缓冲区" class="headerlink" title="顶点缓冲区"></a>顶点缓冲区</h2><p>也就是我们会有一个 buffer 来储存顶点信息<br>我们在创建渲染管道的时候就告诉 webgpu 如何从顶点 buffer 中获取顶点数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">vertex</span>:&#123;<br>  <span class="hljs-attr">buffers</span>:[&#123;<br>      <span class="hljs-attr">arrayStride</span>: <span class="hljs-number">2</span> * <span class="hljs-number">4</span>, <span class="hljs-comment">// 一个顶点所需要的数据字节长度</span><br>      <span class="hljs-attr">stepMode</span>:<span class="hljs-string">&#x27;instance&#x27;</span>, <span class="hljs-comment">// 属性在每个实例中只会前进一次到下一个值，默认是vertex</span><br>      <span class="hljs-comment">// 这里就是描述的每一个顶点数据是如何进行拆分</span><br>      <span class="hljs-attr">attributes</span>:[<br>          <span class="hljs-attr">shaderLoaction</span>: <span class="hljs-number">0</span>, <span class="hljs-comment">// 对应的是顶点着色器中输入的loction0</span><br>          <span class="hljs-attr">offset</span>:<span class="hljs-number">0</span>, <span class="hljs-comment">// 数据的偏移</span><br>          <span class="hljs-attr">format</span>:<span class="hljs-string">&#x27;float32x2&#x27;</span>, <span class="hljs-comment">// 数据的格式</span><br>      ]<br>  &#125;]<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="如何定位到是否存在内存泄漏"><a href="#如何定位到是否存在内存泄漏" class="headerlink" title="如何定位到是否存在内存泄漏"></a>如何定位到是否存在内存泄漏</h3><p>经验法则是，如果连续五次垃圾回收之后，内存占用一次比一次大，那就存在内存泄漏</p>
+<p>这里 wgsl 中的 stuct 中的格式和我们配置的格式是可以不一致的，但还是一致比较好，因为属性在着色器中始终有 4 个值<br>0，0，0，1；</p>
+<p>tips：归一化可以节约空间</p>
+<h2 id="索引缓冲区"><a href="#索引缓冲区" class="headerlink" title="索引缓冲区"></a>索引缓冲区</h2><p>也是可以用来节约内存空间，用于处理顶点数据的顺序<br>@builtin(vertex_index)跟索引缓冲区的索引一致</p>
+<h2 id="constant"><a href="#constant" class="headerlink" title="constant"></a>constant</h2><p>常量<br>wgsl 中可以用 override 来描述</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs wgsl">override red = 0.0;<br>override green = 0.0;<br></code></pre></td></tr></table></figure>
+
+<p>在创建渲染管线的时候我们能够直接进行覆盖<br>注意这里是区分着色器的 每个着色器需要的话都要添加常量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">fragment</span>: &#123;<br>    <span class="hljs-attr">constants</span>: &#123;<br>        <span class="hljs-attr">red</span>:<span class="hljs-number">1</span>,<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>常量只能用标量值，也就是布尔，整数，浮点数，不能是向量或者矩阵</p>
+<p>如果不指定值，还可以使用数字 id</p>
+<p>@id(123) override green &#x3D; 0.0</p>
+<p>跟我直接用 const 定义常量的区别是？</p>
+<p>就是可以定义好着色器模块之后再通过管道来重新覆盖，这样会更快</p>
+<p><a target="_blank" rel="noopener" href="https://webgpufundamentals.org/webgpu/lessons/webgpu-constants.html">https://webgpufundamentals.org/webgpu/lessons/webgpu-constants.html</a></p>
+<h2 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h2><p>纹理就是一个二维数组，值为颜色值</p>
+<p>纹理跟存储缓冲区的区别在于，纹理可以被采样器采样，这个采样器是内置的</p>
+<p>uv 坐标 也就是 webgpu 中的纹理坐标系统，我们可以看到 0，0 对应的是左下角的坐标<br><img src="/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/2024-04-06-23-52-11.png" srcset="/img/loading.gif" lazyload></p>
+<p>而对于我们常见的图片格式，（0，0）点的坐标实际上是位于左上角，所以才会需要进行翻转处理</p>
+<p>两种方式</p>
 <ul>
-<li>可以使用 Chrome 浏览器查看内存占用的情况</li>
+<li>一种是在着色器中改变纹理的坐标 拿 1 减一下 y 坐标</li>
+<li>二是直接反转一下纹理数据</li>
 </ul>
-<p><img src="/2023/12/03/js%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3/2023-12-03-23-35-56.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>node.js 命令行 (目前还不知道怎么用)</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(process.<span class="hljs-title function_">memoryUsage</span>());<br><span class="hljs-comment">// &#123; rss: 27709440,  所有的内存占用，包括指令区和堆栈</span><br><span class="hljs-comment">//  heapTotal: 5685248, “堆”占用部分的内存 包括用到的和没用到的</span><br><span class="hljs-comment">//  heapUsed: 3449392, 用到的堆的部分 从这里就能知道了</span><br><span class="hljs-comment">//  external: 8772 &#125; v8引擎内部的C++对象占用的内存</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="防止泄漏方案"><a href="#防止泄漏方案" class="headerlink" title="防止泄漏方案"></a>防止泄漏方案</h2><p>在新建引用的时候就声明，哪些引用必须手动清除，哪些值忽略不计</p>
-<p>ES6 的新的数据结构 WeakSet WeakMap</p>
-<p><strong>这种数据结构的值不计入垃圾回收机制</strong></p>
-<p>也就是垃圾回收机制会忽略这部分的引用关系 只要再没有其他引用就可以直接进行垃圾回收机制 释放内存</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> wm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();<br><span class="hljs-keyword">const</span> element = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;example&#x27;</span>);<br>wm.<span class="hljs-title function_">set</span>(element, <span class="hljs-string">&#x27;some information&#x27;</span>);<br>wm.<span class="hljs-title function_">get</span>(element);<br></code></pre></td></tr></table></figure>
-
-<p>该案例看上去对 dom 节点的引用计数是 2 其实应该是 1</p>
-<p>一旦消除 element 这个引用 它占用的内存就会被垃圾回收机制释放</p>
-<p>Weakmap 保存的这个键值对也会自动消失</p>
-<p><strong>使用场景</strong><br>如果你要往对象上增加数据，又不想干扰垃圾回收机制，就可以使用 Weakmap</p>
-<h2 id="如何验证-Weakmap-是否生效"><a href="#如何验证-Weakmap-是否生效" class="headerlink" title="如何验证 Weakmap 是否生效"></a>如何验证 Weakmap 是否生效</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 执行垃圾回收</span><br><span class="hljs-variable language_">global</span>.<span class="hljs-title function_">gc</span>();<br><span class="hljs-comment">// 看看内存情况</span><br>process.<span class="hljs-title function_">memoryUsage</span>();<br><span class="hljs-keyword">let</span> b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<br><span class="hljs-keyword">let</span> wm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();<br>wm.<span class="hljs-title function_">set</span>(b, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">5</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>));<br><span class="hljs-comment">// 执行垃圾回收</span><br><span class="hljs-variable language_">global</span>.<span class="hljs-title function_">gc</span>();<br><span class="hljs-comment">// 看看内存情况</span><br>process.<span class="hljs-title function_">memoryUsage</span>();<br>b = <span class="hljs-literal">null</span>;<br><span class="hljs-comment">// 执行垃圾回收</span><br><span class="hljs-variable language_">global</span>.<span class="hljs-title function_">gc</span>();<br><span class="hljs-comment">// 看看内存情况</span><br>process.<span class="hljs-title function_">memoryUsage</span>();<br><span class="hljs-comment">// 如果内存和最开始一致 就说明 WeakMap中的数据被销毁了</span><br></code></pre></td></tr></table></figure>
-
-<p>学习链接：</p>
-<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/04/memory-leak.html">https://www.ruanyifeng.com/blog/2017/04/memory-leak.html</a></p>
 
                 
               </div>
@@ -356,8 +363,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>js内存相关</div>
-      <div>https://treeu.github.io/2023/12/03/js内存相关/</div>
+      <div>webgpu文档知识点</div>
+      <div>https://treeu.github.io/2024/04/06/webgpu文档知识点/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +376,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>December 3, 2023</div>
+          <div>April 6, 2024</div>
         </div>
       
       
@@ -401,18 +408,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/05/redbook/" title="redbook">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">redbook</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/24/sdf/" title="SDF">
-                        <span class="hidden-mobile">SDF</span>
+                      <a href="/2024/03/17/%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" title="坐标系之间的转换">
+                        <span class="hidden-mobile">坐标系之间的转换</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
