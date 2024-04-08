@@ -24,8 +24,9 @@
 <meta property="og:description" content="webgpu顶点着色器三个顶点 绘制出一个三角形 片元着色器顶点之间的颜色处理 计算着色器就只是一个函数 我们来确认执行多少次 inter-stage 变量也就是 wgsl 中的location 可以理解为自己加上的变量 可以根据索引进行传递 builtin 内置变量 这里注意 position 顶点着色器输出的内置变量 position 和 片元着色器输入的 position 不是一个东西输出一">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://treeu.github.io/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/2024-04-06-23-52-11.png">
+<meta property="og:image" content="https://treeu.github.io/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/2024-04-08-23-40-47.png">
 <meta property="article:published_time" content="2024-04-06T15:34:20.000Z">
-<meta property="article:modified_time" content="2024-04-06T16:06:59.208Z">
+<meta property="article:modified_time" content="2024-04-08T16:32:05.752Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://treeu.github.io/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/2024-04-06-23-52-11.png">
@@ -238,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k words
+          2.1k words
         
       </span>
     
@@ -249,7 +250,7 @@
         
         
         
-          15 mins
+          18 mins
         
       </span>
     
@@ -346,6 +347,15 @@
 <li>一种是在着色器中改变纹理的坐标 拿 1 减一下 y 坐标</li>
 <li>二是直接反转一下纹理数据</li>
 </ul>
+<p>纹理还没看完 后面还有</p>
+<h2 id="透明度和混合"><a href="#透明度和混合" class="headerlink" title="透明度和混合"></a>透明度和混合</h2><p>webgpu canvas 画布是可以选择是否开启透明度</p>
+<p>默认是 <code>opaque</code> 也就是不透明</p>
+<p>设置 alphaMode 为’premultiplied’ 则是开启这个配置</p>
+<p>这个配置意味着</p>
+<p>绘制到画布上的颜色已经乘了 alpha 值</p>
+<p><img src="/2024/04/06/webgpu%E6%96%87%E6%A1%A3%E7%9F%A5%E8%AF%86%E7%82%B9/2024-04-08-23-40-47.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 webgpu 中，当使用 premultiplied 模式渲染时，你需要确保在着色器中输出的颜色是预乘透明度值后的颜色</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 假设我们有一个vec3类型的颜色变量，表示不透明的颜色值</span><br>vec3 color = <span class="hljs-title function_">vec3</span>(<span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>); <span class="hljs-comment">// 纯红色</span><br><span class="hljs-comment">// 现在我们定义一个固定透明度值</span><br>float alpha = <span class="hljs-number">0.5</span>;<br><span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 输出预乘后的颜色</span><br>    gl_FragColor = <span class="hljs-title function_">vec4</span>(color * alpha, alpha);<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
