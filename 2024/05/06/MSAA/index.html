@@ -16,15 +16,15 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MSAA 多重采样抗锯齿分辨率：  分辨率影响什么？分辨率影响的其实是屏幕上像素的多少 浏览器缩放影响什么影响的是显示尺寸 显示尺寸 也就是 css 控制的 物理像素尺寸 实际像素 也就是不管显示尺寸是多大，实际可用的像素就只有这么多当显示尺寸和物理像素尺寸不一致的时候就会对 canvas 的内容进行缩放以适应显示尺寸这里也就用上了 window.devicePixelRatio 获取设备的像素比">
+    <meta name="description" content="MSAA 多重采样抗锯齿 分辨率：  分辨率影响什么？ 分辨率影响的其实是屏幕上像素的多少 浏览器缩放影响什么 影响的是显示尺寸  显示尺寸 也就是 css 控制的 物理像素尺寸 实际像素 也就是不管显示尺寸是多大，实际可用的像素就只有这么多 当显示尺寸和物理像素尺寸不一致的时候就会对 canvas 的内容进行缩放以适应显示尺寸 这里也就用上了 window.devicePixelRatio 获取">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MSAA">
 <meta property="og:url" content="https://treeu.github.io/2024/05/06/MSAA/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="MSAA 多重采样抗锯齿分辨率：  分辨率影响什么？分辨率影响的其实是屏幕上像素的多少 浏览器缩放影响什么影响的是显示尺寸 显示尺寸 也就是 css 控制的 物理像素尺寸 实际像素 也就是不管显示尺寸是多大，实际可用的像素就只有这么多当显示尺寸和物理像素尺寸不一致的时候就会对 canvas 的内容进行缩放以适应显示尺寸这里也就用上了 window.devicePixelRatio 获取设备的像素比">
+<meta property="og:description" content="MSAA 多重采样抗锯齿 分辨率：  分辨率影响什么？ 分辨率影响的其实是屏幕上像素的多少 浏览器缩放影响什么 影响的是显示尺寸  显示尺寸 也就是 css 控制的 物理像素尺寸 实际像素 也就是不管显示尺寸是多大，实际可用的像素就只有这么多 当显示尺寸和物理像素尺寸不一致的时候就会对 canvas 的内容进行缩放以适应显示尺寸 这里也就用上了 window.devicePixelRatio 获取">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-05-06T15:20:19.000Z">
-<meta property="article:modified_time" content="2024-05-06T15:21:14.623Z">
+<meta property="article:modified_time" content="2024-05-06T16:09:56.915Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          688 words
+          860 words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          6 mins
+          8 mins
         
       </span>
     
@@ -298,15 +298,22 @@
             
               <div class="markdown-body">
                 
-                <h2 id="MSAA-多重采样抗锯齿"><a href="#MSAA-多重采样抗锯齿" class="headerlink" title="MSAA 多重采样抗锯齿"></a>MSAA 多重采样抗锯齿</h2><p>分辨率：</p>
+                <h2 id="MSAA-多重采样抗锯齿">MSAA 多重采样抗锯齿</h2>
+<p>分辨率：</p>
 <ul>
-<li>分辨率影响什么？<br>分辨率影响的其实是屏幕上像素的多少</li>
-<li>浏览器缩放影响什么<br>影响的是显示尺寸<ul>
+<li>分辨率影响什么？<br>
+分辨率影响的其实是屏幕上像素的多少</li>
+<li>浏览器缩放影响什么<br>
+影响的是显示尺寸
+<ul>
 <li>显示尺寸 也就是 css 控制的</li>
-<li>物理像素尺寸 实际像素 也就是不管显示尺寸是多大，实际可用的像素就只有这么多<br>当显示尺寸和物理像素尺寸不一致的时候就会对 canvas 的内容进行缩放以适应显示尺寸<br>这里也就用上了 window.devicePixelRatio 获取设备的像素比率，这里其实修改的是物理像素</li>
+<li>物理像素尺寸 实际像素 也就是不管显示尺寸是多大，实际可用的像素就只有这么多<br>
+当显示尺寸和物理像素尺寸不一致的时候就会对 canvas 的内容进行缩放以适应显示尺寸<br>
+这里也就用上了 window.devicePixelRatio 获取设备的像素比率，这里其实修改的是物理像素</li>
 </ul>
 </li>
-<li>缩放相机<ul>
+<li>缩放相机
+<ul>
 <li>单位像素长度，屏幕中的一像素能够表示对象的长度，描述的其实是用像素表示物体</li>
 <li>假设我们有一个对象，它的尺寸是 100x100 像素。当您观看这个对象时，您实际上是在看 100x100 的像素网格。单位像素长度是指在屏幕上实际代表对象的单个像素的大小。</li>
 <li>放大效果：当您放大时，您实际上是在增加对象的尺寸，在屏幕上占用更多像素。例如，如果将上述对象放大两倍，它现在将占据 200x200 像素的空间。尽管每个像素的物理尺寸（如屏幕的像素尺寸）实际上并未变化，但是现在它们代表的物体相对于初始尺寸的物理长度减少了。在屏幕上，单个像素现在表示对象更小的一部分，因为需要更多像素来显示相同的对象。</li>
@@ -314,8 +321,21 @@
 </ul>
 </li>
 </ul>
-<h3 id="抗锯齿处理"><a href="#抗锯齿处理" class="headerlink" title="抗锯齿处理"></a>抗锯齿处理</h3><ul>
-<li>用更高的分辨率，可用理解为本来只需要 4 个像素，现在我使用八个像素，然后用双线性插值处理得到最终结果<br>这个是有效的但是在性能上是会有浪费的，因为每个像素都需要*2 处理，但是其实只有边缘像素需要这样处理<br>多次调用着色器也是会浪费性能的</li>
+<h3 id="锯齿化是怎么来的">锯齿化是怎么来的</h3>
+<p>只要覆盖像素的中心，该像素就会被填充</p>
+<p>比如我们要绘制的图形的点不是刚好在像素网格上</p>
+<h3 id="抗锯齿处理">抗锯齿处理</h3>
+<ul>
+<li>
+<p>用更高的分辨率，可用理解为本来只需要 4 个像素，现在我使用八个像素，然后用双线性插值处理得到最终结果<br>
+这个是有效的但是在性能上是会有浪费的，因为每个像素都需要*2 处理，着色器需要调用多次，但是其实只有边缘像素需要这样处理<br>
+多次调用着色器也是会浪费性能的</p>
+</li>
+<li>
+<p>使用 MSAA<br>
+目前看上去就是减少调用着色器的次数，片元着色器的调用次数不变<br>
+其实就是再创建一个与要渲染画布同等大小的特殊纹理，渲染到这个纹理上，然后再渲染到我们想要的纹理上，也就是多处理一遍，注意这里有一个 resolveTarget</p>
+</li>
 </ul>
 
                 
