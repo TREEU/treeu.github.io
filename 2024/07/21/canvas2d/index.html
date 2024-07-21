@@ -16,21 +16,21 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="模版测试指定区域渲染 123456789101112&#x2F;&#x2F; 清除着色器与深度缓冲clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);&#x2F;&#x2F; 清除模板缓冲clear(gl.STENCIL_BUFFER_BIT);&#x2F;&#x2F; 关闭深度测试disable(gl.DEPTH_TEST);&#x2F;&#x2F; 允许模板测试enable(gl.STENCIL_TEST);&#x2F;&#x2F; 设置模版测试">
+    <meta name="description" content="canvas2d2D 上下文的坐标原点(0,0)是在 canvas 元素的左上角(区别于 webgpu)所有的坐标值都相对于该点计算，x 坐标向右增长，y 坐标向下增长，width 和 height 表示两个方向上像素的最大值； 填充和描边fillStyle 和 strokeStyle如果进行了设置，那么所有的描边和填充相关的操作都会使用这两种样式，除非再次修改 *这两个属性也可以是渐变或者图案？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模版测试&#x2F;深度测试">
-<meta property="og:url" content="https://treeu.github.io/2024/02/25/%E6%A8%A1%E7%89%88%E6%B5%8B%E8%AF%95-%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:title" content="canvas2d">
+<meta property="og:url" content="https://treeu.github.io/2024/07/21/canvas2d/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="模版测试指定区域渲染 123456789101112&#x2F;&#x2F; 清除着色器与深度缓冲clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);&#x2F;&#x2F; 清除模板缓冲clear(gl.STENCIL_BUFFER_BIT);&#x2F;&#x2F; 关闭深度测试disable(gl.DEPTH_TEST);&#x2F;&#x2F; 允许模板测试enable(gl.STENCIL_TEST);&#x2F;&#x2F; 设置模版测试">
+<meta property="og:description" content="canvas2d2D 上下文的坐标原点(0,0)是在 canvas 元素的左上角(区别于 webgpu)所有的坐标值都相对于该点计算，x 坐标向右增长，y 坐标向下增长，width 和 height 表示两个方向上像素的最大值； 填充和描边fillStyle 和 strokeStyle如果进行了设置，那么所有的描边和填充相关的操作都会使用这两种样式，除非再次修改 *这两个属性也可以是渐变或者图案？">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-02-25T05:56:40.000Z">
-<meta property="article:modified_time" content="2024-02-28T15:54:37.063Z">
+<meta property="article:published_time" content="2024-07-21T13:46:54.000Z">
+<meta property="article:modified_time" content="2024-07-21T16:35:20.095Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>模版测试/深度测试 - Treeu&#39;s blog</title>
+  <title>canvas2d - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="模版测试/深度测试"></span>
+            <span id="subtitle" data-typed-text="canvas2d"></span>
           
         </div>
 
@@ -224,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-25 13:56" pubdate>
-          February 25, 2024 pm
+        <time datetime="2024-07-21 21:46" pubdate>
+          July 21, 2024 pm
         </time>
       </span>
     
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k words
+          1.3k words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          24 mins
+          12 mins
         
       </span>
     
@@ -285,12 +285,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">模版测试/深度测试</h1>
+            <h1 style="display: none">canvas2d</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 3 minutes ago
                   
                 
               </p>
@@ -298,69 +298,86 @@
             
               <div class="markdown-body">
                 
-                <h2 id="模版测试"><a href="#模版测试" class="headerlink" title="模版测试"></a>模版测试</h2><p>指定区域渲染</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 清除着色器与深度缓冲</span><br><span class="hljs-title function_">clear</span>(gl.<span class="hljs-property">COLOR_BUFFER_BIT</span> | gl.<span class="hljs-property">DEPTH_BUFFER_BIT</span>);<br><span class="hljs-comment">// 清除模板缓冲</span><br><span class="hljs-title function_">clear</span>(gl.<span class="hljs-property">STENCIL_BUFFER_BIT</span>);<br><span class="hljs-comment">// 关闭深度测试</span><br><span class="hljs-title function_">disable</span>(gl.<span class="hljs-property">DEPTH_TEST</span>);<br><span class="hljs-comment">// 允许模板测试</span><br><span class="hljs-title function_">enable</span>(gl.<span class="hljs-property">STENCIL_TEST</span>);<br><span class="hljs-comment">// 设置模版测试参数</span><br><span class="hljs-title function_">stencilFunc</span>(gl.<span class="hljs-property">ALWAYS</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br><span class="hljs-comment">// 设置模版测试后的操作</span><br>gl.<span class="hljs-title function_">stencilOp</span>(gl.<span class="hljs-property">KEEP</span>, gl.<span class="hljs-property">KEEP</span>, gl.<span class="hljs-property">REPLACE</span>);<br></code></pre></td></tr></table></figure>
-
-<p>模版缓冲区是一个 buffer</p>
-<p>这个 buffer 为每个 fragment 提供 8 位的存储空间，</p>
-<p>可以理解为每个像素块里面能存一个字节的数字，最多可以存储 256 个不同的数值</p>
-<p>对于简单的模型裁剪效果，1 跟 0 就足够了</p>
-<h2 id="gl-stencilFunc"><a href="#gl-stencilFunc" class="headerlink" title="gl.stencilFunc"></a>gl.stencilFunc</h2><p>控制模版测试的方法，也就是怎么样才能通过测试</p>
-<p>三个参数</p>
-<ul>
-<li><p>第一个参数设置比较条件</p>
-<ul>
-<li>always</li>
-<li>less</li>
+                <h2 id="canvas2d"><a href="#canvas2d" class="headerlink" title="canvas2d"></a>canvas2d</h2><p>2D 上下文的坐标原点(0,0)是在 canvas 元素的左上角(区别于 webgpu)<br>所有的坐标值都相对于该点计算，x 坐标向右增长，y 坐标向下增长，width 和 height 表示两个方向上像素的最大值；</p>
+<h3 id="填充和描边"><a href="#填充和描边" class="headerlink" title="填充和描边"></a>填充和描边</h3><p>fillStyle 和 strokeStyle<br>如果进行了设置，那么所有的描边和填充相关的操作都会使用这两种样式，除非再次修改</p>
+<p>*<em>这两个属性也可以是渐变或者图案？</em></p>
+<h3 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h3><ul>
+<li>填充矩形<br><code>ctx.fillRect()</code></li>
+<li>描边矩形<br><code>ctx.strokeRect()</code><br>线宽由 lineWidth 控制<br>lineCap 属性控制线条端点的形状</li>
+<li><code>ctx.clearRect()</code><br>可以擦除画布中的某个区域</li>
 </ul>
+<h3 id="绘制路径"><a href="#绘制路径" class="headerlink" title="绘制路径"></a>绘制路径</h3><ul>
+<li><p>首先要调用 beginPath()方法表示要开始绘制新路径，然后再用下列方法来绘制路径</p>
 </li>
-<li><p>第二个参数用于测试的参考值</p>
+<li><p><code>arc()</code> 给定圆心起始角和结束角方向绘制弧线</p>
 </li>
-<li><p>第三个参数是指定操作的掩码<br>会先将第二个参数和当前参数进行与运算，最后将两个结果进行比较，比较的方式就是第一个参数指定的</p>
+<li><p><code>arcTo()</code> 给定半径和两个点，绘制两个点之间的弧线</p>
 </li>
-</ul>
-<h2 id="gl-stencilOp"><a href="#gl-stencilOp" class="headerlink" title="gl.stencilOp"></a>gl.stencilOp</h2><p>指定通过测试和未通过测试时要怎么处理</p>
-<p>stencilOp(fail, zfail, zpass)</p>
-<p>三个参数</p>
-<ul>
-<li>模版测试未通过时的行为</li>
-<li>模版测试通过但是深度测试未通过时的行为</li>
-<li>模版测试通过且深度测试也通过时的行为，或者当模版测试通过且深度测试并没有开启的行为</li>
-</ul>
-<h2 id="glStencilMask"><a href="#glStencilMask" class="headerlink" title="glStencilMask"></a>glStencilMask</h2><p>模板掩码</p>
-<ul>
-<li>0xFF 每一位写入模版缓冲时都保持原样</li>
-<li>0x00 每一位在写入模版缓冲的时候都会变成 0（禁用写入）</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv23430911/">https://www.bilibili.com/read/cv23430911/</a></p>
-<p>对于模版缓冲的使用大致步骤：</p>
-<ul>
-<li>启用模板缓冲的写入</li>
-<li>渲染物体，更新模板缓冲的内容</li>
-<li>禁用模板缓冲的写入</li>
-<li>渲染（其它）物体，这次根据模板缓冲的内容丢弃特定的片段。</li>
-</ul>
-<p>也就是我需要创建一个模版缓冲 buffer，然后我需要往这个 buffer 里面写入内容，但是我不进行绘制，然后渲染其他物体根据我已有的模版缓冲内容丢弃特定的片段</p>
-<h2 id="三角形的正面和反面"><a href="#三角形的正面和反面" class="headerlink" title="三角形的正面和反面"></a>三角形的正面和反面</h2><p>wegl 的图元就只有点&#x2F;线&#x2F;三角形</p>
-<ul>
-<li>三角形<br>复杂图形都是有三角形组成的</li>
-<li>直线</li>
-<li>点<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/535433259">https://zhuanlan.zhihu.com/p/535433259</a></li>
-</ul>
-<h2 id="深度测试"><a href="#深度测试" class="headerlink" title="深度测试"></a>深度测试</h2><p>先进行模版测试，再进行深度测试</p>
-<p>深度测试也是一样的，存在深度缓冲区</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/529965155">https://zhuanlan.zhihu.com/p/529965155</a></p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><a target="_blank" rel="noopener" href="http://bingqx.cn/post/WebGPU%E5%AD%A6%E4%B9%A0%EF%BC%885%EF%BC%89---%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95%E5%92%8C%E7%BA%B9%E7%90%86">http://bingqx.cn/post/WebGPU%E5%AD%A6%E4%B9%A0%EF%BC%885%EF%BC%89---%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E6%B5%8B%E8%AF%95%E5%92%8C%E7%BA%B9%E7%90%86</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/438468463">https://zhuanlan.zhihu.com/p/438468463</a></p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>简单来说就是进行两次渲染</p>
-<ul>
-<li><p>第一次就专门用来写入模版值，关闭颜色的写入<br>这里比较重点需要理解的地方</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//将三角区域模板值写入1</span><br>passEncoder.<span class="hljs-title function_">setStencilReference</span>(<span class="hljs-number">1</span>);<br><span class="hljs-comment">// createRenderPipeline 渲染管道的设置</span><br><span class="hljs-keyword">const</span> pipelineWriteMask = device.<span class="hljs-title function_">createRenderPipeline</span>(&#123;<br>	<span class="hljs-attr">layout</span>: device.<span class="hljs-title function_">createPipelineLayout</span>(&#123;<br>		<span class="hljs-attr">bindGroupLayouts</span>: [uniformsBindGroupLayout],<br>	&#125;),<br>	...<br>	<span class="hljs-attr">fragment</span>: &#123;<br>		<span class="hljs-attr">module</span>: device.<span class="hljs-title function_">createShaderModule</span>(&#123;<br>			<span class="hljs-attr">code</span>: basicFragWGSL,<br>		&#125;),<br>		<span class="hljs-attr">entryPoint</span>: <span class="hljs-string">&#x27;main&#x27;</span>,<br>		<span class="hljs-attr">targets</span>: [<br>			&#123;<br>				<span class="hljs-attr">format</span>: presentationFormat,<br>				<span class="hljs-attr">writeMask</span>: <span class="hljs-number">0x00</span>, <span class="hljs-comment">//关闭color写入</span><br>			&#125;,<br>		],<br>	&#125;,<br>  ...<br>	<span class="hljs-attr">depthStencil</span>: &#123;<br>		<span class="hljs-attr">depthWriteEnabled</span>: <span class="hljs-literal">true</span>,<br>		<span class="hljs-attr">depthCompare</span>: <span class="hljs-string">&#x27;always&#x27;</span>,<br>		<span class="hljs-attr">format</span>: <span class="hljs-string">&#x27;depth24plus-stencil8&#x27;</span>,<br>		<span class="hljs-attr">stencilFront</span>: &#123;<br>			<span class="hljs-attr">compare</span>: <span class="hljs-string">&#x27;always&#x27;</span>,<br>			<span class="hljs-attr">failOp</span>: <span class="hljs-string">&#x27;keep&#x27;</span>,<br>			<span class="hljs-attr">depthFailOp</span>: <span class="hljs-string">&#x27;keep&#x27;</span>,<br>			<span class="hljs-attr">passOp</span>: <span class="hljs-string">&#x27;replace&#x27;</span>,<br>		&#125;,<br>		<span class="hljs-attr">stencilBack</span>: &#123;<br>			<span class="hljs-attr">compare</span>: <span class="hljs-string">&#x27;always&#x27;</span>,<br>			<span class="hljs-attr">failOp</span>: <span class="hljs-string">&#x27;keep&#x27;</span>,<br>			<span class="hljs-attr">depthFailOp</span>: <span class="hljs-string">&#x27;keep&#x27;</span>,<br>			<span class="hljs-attr">passOp</span>: <span class="hljs-string">&#x27;replace&#x27;</span>,<br>		&#125;,<br>	&#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+<li><p><code>bezierCurveTo</code> 三次贝塞尔曲线，两个控制点一个结束点</p>
 </li>
-<li><p>第二次渲染就根据模版值来进行比较判断</p>
+<li><p><code>lineTo</code> 一个点，从上一个点到这一个点，一般都是和 moveTo 结合着用</p>
+</li>
+<li><p><code>moveTo</code> 不绘制线条，只把绘制光标移动到 x，y; 这个是为了避免绘制出多余的线条</p>
+</li>
+<li><p><code>quadraticCurveTo</code> 一个控制点一个结束点的贝塞尔</p>
+</li>
+<li><p><code>rect</code> 给定宽度和高度绘制一个矩形，创建的是路径而不是独立的图形</p>
+</li>
+<li><p>创建完路径之后，可以使用 closePath()方法绘制一条返回起点的线，路径完成后可以指定 fillStyle，并且使用 fill 来填充路径，也可以用 stroke 来描画路径，还可以使用 clip 来创建一个剪切区域</p>
 </li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 待确认</span><br>passEncoder.<span class="hljs-title function_">setStencilReference</span>(<span class="hljs-number">0</span>);<br><span class="hljs-comment">// 渲染管道</span><br><span class="hljs-keyword">const</span> pipelineUseMask = device.<span class="hljs-title function_">createRenderPipeline</span>(&#123;<br>	<span class="hljs-attr">layout</span>: device.<span class="hljs-title function_">createPipelineLayout</span>(&#123;<br>		<span class="hljs-attr">bindGroupLayouts</span>: [uniformsBindGroupLayout1],<br>	&#125;),<br>  ...<br>	<span class="hljs-attr">fragment</span>: &#123;<br>		<span class="hljs-attr">module</span>: device.<span class="hljs-title function_">createShaderModule</span>(&#123;<br>			<span class="hljs-attr">code</span>: basicFragWGSL,<br>		&#125;),<br>		<span class="hljs-attr">entryPoint</span>: <span class="hljs-string">&#x27;main&#x27;</span>,<br>		<span class="hljs-attr">targets</span>: [<br>			&#123;<br>				<span class="hljs-attr">format</span>: presentationFormat,<br>			&#125;,<br>		],<br>	&#125;,<br>	...<br>	<span class="hljs-attr">depthStencil</span>: &#123;<br>		<span class="hljs-attr">depthWriteEnabled</span>: <span class="hljs-literal">false</span>,<br>		<span class="hljs-attr">depthCompare</span>: <span class="hljs-string">&#x27;always&#x27;</span>,<br>		<span class="hljs-attr">format</span>: <span class="hljs-string">&#x27;depth24plus-stencil8&#x27;</span>,<br>		<span class="hljs-attr">stencilFront</span>: &#123;<br>			<span class="hljs-attr">compare</span>: <span class="hljs-string">&#x27;equal&#x27;</span>,<br>		&#125;,<br>		<span class="hljs-attr">stencilBack</span>: &#123;<br>			<span class="hljs-attr">compare</span>: <span class="hljs-string">&#x27;equal&#x27;</span>,<br>		&#125;,<br>	&#125;,<br>&#125;);<br></code></pre></td></tr></table></figure>
+<h3 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h3><p>fillText</p>
+<p>用于辅助确认文本大小 mesureText</p>
+<h3 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h3><ul>
+<li><p>rotate<br>围绕原点把图像旋转 angle 弧度<br>旋转的是接下来需要绘制的图元</p>
+</li>
+<li><p>scale<br>通过在 x 轴乘以 scaleX 和在 y 轴乘以 scaleY 来缩放图像，scaleX 和 scaleY 的默认值都是 1</p>
+</li>
+<li><p>translate(x,y)<br>把原点（0，0）移动到 x，y</p>
+</li>
+<li><p>transform<br>通过矩阵乘法直接修改矩阵<br>这里的参数跟 3*3 矩阵不太一样，需要做调整</p>
+</li>
+<li><p>setTransform<br>把矩阵重置为默认值，再按参数调用 transform</p>
+</li>
+<li><p>save<br>保存当前这一时刻的设置，设置（颜色）和变换（矩阵）</p>
+</li>
+<li><p>restore<br>从之前保存的地方恢复</p>
+<p>注意，这里是成对出现，可以保存恢复多套配置</p>
+</li>
+</ul>
+<h3 id="绘制图像"><a href="#绘制图像" class="headerlink" title="绘制图像"></a>绘制图像</h3><p>drawImage()</p>
+<ul>
+<li>第一个参数<ul>
+<li>可以是图片 <code>document.image</code></li>
+<li>也可以是另一个 canvas 元素</li>
+</ul>
+</li>
+</ul>
+<p>操作结果可以用<code>canvas.toDataURL</code>来显示</p>
+<h3 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h3><p>shadowOffsetX 等配置项</p>
+<h3 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h3><p>渐变相关 api</p>
+<h3 id="图案"><a href="#图案" class="headerlink" title="图案"></a>图案</h3><p>图案是用来填充和描画图形的重复图像</p>
+<p><code>createPattern</code></p>
+<p>可以是 canvas</p>
+<p>是否可以用来做业务上的填充网格？</p>
+<h2 id="图像数据"><a href="#图像数据" class="headerlink" title="图像数据"></a>图像数据</h2><p><code>getImageData()</code> 获取原始图像数据得到一个 imageData</p>
+<ul>
+<li>width</li>
+<li>height</li>
+<li>data<ul>
+<li>data 里面是 rgba 值</li>
+</ul>
+</li>
+</ul>
+<p><code>putImageData</code><br>第一个参数是 imageData<br>用于修改后的数据写回到 imageData 并应用到画布显示出来</p>
+<h2 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h2><p>文中绘制的所有内容都会应用两个属性</p>
+<ul>
+<li><p>globalAlpha<br>0-1 透明度</p>
+</li>
+<li><p>globalCompositionOperation<br>一种融合关系，比如只显示重叠部分</p>
+<p>默认是新图形绘制在原有图像的上面</p>
+</li>
+</ul>
 
                 
               </div>
@@ -378,8 +395,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>模版测试/深度测试</div>
-      <div>https://treeu.github.io/2024/02/25/模版测试-深度测试/</div>
+      <div>canvas2d</div>
+      <div>https://treeu.github.io/2024/07/21/canvas2d/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +408,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 25, 2024</div>
+          <div>July 21, 2024</div>
         </div>
       
       
@@ -423,18 +440,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/28/%E6%B8%B2%E6%9F%93%E7%AE%A1%E9%81%93/" title="渲染管道">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">渲染管道</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/20/webgpu%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" title="webgpu绘制流程">
-                        <span class="hidden-mobile">webgpu绘制流程</span>
+                      <a href="/2024/06/03/%E5%90%91%E9%87%8F%E5%AD%A6%E4%B9%A0/" title="向量学习">
+                        <span class="hidden-mobile">向量学习</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
