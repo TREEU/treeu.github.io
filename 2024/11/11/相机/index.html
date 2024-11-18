@@ -16,17 +16,20 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="计算机图形学中的相机基础参数 位置相机在三维空间中的坐标位置 （眼睛的位置）  方向参数  相机的观察方向 （视线）目标点：target观察方向：target - position从相机位置出发，指向目标点的方向  上方向（up）   这里为什么我们需要上方向，相机也是一个坐标系，我们现在只有一个 z 轴，至少两个方向才能确定一个坐标系，第三个我们可以求出来   https:&#x2F;&#x2F;learnopen">
+    <meta name="description" content="计算机图形学中的相机基础参数 位置相机在三维空间中的坐标位置 （眼睛的位置）  方向参数  相机的观察方向 （视线）目标点：target观察方向：target - position从相机位置出发，指向目标点的方向 相机的观察方向是相机 z 轴的负方向可以从视觉角度理解，假设相机在向后移动，实际上是沿着 z 轴的正方向在移动  上方向（up）   这里为什么我们需要上方向，相机也是一个坐标系，我们现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="相机">
 <meta property="og:url" content="https://treeu.github.io/2024/11/11/%E7%9B%B8%E6%9C%BA/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="计算机图形学中的相机基础参数 位置相机在三维空间中的坐标位置 （眼睛的位置）  方向参数  相机的观察方向 （视线）目标点：target观察方向：target - position从相机位置出发，指向目标点的方向  上方向（up）   这里为什么我们需要上方向，相机也是一个坐标系，我们现在只有一个 z 轴，至少两个方向才能确定一个坐标系，第三个我们可以求出来   https:&#x2F;&#x2F;learnopen">
+<meta property="og:description" content="计算机图形学中的相机基础参数 位置相机在三维空间中的坐标位置 （眼睛的位置）  方向参数  相机的观察方向 （视线）目标点：target观察方向：target - position从相机位置出发，指向目标点的方向 相机的观察方向是相机 z 轴的负方向可以从视觉角度理解，假设相机在向后移动，实际上是沿着 z 轴的正方向在移动  上方向（up）   这里为什么我们需要上方向，相机也是一个坐标系，我们现">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://treeu.github.io/2024-11-18-23-32-10.png">
+<meta property="og:image" content="https://treeu.github.io/2024-11-18-23-40-59.png">
 <meta property="article:published_time" content="2024-11-11T15:28:47.000Z">
-<meta property="article:modified_time" content="2024-11-11T16:18:28.410Z">
+<meta property="article:modified_time" content="2024-11-18T15:43:18.501Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://treeu.github.io/2024-11-18-23-32-10.png">
   
   
   
@@ -236,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          278 words
+          570 words
         
       </span>
     
@@ -247,7 +250,7 @@
         
         
         
-          3 mins
+          5 mins
         
       </span>
     
@@ -290,7 +293,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 15 minutes ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -304,6 +307,7 @@
 <li><p>方向参数</p>
 <ul>
 <li><p>相机的观察方向 （视线）<br>目标点：target<br>观察方向：target - position<br>从相机位置出发，指向目标点的方向</p>
+<p>相机的观察方向是相机 z 轴的负方向<br>可以从视觉角度理解，假设相机在向后移动，实际上是沿着 z 轴的正方向在移动</p>
 </li>
 <li><p>上方向（up）</p>
 </li>
@@ -311,6 +315,24 @@
 <p>这里为什么我们需要上方向，相机也是一个坐标系，我们现在只有一个 z 轴，至少两个方向才能确定一个坐标系，第三个我们可以求出来</p>
 </li>
 </ul>
+<h2 id="相机坐标系如何求得"><a href="#相机坐标系如何求得" class="headerlink" title="相机坐标系如何求得"></a>相机坐标系如何求得</h2><ul>
+<li>z 轴我们已经知道了，（观察方向的反方向）</li>
+<li>假定一个上方向（0，1，0）</li>
+<li>up 叉乘得到 z 轴单位向量得到指向 x 轴正方向的向量（交换叉乘顺序，会得到指向 x 轴负方向的向量）</li>
+<li>z 轴叉乘 x 轴得到 y 方向</li>
+</ul>
+<h2 id="lookAt-矩阵"><a href="#lookAt-矩阵" class="headerlink" title="lookAt 矩阵"></a>lookAt 矩阵</h2><p><img src="/2024-11-18-23-32-10.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>R x</li>
+<li>U y</li>
+<li>D z</li>
+<li>P 摄像机的位置，位置向量是反向的<br>想象一下拖动画布，相机向右移动，我们的目标对象看起来是向左运动，观察矩阵是给观察对象用的</li>
+</ul>
+<h2 id="视角移动"><a href="#视角移动" class="headerlink" title="视角移动"></a>视角移动</h2><h3 id="欧拉角"><a href="#欧拉角" class="headerlink" title="欧拉角"></a>欧拉角</h3><p>3D 空间中任何旋转的 3 个值</p>
+<p><img src="/2024-11-18-23-40-59.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="俯仰角-Pitch"><a href="#俯仰角-Pitch" class="headerlink" title="俯仰角 Pitch"></a>俯仰角 Pitch</h4><p>往上看或者往下看的角</p>
+<h4 id="偏航角-Yaw"><a href="#偏航角-Yaw" class="headerlink" title="偏航角 Yaw"></a>偏航角 Yaw</h4><p>往左往右看</p>
+<h4 id="滚转角-Roll"><a href="#滚转角-Roll" class="headerlink" title="滚转角 Roll"></a>滚转角 Roll</h4><p>翻滚摄像机，目前不考虑</p>
 <p><a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/09%20Camera/">https://learnopengl-cn.github.io/01%20Getting%20started/09%20Camera/</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/rmb999/p/17817397.html">https://www.cnblogs.com/rmb999/p/17817397.html</a></p>
 
