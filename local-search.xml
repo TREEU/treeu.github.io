@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>学习日记</title>
+    <link href="/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
+    <url>/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="扩展运算符在函数中的使用"><a href="#扩展运算符在函数中的使用" class="headerlink" title="扩展运算符在函数中的使用"></a>扩展运算符在函数中的使用</h2><p>实际上就是将剩余参数处理为数组</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">logInfo</span>(<span class="hljs-params">name, age, ...hobbies</span>) &#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(hobbies);<br>&#125;<br><span class="hljs-title function_">logInfo</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>);<br><span class="hljs-comment">// [3, 5]</span><br></code></pre></td></tr></table></figure><h3 id="与-arguments-的区别"><a href="#与-arguments-的区别" class="headerlink" title="与 arguments 的区别"></a>与 arguments 的区别</h3><p><img src="/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/2025-08-06-22-55-32.png"></p><p>arguments 为类数组，自动存在，包含所有的参数</p><h4 id="什么是类数组"><a href="#什么是类数组" class="headerlink" title="什么是类数组"></a>什么是类数组</h4><p>类数组的类型是对象，数组的类型是数组对象</p><p>类数组存在长度，可以通过索引访问，但是没有数组对象特有的功能，比如 pop()(删除最后一项，返回删除的值，原数组对象发生变化)</p><p>Array.isArray()为 false</p><h4 id="类数组转换为数组的方法"><a href="#类数组转换为数组的方法" class="headerlink" title="类数组转换为数组的方法"></a>类数组转换为数组的方法</h4><p><code>Array.from(arguments)</code><br><code>[...arguments]</code><br><code>Array.prototype.slice.call(arguments)</code></p><h5 id="为什么-Array-prototype-slice-call-arguments-可以生效"><a href="#为什么-Array-prototype-slice-call-arguments-可以生效" class="headerlink" title="为什么 Array.prototype.slice.call(arguments)可以生效"></a>为什么 Array.prototype.slice.call(arguments)可以生效</h5><p>slice 是提取数组的方法<br>参数为提取数组的索引，返回一个新数组<br>slice 只需要 length 和能够通过索引访问就可以生效，使用 call 改变 this 的指向到 arguments 中</p><h6 id="js-中改变-this-指向的方法"><a href="#js-中改变-this-指向的方法" class="headerlink" title="js 中改变 this 指向的方法"></a>js 中改变 this 指向的方法</h6><p>this 的指向</p><p>todo：待完善</p><p><strong>非箭头函数中</strong></p><p><code>call</code></p><ul><li>立即生效，fun.call(ThisArg, arg1, arg2)</li></ul><p><code>apply</code></p><ul><li>立即生效, fun.apply(ThisArg,[arg1, arg2])</li></ul><p><code>bind</code></p><ul><li>不立即生效，相当于创建了一个新函数 fun.bind(fun1)，this 的指向指向 fun1</li></ul><p>箭头函数<br><code>待完善</code></p><p>new 一个实例</p><ul><li>this 指向新创建的对象</li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title></title>
     <link href="/2025/04/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
     <url>/2025/04/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
