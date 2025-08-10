@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>矩阵-列主序</title>
+    <link href="/2025/08/10/%E7%9F%A9%E9%98%B5-%E5%88%97%E4%B8%BB%E5%BA%8F/"/>
+    <url>/2025/08/10/%E7%9F%A9%E9%98%B5-%E5%88%97%E4%B8%BB%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h3 id="webgpu-中矩阵的存储结构"><a href="#webgpu-中矩阵的存储结构" class="headerlink" title="webgpu 中矩阵的存储结构"></a>webgpu 中矩阵的存储结构</h3><p><strong>使用列主序</strong></p><h4 id="什么是列主序"><a href="#什么是列主序" class="headerlink" title="什么是列主序"></a>什么是列主序</h4><p>按列写入数据</p><p>todo:可补充</p><h3 id="列主序矩阵乘法的表现"><a href="#列主序矩阵乘法的表现" class="headerlink" title="列主序矩阵乘法的表现"></a>列主序矩阵乘法的表现</h3><p>右乘</p><h4 id="为什么是右乘"><a href="#为什么是右乘" class="headerlink" title="为什么是右乘"></a>为什么是右乘</h4><p>数学决定的</p><p>todo：待补充</p><h4 id="矩阵和向量乘法"><a href="#矩阵和向量乘法" class="headerlink" title="矩阵和向量乘法"></a>矩阵和向量乘法</h4><p>矩阵 M，向量为 V</p><p>P &#x3D; M*V</p><p>这里我们用的是列主序</p><p>列主序的几何意义，每一类对应一个基变换，我们以 3*3 旋转矩阵作为例子</p><p>每一列分别对应的 x 轴方向的基变换 y 轴方向的基变换 （也就是一个新的坐标系）</p><h5 id="从几何角度我们怎么看待值是如何产生的呢"><a href="#从几何角度我们怎么看待值是如何产生的呢" class="headerlink" title="从几何角度我们怎么看待值是如何产生的呢"></a>从几何角度我们怎么看待值是如何产生的呢</h5><p>我们想求的其实就是当前向量在新的坐标系下的坐标位置</p><p>假设现在我们用的是旋转矩阵</p><p><img src="/2025/08/10/%E7%9F%A9%E9%98%B5-%E5%88%97%E4%B8%BB%E5%BA%8F/2025-08-10-22-50-32.png"></p><p>从上述图上我们能够明显看明白，最终我们得到的 p 点坐标其实就是在新坐标轴上的投影</p><p>投影也就是点积（点积见前面的文章）</p><h4 id="矩阵和矩阵乘法"><a href="#矩阵和矩阵乘法" class="headerlink" title="矩阵和矩阵乘法"></a>矩阵和矩阵乘法</h4><p>从右向左执行</p><h5 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a>几何意义</h5><p>基向量的连续变化</p><h3 id="基向量"><a href="#基向量" class="headerlink" title="基向量"></a>基向量</h3><p>可以认为是构成坐标系的最小单位，比如标准坐标系的基向量为（1，0），（0，1）</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>原码/补码/掩码</title>
     <link href="/2025/08/10/%E5%8E%9F%E7%A0%81-%E8%A1%A5%E7%A0%81-%E6%8E%A9%E7%A0%81/"/>
     <url>/2025/08/10/%E5%8E%9F%E7%A0%81-%E8%A1%A5%E7%A0%81-%E6%8E%A9%E7%A0%81/</url>
