@@ -16,34 +16,26 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移运算符整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n">
+    <meta name="description" content="js 中是如何存储数字的小数是如何存储的小数是如何转换为二进制的原码补码掩码使用位运算的时候发生了什么0xF 为什么是 15我们先来看看其他进制是怎么样的 十进制101 &#x3D; 1 _ 10^2 + 0 _ 10^1 + 1 * 10^0 二进制（前缀 0b）0b101 &#x3D; 1 _ 2^2 + 0 _ 2^1 + 1* 2^0  十六进制（前缀 0x）这里有点比较特殊的就是 16">
 <meta property="og:type" content="article">
-<meta property="og:title" content="位运算的使用">
-<meta property="og:url" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="原码&#x2F;补码&#x2F;掩码">
+<meta property="og:url" content="https://treeu.github.io/2025/08/10/%E5%8E%9F%E7%A0%81-%E8%A1%A5%E7%A0%81-%E6%8E%A9%E7%A0%81/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="位运算的使用按位非（~）这个就是 0 变 1，1 变 0得到的结果就是 -val -1  使用场景：  求相反数 ~a+1 双非位取整原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数~~3.14 &#x3D;&#x3D; 3  &lt;&lt; 左移运算符整体左移6 &lt;&lt; 2 &#x3D; 24这里其实就是val * 2^n使用场景: 就是做*2^n">
+<meta property="og:description" content="js 中是如何存储数字的小数是如何存储的小数是如何转换为二进制的原码补码掩码使用位运算的时候发生了什么0xF 为什么是 15我们先来看看其他进制是怎么样的 十进制101 &#x3D; 1 _ 10^2 + 0 _ 10^1 + 1 * 10^0 二进制（前缀 0b）0b101 &#x3D; 1 _ 2^2 + 0 _ 2^1 + 1* 2^0  十六进制（前缀 0x）这里有点比较特殊的就是 16">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-12-39-09.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-13-02-15.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-13-04-13.png">
-<meta property="og:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-13-17-53.png">
-<meta property="article:published_time" content="2024-02-14T04:50:19.000Z">
-<meta property="article:modified_time" content="2025-08-10T06:05:50.266Z">
+<meta property="og:image" content="https://treeu.github.io/2025-08-10-15-30-44.png">
+<meta property="og:image" content="https://treeu.github.io/2025-08-10-15-32-00.png">
+<meta property="og:image" content="https://treeu.github.io/2025-08-10-15-36-40.png">
+<meta property="article:published_time" content="2025-08-10T06:08:27.000Z">
+<meta property="article:modified_time" content="2025-08-10T07:36:45.346Z">
 <meta property="article:author" content="Tree">
 <meta property="article:tag" content="位操作符">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png">
+<meta name="twitter:image" content="https://treeu.github.io/2025-08-10-15-30-44.png">
   
   
   
-  <title>位运算的使用 - Treeu&#39;s blog</title>
+  <title>原码/补码/掩码 - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="位运算的使用"></span>
+            <span id="subtitle" data-typed-text="原码/补码/掩码"></span>
           
         </div>
 
@@ -237,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-14 12:50" pubdate>
-          February 14, 2024 pm
+        <time datetime="2025-08-10 14:08" pubdate>
+          August 10, 2025 pm
         </time>
       </span>
     
@@ -249,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          298 words
         
       </span>
     
@@ -260,7 +252,7 @@
         
         
         
-          10 mins
+          3 mins
         
       </span>
     
@@ -298,12 +290,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">位运算的使用</h1>
+            <h1 style="display: none">原码/补码/掩码</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 2 hours ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -311,51 +303,24 @@
             
               <div class="markdown-body">
                 
-                <h1 id="位运算的使用"><a href="#位运算的使用" class="headerlink" title="位运算的使用"></a>位运算的使用</h1><h2 id="按位非（-）"><a href="#按位非（-）" class="headerlink" title="按位非（~）"></a>按位非（~）</h2><p>这个就是 0 变 1，1 变 0<br>得到的结果就是 <code>-val -1</code></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-12-53-07.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：</p>
+                <h3 id="js-中是如何存储数字的"><a href="#js-中是如何存储数字的" class="headerlink" title="js 中是如何存储数字的"></a>js 中是如何存储数字的</h3><h3 id="小数是如何存储的"><a href="#小数是如何存储的" class="headerlink" title="小数是如何存储的"></a>小数是如何存储的</h3><h3 id="小数是如何转换为二进制的"><a href="#小数是如何转换为二进制的" class="headerlink" title="小数是如何转换为二进制的"></a>小数是如何转换为二进制的</h3><h3 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h3><h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><h3 id="掩码"><a href="#掩码" class="headerlink" title="掩码"></a>掩码</h3><h3 id="使用位运算的时候发生了什么"><a href="#使用位运算的时候发生了什么" class="headerlink" title="使用位运算的时候发生了什么"></a>使用位运算的时候发生了什么</h3><h3 id="0xF-为什么是-15"><a href="#0xF-为什么是-15" class="headerlink" title="0xF 为什么是 15"></a>0xF 为什么是 15</h3><p>我们先来看看其他进制是怎么样的</p>
+<h4 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h4><p>101 &#x3D; 1 _ 10^2 + 0 _ 10^1 + 1 * 10^0</p>
+<h4 id="二进制（前缀-0b）"><a href="#二进制（前缀-0b）" class="headerlink" title="二进制（前缀 0b）"></a>二进制（前缀 0b）</h4><p>0b101 &#x3D; 1 _ 2^2 + 0 _ 2^1 + 1* 2^0</p>
+<p><img src="/2025-08-10-15-30-44.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="十六进制（前缀-0x）"><a href="#十六进制（前缀-0x）" class="headerlink" title="十六进制（前缀 0x）"></a>十六进制（前缀 0x）</h4><p>这里有点比较特殊的就是 16 进制的表示<br>1-9 正常表示<br>10 开始为 a - f，f 为 15<br><img src="/2025-08-10-15-32-00.png" srcset="/img/loading.gif" lazyload></p>
+<p>其他的跟上面的二进制十进制都是一样的</p>
+<p>举例：</p>
 <ul>
-<li>求相反数 ~a+1<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-13-00-47.png" srcset="/img/loading.gif" lazyload></li>
-<li>双非位取整<br>原理：js 在进行位运算的时候会将 64 位转换为 32 位整数在进行处理，这个过程会忽略掉小数部分，只关注整数<br><code>~~3.14 == 3</code></li>
-</ul>
-<h2 id="左移运算符"><a href="#左移运算符" class="headerlink" title="&lt;&lt; 左移运算符"></a>&lt;&lt; 左移运算符</h2><p>整体左移<br><code>6 &lt;&lt; 2 = 24</code><br>这里其实就是<code>val * 2^n</code><br>使用场景: 就是做*2^n 的运算，位运算的效率更高<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-25-00.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="有符号右移运算符"><a href="#有符号右移运算符" class="headerlink" title="&gt;&gt; 有符号右移运算符"></a>&gt;&gt; 有符号右移运算符</h2><p>这里是有符号的右移</p>
-<p>和左移相反，这里是整体向右边移动</p>
-<p>这里需要注意的</p>
-<p>如果是正数(符号位为 0)，右移之后补 0<br>如果是负数(符号位为 1)，右移之后是补 1，负数由补码存储，获取的时候需要转换为原码，这里需要前置知识点（原码，补码，见位运算其他文档）</p>
-<p>这里还有需要注意的 低位是在右边，和基础数值一致</p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-28-41.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-15-29-05.png" srcset="/img/loading.gif" lazyload></p>
-<p>使用场景：这里就是做 &#x2F;2^n 的运算,注意这里会向下取整<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-17-28-31.png" srcset="/img/loading.gif" lazyload></p>
-<p>左移动和右移需要注意长度限制，实际的位移只能在 0-31 之间，第 31 位是符号位</p>
-<h3 id="无符号右移"><a href="#无符号右移" class="headerlink" title="无符号右移"></a>无符号右移</h3><p>区别于有符号右移动，无论原数字的符号什么，右移后始终补 0</p>
-<h2 id="按位与（-）"><a href="#按位与（-）" class="headerlink" title="按位与（&amp;）"></a>按位与（&amp;）</h2><p>11 为 1 , 其他都为 0</p>
-<p>使用场景：</p>
-<ul>
-<li>清零 与 0 进行位运算结果为 0</li>
-<li>判断整数的奇偶性，对于二进制数而言，偶数的末尾一定是 0，奇数的末尾一定是 1，与 1 进行按位与运算就能判断奇偶性</li>
-<li>取一个二进制数的指定位，比如<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2024-02-14-18-40-55.png" srcset="/img/loading.gif" lazyload></li>
-<li>与右移混合使用获取二进制数的某一位,获取 a 的第 b 位<br><code>(a &gt;&gt; b) &amp; 1</code></li>
-</ul>
-<h2 id="按位或（｜）"><a href="#按位或（｜）" class="headerlink" title="按位或（｜）"></a>按位或（｜）</h2><p>有 1 则为 1<br>使用场景：</p>
-<ul>
-<li><p>将指定位值设置为 1，与上面的与运算类似，只是改为或运算</p>
+<li><p>0xf 15 * 16^0 &#x3D;15</p>
 </li>
-<li><p>取整, 这里需要注意，这里其实是向 0 取整，对于正数是向下取整，对于负数是取绝对值再做向下取整<br>简单理解我们可以理解为就是不要小数部分了</p>
-<p><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-12-39-09.png" srcset="/img/loading.gif" lazyload></p>
+<li><p>0x10 1 * 16^1 + 0 * 16^0 &#x3D; 16</p>
+</li>
+<li><p>0x11 1 * 16^1 + 1 * 16^0 &#x3D; 17</p>
+</li>
+<li><p>0xa 10 * 16^0 &#x3D; 10</p>
 </li>
 </ul>
-<h2 id="按位异或（-）"><a href="#按位异或（-）" class="headerlink" title="按位异或（^）"></a>按位异或（^）</h2><p>相同为 0，不同为 1</p>
-<p>使用场景：</p>
-<ul>
-<li>最后一位取反：X^1<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-13-02-15.png" srcset="/img/loading.gif" lazyload></li>
-<li>判断两个整数是否相等<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-13-04-13.png" srcset="/img/loading.gif" lazyload></li>
-<li>进行变量交换（邪修行为）<br>原理：结合律 (a^b)^a &#x3D; (a^a)^b 和 a^a &#x3D; 0 a^0 &#x3D; a<br><img src="/2024/02/14/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BD%BF%E7%94%A8/2025-08-10-13-17-53.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-<p><strong>牢记位操作操作的实际上是整数</strong></p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6900710763657166855">https://juejin.cn/post/6900710763657166855</a></p>
-<p><a target="_blank" rel="noopener" href="https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93">https://algo.itcharge.cn/09.Algorithm-Base/06.Bit-Operation/01.Bit-Operation/#_3-2-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tinys-top/p/11648535.html">https://www.cnblogs.com/tinys-top/p/11648535.html</a></p>
+<p><img src="/2025-08-10-15-36-40.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -380,8 +345,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>位运算的使用</div>
-      <div>https://treeu.github.io/2024/02/14/位运算的使用/</div>
+      <div>原码/补码/掩码</div>
+      <div>https://treeu.github.io/2025/08/10/原码-补码-掩码/</div>
     </div>
     <div class="license-meta">
       
@@ -393,7 +358,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 14, 2024</div>
+          <div>August 10, 2025</div>
         </div>
       
       
@@ -425,18 +390,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/20/webgpu%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B/" title="webgpu绘制流程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">webgpu绘制流程</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/05/redbook/" title="redbook">
-                        <span class="hidden-mobile">redbook</span>
+                      <a href="/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/" title="学习日记">
+                        <span class="hidden-mobile">学习日记</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

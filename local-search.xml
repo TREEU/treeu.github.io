@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>原码/补码/掩码</title>
+    <link href="/2025/08/10/%E5%8E%9F%E7%A0%81-%E8%A1%A5%E7%A0%81-%E6%8E%A9%E7%A0%81/"/>
+    <url>/2025/08/10/%E5%8E%9F%E7%A0%81-%E8%A1%A5%E7%A0%81-%E6%8E%A9%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<h3 id="js-中是如何存储数字的"><a href="#js-中是如何存储数字的" class="headerlink" title="js 中是如何存储数字的"></a>js 中是如何存储数字的</h3><h3 id="小数是如何存储的"><a href="#小数是如何存储的" class="headerlink" title="小数是如何存储的"></a>小数是如何存储的</h3><h3 id="小数是如何转换为二进制的"><a href="#小数是如何转换为二进制的" class="headerlink" title="小数是如何转换为二进制的"></a>小数是如何转换为二进制的</h3><h3 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h3><h3 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h3><h3 id="掩码"><a href="#掩码" class="headerlink" title="掩码"></a>掩码</h3><h3 id="使用位运算的时候发生了什么"><a href="#使用位运算的时候发生了什么" class="headerlink" title="使用位运算的时候发生了什么"></a>使用位运算的时候发生了什么</h3><h3 id="0xF-为什么是-15"><a href="#0xF-为什么是-15" class="headerlink" title="0xF 为什么是 15"></a>0xF 为什么是 15</h3><p>我们先来看看其他进制是怎么样的</p><h4 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h4><p>101 &#x3D; 1 _ 10^2 + 0 _ 10^1 + 1 * 10^0</p><h4 id="二进制（前缀-0b）"><a href="#二进制（前缀-0b）" class="headerlink" title="二进制（前缀 0b）"></a>二进制（前缀 0b）</h4><p>0b101 &#x3D; 1 _ 2^2 + 0 _ 2^1 + 1* 2^0</p><p><img src="/2025-08-10-15-30-44.png"></p><h4 id="十六进制（前缀-0x）"><a href="#十六进制（前缀-0x）" class="headerlink" title="十六进制（前缀 0x）"></a>十六进制（前缀 0x）</h4><p>这里有点比较特殊的就是 16 进制的表示<br>1-9 正常表示<br>10 开始为 a - f，f 为 15<br><img src="/2025-08-10-15-32-00.png"></p><p>其他的跟上面的二进制十进制都是一样的</p><p>举例：</p><ul><li><p>0xf 15 * 16^0 &#x3D;15</p></li><li><p>0x10 1 * 16^1 + 0 * 16^0 &#x3D; 16</p></li><li><p>0x11 1 * 16^1 + 1 * 16^0 &#x3D; 17</p></li><li><p>0xa 10 * 16^0 &#x3D; 10</p></li></ul><p><img src="/2025-08-10-15-36-40.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>位操作符</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>学习日记</title>
     <link href="/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/"/>
     <url>/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/</url>
