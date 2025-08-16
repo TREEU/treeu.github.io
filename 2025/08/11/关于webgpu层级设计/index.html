@@ -16,20 +16,20 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一直都搞不太明白为什么要这样去设计层索引 level &#x3D; Math.floor(Math.log2(pxLength)) 但是从上面的公式我们能够看出 level 值跟 pxLength 息息相关 那么 pxLength 又是什么？1 物理像素对应的实际显示像素长度 在放大的时候，pxLength 变小，1 物理像素能表达的显示像素长度变少了 1 &#x2F; scale 在缩小的时候，pxLen">
+    <meta name="description" content="一直都搞不太明白为什么要这样去设计层索引 level &#x3D; Math.floor(Math.log2(pxLength)) 现在知道了， 但是从上面的公式我们能够看出 level 值跟 pxLength 息息相关 那么 pxLength 又是什么？1 物理像素对应的实际显示像素长度 在放大的时候，pxLength 变小，1 物理像素能表达的显示像素长度变少了 1 &#x2F; scale 在缩小的时">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于webgpu层级设计">
 <meta property="og:url" content="https://treeu.github.io/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="一直都搞不太明白为什么要这样去设计层索引 level &#x3D; Math.floor(Math.log2(pxLength)) 但是从上面的公式我们能够看出 level 值跟 pxLength 息息相关 那么 pxLength 又是什么？1 物理像素对应的实际显示像素长度 在放大的时候，pxLength 变小，1 物理像素能表达的显示像素长度变少了 1 &#x2F; scale 在缩小的时候，pxLen">
+<meta property="og:description" content="一直都搞不太明白为什么要这样去设计层索引 level &#x3D; Math.floor(Math.log2(pxLength)) 现在知道了， 但是从上面的公式我们能够看出 level 值跟 pxLength 息息相关 那么 pxLength 又是什么？1 物理像素对应的实际显示像素长度 在放大的时候，pxLength 变小，1 物理像素能表达的显示像素长度变少了 1 &#x2F; scale 在缩小的时">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2025-08-11-23-14-29.png">
-<meta property="og:image" content="https://treeu.github.io/2025-08-11-23-16-06.png">
+<meta property="og:image" content="https://treeu.github.io/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-14-29.png">
+<meta property="og:image" content="https://treeu.github.io/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-16-06.png">
 <meta property="article:published_time" content="2025-08-11T14:47:48.000Z">
-<meta property="article:modified_time" content="2025-08-11T15:16:43.488Z">
+<meta property="article:modified_time" content="2025-08-16T14:39:02.732Z">
 <meta property="article:author" content="Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2025-08-11-23-14-29.png">
+<meta name="twitter:image" content="https://treeu.github.io/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-14-29.png">
   
   
   
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          502 words
+          507 words
         
       </span>
     
@@ -293,7 +293,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 5 minutes ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -303,6 +303,7 @@
                 
                 <p>一直都搞不太明白为什么要这样去设计层索引</p>
 <p><code>level = Math.floor(Math.log2(pxLength))</code></p>
+<p>现在知道了，</p>
 <p>但是从上面的公式我们能够看出 level 值跟 pxLength 息息相关</p>
 <h2 id="那么-pxLength-又是什么？"><a href="#那么-pxLength-又是什么？" class="headerlink" title="那么 pxLength 又是什么？"></a>那么 pxLength 又是什么？</h2><p>1 物理像素对应的实际显示像素长度</p>
 <p>在放大的时候，pxLength 变小，1 物理像素能表达的显示像素长度变少了 1 &#x2F; scale</p>
@@ -314,9 +315,9 @@
 <p>todo：&lt;1 如何处理</p>
 <p>列举一下对应的值</p>
 <ul>
-<li><p>pxLength &gt; 1：<br><img src="/2025-08-11-23-14-29.png" srcset="/img/loading.gif" lazyload></p>
+<li><p>pxLength &gt; 1<br><img src="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-14-29.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>pxLenth &lt; 1<br><img src="/2025-08-11-23-16-06.png" srcset="/img/loading.gif" lazyload></p>
+<li><p>pxLenth &lt; 1<br><img src="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-16-06.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 <p>todo:明天需要看一下在缩放很大，pxLength 很小的时候，层级为负数时是如何处理的</p>
