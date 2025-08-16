@@ -16,24 +16,25 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="扩展运算符在函数中的使用 实际上就是将剩余参数处理为数组 12345function logInfo(name, age, ...hobbies) &amp;#123;	console.log(hobbies);&amp;#125;logInfo(1, 2, 3, 5);&#x2F;&#x2F; [3, 5] 与 arguments 的区别  arguments 为类数组，自动存在，包含所有的参数 什么是类数组 类数组的类型是对象，">
+    <meta name="description" content="为了避免老是忘记，所以打算写下来 光栅化简单来说光栅化是一个上色过程，决定屏幕上的哪个像素需要被涂上颜色 那么顶点着色器约束光栅化区域，比如一个三角形区域 在光栅化时找到这个三角形覆盖的像素格子，对屏幕上的每一个像素，我们采用中心规则，也就是覆盖只有超过这个像素中心，这个格子才算有效  在片元着色器中进行上色 外扩从上述图中明显的我们能看到，如果不做任何处理，那么这个三角形一定是一个锯齿状严重的三">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习日记">
-<meta property="og:url" content="https://treeu.github.io/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/index.html">
+<meta property="og:title" content="pt-A">
+<meta property="og:url" content="https://treeu.github.io/2025/08/16/pt-A/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="扩展运算符在函数中的使用 实际上就是将剩余参数处理为数组 12345function logInfo(name, age, ...hobbies) &amp;#123;	console.log(hobbies);&amp;#125;logInfo(1, 2, 3, 5);&#x2F;&#x2F; [3, 5] 与 arguments 的区别  arguments 为类数组，自动存在，包含所有的参数 什么是类数组 类数组的类型是对象，">
+<meta property="og:description" content="为了避免老是忘记，所以打算写下来 光栅化简单来说光栅化是一个上色过程，决定屏幕上的哪个像素需要被涂上颜色 那么顶点着色器约束光栅化区域，比如一个三角形区域 在光栅化时找到这个三角形覆盖的像素格子，对屏幕上的每一个像素，我们采用中心规则，也就是覆盖只有超过这个像素中心，这个格子才算有效  在片元着色器中进行上色 外扩从上述图中明显的我们能看到，如果不做任何处理，那么这个三角形一定是一个锯齿状严重的三">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://treeu.github.io/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/2025-08-06-22-55-32.png">
-<meta property="og:image" content="https://treeu.github.io/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/2025-08-16-23-13-08.png">
-<meta property="article:published_time" content="2025-08-06T14:39:33.000Z">
-<meta property="article:modified_time" content="2025-08-16T15:21:09.818Z">
+<meta property="og:image" content="https://treeu.github.io/2025/08/16/pt-A/2025-08-16-23-47-46.png">
+<meta property="og:image" content="https://treeu.github.io/2025/08/16/pt-A/2025-08-17-00-06-20.png">
+<meta property="article:published_time" content="2025-08-16T15:27:03.000Z">
+<meta property="article:modified_time" content="2025-08-16T16:09:57.359Z">
 <meta property="article:author" content="Tree">
+<meta property="article:tag" content="PT-AA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://treeu.github.io/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/2025-08-06-22-55-32.png">
+<meta name="twitter:image" content="https://treeu.github.io/2025/08/16/pt-A/2025-08-16-23-47-46.png">
   
   
   
-  <title>学习日记 - Treeu&#39;s blog</title>
+  <title>pt-A - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="学习日记"></span>
+            <span id="subtitle" data-typed-text="pt-A"></span>
           
         </div>
 
@@ -227,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-08-06 22:39" pubdate>
-          August 6, 2025 pm
+        <time datetime="2025-08-16 23:27" pubdate>
+          August 16, 2025 pm
         </time>
       </span>
     
@@ -239,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          774 words
+          417 words
         
       </span>
     
@@ -250,7 +251,7 @@
         
         
         
-          7 mins
+          4 mins
         
       </span>
     
@@ -288,12 +289,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">学习日记</h1>
+            <h1 style="display: none">pt-A</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on an hour ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -301,57 +302,20 @@
             
               <div class="markdown-body">
                 
-                <h2 id="扩展运算符在函数中的使用">扩展运算符在函数中的使用</h2>
-<p>实际上就是将剩余参数处理为数组</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">logInfo</span>(<span class="hljs-params">name, age, ...hobbies</span>) &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(hobbies);<br>&#125;<br><span class="hljs-title function_">logInfo</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>);<br><span class="hljs-comment">// [3, 5]</span><br></code></pre></td></tr></table></figure>
-<h3 id="与-arguments-的区别">与 arguments 的区别</h3>
-<p><img src="/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/2025-08-06-22-55-32.png" srcset="/img/loading.gif" lazyload alt></p>
-<p>arguments 为类数组，自动存在，包含所有的参数</p>
-<h4 id="什么是类数组">什么是类数组</h4>
-<p>类数组的类型是对象，数组的类型是数组对象</p>
-<p>类数组存在长度，可以通过索引访问，但是没有数组对象特有的功能，比如 pop()(删除最后一项，返回删除的值，原数组对象发生变化)</p>
-<p>Array.isArray()为 false</p>
-<h4 id="类数组转换为数组的方法">类数组转换为数组的方法</h4>
-<p><code>Array.from(arguments)</code><br>
-<code>[...arguments]</code><br>
-<code>Array.prototype.slice.call(arguments)</code></p>
-<h5 id="为什么-Array-prototype-slice-call-arguments-可以生效">为什么 Array.prototype.slice.call(arguments)可以生效</h5>
-<p>slice 是提取数组的方法<br>
-参数为提取数组的索引，返回一个新数组<br>
-slice 只需要 length 和能够通过索引访问就可以生效，使用 call 改变 this 的指向到 arguments 中</p>
-<h6 id="js-中改变-this-指向的方法">js 中改变 this 指向的方法</h6>
-<p>this 的指向</p>
-<p>todo：待完善</p>
-<p><strong>非箭头函数中</strong></p>
-<p><code>call</code></p>
-<ul>
-<li>立即生效，fun.call(ThisArg, arg1, arg2)</li>
-</ul>
-<p><code>apply</code></p>
-<ul>
-<li>立即生效, fun.apply(ThisArg,[arg1, arg2])</li>
-</ul>
-<p><code>bind</code></p>
-<ul>
-<li>不立即生效，相当于创建了一个新函数 fun.bind(fun1)，this 的指向指向 fun1</li>
-</ul>
-<p>箭头函数<br>
-<code>待完善</code></p>
-<p>new 一个实例</p>
-<ul>
-<li>this 指向新创建的对象</li>
-</ul>
-<h2 id="闭包">闭包</h2>
-<p>力扣挑战题<br>
-待完善</p>
-<h2 id="Map-的-forEach-循环">Map 的 forEach 循环</h2>
-<p>这里我们关注两点,</p>
-<ul>
-<li>1、是初始化 map，我们传的是二维数组，[[key, value], [key,value]]</li>
-<li>2、forEach 方法，先是 value 再是 key</li>
-</ul>
-<p><img src="/2025/08/06/%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0/2025-08-16-23-13-08.png" srcset="/img/loading.gif" lazyload alt></p>
-
+                <p>为了避免老是忘记，所以打算写下来</p>
+<h2 id="光栅化"><a href="#光栅化" class="headerlink" title="光栅化"></a>光栅化</h2><p>简单来说光栅化是一个上色过程，决定屏幕上的哪个像素需要被涂上颜色</p>
+<p>那么顶点着色器约束光栅化区域，比如一个三角形区域</p>
+<p>在光栅化时找到这个三角形覆盖的像素格子，对屏幕上的每一个像素，我们采用中心规则，也就是覆盖只有超过这个像素中心，这个格子才算有效</p>
+<p><img src="/2025/08/16/pt-A/2025-08-16-23-47-46.png" srcset="/img/loading.gif" lazyload></p>
+<p>在片元着色器中进行上色</p>
+<h2 id="外扩"><a href="#外扩" class="headerlink" title="外扩"></a>外扩</h2><p>从上述图中明显的我们能看到，如果不做任何处理，那么这个三角形一定是一个锯齿状严重的三角形</p>
+<p>所以我们第一步，外扩 sqrt(0,5) 像素（具体是多少明天去确认一下，应该是斜边），保证边缘预期的所有像素点都会被绘制到</p>
+<h2 id="给边缘区域像素点增加透明度"><a href="#给边缘区域像素点增加透明度" class="headerlink" title="给边缘区域像素点增加透明度"></a>给边缘区域像素点增加透明度</h2><p>外扩之后，只是这个像素点能够参与片段着色器的上色了，此时我们将像素点作为圆形（更方便），计算根据相交面积与圆面积的比率来算一个 alpha</p>
+<p><img src="/2025/08/16/pt-A/2025-08-17-00-06-20.png" srcset="/img/loading.gif" lazyload></p>
+<p>那么就变成了求面积</p>
+<p>最大面积是像素圆，计算扇形面积 - 三角形面积，区分像素点在圆在内部还是外部，保留的面积不同，这个后面补上</p>
+<h3 id="圆和线相切的面积"><a href="#圆和线相切的面积" class="headerlink" title="圆和线相切的面积"></a>圆和线相切的面积</h3><p>todo</p>
+<h3 id="圆和圆相切的面积"><a href="#圆和圆相切的面积" class="headerlink" title="圆和圆相切的面积"></a>圆和圆相切的面积</h3>
                 
               </div>
             
@@ -359,6 +323,13 @@ slice 只需要 length 和能够通过索引访问就可以生效，使用 call 
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/PT-AA/">#PT-AA</a>
+      
+    </div>
   
 </div>
 
@@ -368,8 +339,8 @@ slice 只需要 length 和能够通过索引访问就可以生效，使用 call 
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>学习日记</div>
-      <div>https://treeu.github.io/2025/08/06/学习日记/</div>
+      <div>pt-A</div>
+      <div>https://treeu.github.io/2025/08/16/pt-A/</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +352,7 @@ slice 只需要 length 和能够通过索引访问就可以生效，使用 call 
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 6, 2025</div>
+          <div>August 16, 2025</div>
         </div>
       
       
@@ -413,18 +384,12 @@ slice 只需要 length 和能够通过索引访问就可以生效，使用 call 
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/08/10/%E5%8E%9F%E7%A0%81-%E8%A1%A5%E7%A0%81-%E6%8E%A9%E7%A0%81/" title="原码/补码/掩码">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">原码/补码/掩码</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/19/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/" title="关于webgpu层级设计">
+                        <span class="hidden-mobile">关于webgpu层级设计</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
