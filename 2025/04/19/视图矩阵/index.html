@@ -16,12 +16,12 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="视图矩阵 作用  将物体从世界坐标系转换到以摄像机为原点到观察坐标系，也就是相机空间 在数学上是相机矩阵模型的逆矩阵  我们想一下，从一个坐标系转换到另一个坐标系，我们需要做什么 其实也就是做平移和旋转 这里注意视图矩阵是给世界坐标中的图元用的，相机只是我们提出的一个概念，图元使用逆变换达到这个目的 例如：假设相机向右移动，场景中的图元向左移动  平移：将相机位置移动到原点 旋转：将相机的方向对齐">
+    <meta name="description" content="视图矩阵作用 将物体从世界坐标系转换到以摄像机为原点到观察坐标系，也就是相机空间 在数学上是相机矩阵模型的逆矩阵  我们想一下，从一个坐标系转换到另一个坐标系，我们需要做什么 其实也就是做平移和旋转 这里注意视图矩阵是给世界坐标中的图元用的，相机只是我们提出的一个概念，图元使用逆变换达到这个目的 例如：假设相机向右移动，场景中的图元向左移动  平移：将相机位置移动到原点 旋转：将相机的方向对齐到标">
 <meta property="og:type" content="article">
 <meta property="og:title" content="视图矩阵">
 <meta property="og:url" content="https://treeu.github.io/2025/04/19/%E8%A7%86%E5%9B%BE%E7%9F%A9%E9%98%B5/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="视图矩阵 作用  将物体从世界坐标系转换到以摄像机为原点到观察坐标系，也就是相机空间 在数学上是相机矩阵模型的逆矩阵  我们想一下，从一个坐标系转换到另一个坐标系，我们需要做什么 其实也就是做平移和旋转 这里注意视图矩阵是给世界坐标中的图元用的，相机只是我们提出的一个概念，图元使用逆变换达到这个目的 例如：假设相机向右移动，场景中的图元向左移动  平移：将相机位置移动到原点 旋转：将相机的方向对齐">
+<meta property="og:description" content="视图矩阵作用 将物体从世界坐标系转换到以摄像机为原点到观察坐标系，也就是相机空间 在数学上是相机矩阵模型的逆矩阵  我们想一下，从一个坐标系转换到另一个坐标系，我们需要做什么 其实也就是做平移和旋转 这里注意视图矩阵是给世界坐标中的图元用的，相机只是我们提出的一个概念，图元使用逆变换达到这个目的 例如：假设相机向右移动，场景中的图元向左移动  平移：将相机位置移动到原点 旋转：将相机的方向对齐到标">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-19T12:32:09.000Z">
 <meta property="article:modified_time" content="2025-04-19T12:32:38.439Z">
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          941 words
+          820 words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          8 mins
+          7 mins
         
       </span>
     
@@ -298,9 +298,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="视图矩阵">视图矩阵</h2>
-<h3 id="作用">作用</h3>
-<ul>
+                <h2 id="视图矩阵"><a href="#视图矩阵" class="headerlink" title="视图矩阵"></a>视图矩阵</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
 <li>将物体从世界坐标系转换到以摄像机为原点到观察坐标系，也就是相机空间</li>
 <li>在数学上是相机矩阵模型的逆矩阵</li>
 </ul>
@@ -313,52 +311,22 @@
 <li>旋转：将相机的方向对齐到标准版坐标系统，如相机朝向-z 轴，右方向对齐 x 轴，上方向对齐 y 轴</li>
 </ul>
 <p>那么这个变化矩阵如何求得？</p>
-<h3 id="构造参数">构造参数</h3>
-<ul>
-<li>
-<p>摄像机位置 (Eye)，相机在世界坐标中的位置</p>
+<h3 id="构造参数"><a href="#构造参数" class="headerlink" title="构造参数"></a>构造参数</h3><ul>
+<li><p>摄像机位置 (Eye)，相机在世界坐标中的位置</p>
 </li>
-<li>
-<p>观察目标点（At），相机注视的焦点</p>
+<li><p>观察目标点（At），相机注视的焦点</p>
 </li>
-<li>
-<p>上方向（Up），定义相机的垂直方向，通常为世界坐标系的 Y 轴（0，1，0）<br>
-从下面的公式我们可以看出，这里用 1 或者-1，其实影响的是右轴的结果，也就是 x 轴的结果，这样会导致左右方向反向<br>
-影响了右轴还会影响上轴的方向，还会上下颠倒，也就是本来有一个点（x，y），会变成（-x, -y），坐标轴会旋转 180 度</p>
+<li><p>上方向（Up），定义相机的垂直方向，通常为世界坐标系的 Y 轴（0，1，0）<br>从下面的公式我们可以看出，这里用 1 或者-1，其实影响的是右轴的结果，也就是 x 轴的结果，这样会导致左右方向反向<br>影响了右轴还会影响上轴的方向，还会上下颠倒，也就是本来有一个点（x，y），会变成（-x, -y），坐标轴会旋转 180 度</p>
 </li>
 </ul>
 <p>这些其实就是为了相机坐标系的构建</p>
 <p>我们知道坐标系是有三个方向的</p>
-<h4 id="计算">计算</h4>
-<p>前向轴：<br>
-<code>F = normalize(At - Eye)</code><br>
-也就是从相机位置出发，指向目标点</p>
-<p>右轴：<br>
-<code>R = normalize(cross(F, Up))</code><br>
-垂直于前向和上方向</p>
-<p>上轴：<br>
-<code>Up = U = cross(R, F)</code></p>
-<h4 id="构造旋转矩阵-R">构造旋转矩阵 R</h4>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">[</mo><mtable rowspacing="0.16em" columnalign="center center center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>R</mi><mi>x</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>R</mi><mi>y</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>R</mi><mi>z</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>U</mi><mi>x</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>U</mi><mi>y</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>U</mi><mi>z</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>F</mi><mi>x</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>F</mi><mi>y</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>F</mi><mi>z</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><annotation encoding="application/x-tex"> \begin{bmatrix}
- Rx &amp; Ry &amp; Rz &amp; 0 \\
- Ux &amp; Uy &amp; Uz  &amp; 0 \\
- -Fx &amp; -Fy &amp; -Fz &amp; 0 \\
- 0 &amp; 0 &amp; 0 &amp; 1
- \end{bmatrix}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.8em;vertical-align:-2.15em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.667em" height="4.800em" viewbox="0 0 667 4800"><path d="M403 1759 V84 H666 V0 H319 V1759 v1200 v1759 h347 v-84
-H403z M403 1759 V0 H319 V1759 v1200 v1759 h84z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal">x</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">Ux</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal">x</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.667em" height="4.800em" viewbox="0 0 667 4800"><path d="M347 1759 V0 H0 V84 H263 V1759 v1200 v1759 H0 v84 H347z
-M347 1759 V0 H263 V1759 v1200 v1759 h84z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
-<h4 id="构造平移矩阵-T">构造平移矩阵 T</h4>
-<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">[</mo><mtable rowspacing="0.16em" columnalign="center center center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>E</mi><mi>y</mi><mi>e</mi><mi>X</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>E</mi><mi>y</mi><mi>e</mi><mi>Y</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>E</mi><mi>y</mi><mi>e</mi><mi>Z</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><annotation encoding="application/x-tex"> \begin{bmatrix}
- 1 &amp; 0 &amp; 0 &amp; -EyeX \\
- 0 &amp; 1 &amp; 0 &amp; -EyeY \\
- 0 &amp; 1 &amp; 0 &amp; -EyeZ \\
- 0 &amp; 0 &amp; 0 &amp; 1
- \end{bmatrix}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:4.8em;vertical-align:-2.15em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.667em" height="4.800em" viewbox="0 0 667 4800"><path d="M403 1759 V84 H666 V0 H319 V1759 v1200 v1759 h347 v-84
-H403z M403 1759 V0 H319 V1759 v1200 v1759 h84z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.81em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">ye</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">ye</span><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">ye</span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span></span></span><span style="top:-1.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.65em;"><span style="top:-4.65em;"><span class="pstrut" style="height:6.8em;"></span><span style="width:0.667em;height:4.800em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.667em" height="4.800em" viewbox="0 0 667 4800"><path d="M347 1759 V0 H0 V84 H263 V1759 v1200 v1759 H0 v84 H347z
-M347 1759 V0 H263 V1759 v1200 v1759 h84z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
-<p>v = R * T</p>
+<h4 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h4><p>前向轴：<br><code>F = normalize(At - Eye)</code><br>也就是从相机位置出发，指向目标点</p>
+<p>右轴：<br><code>R = normalize(cross(F, Up))</code><br>垂直于前向和上方向</p>
+<p>上轴：<br><code>Up = U = cross(R, F)</code></p>
+<h4 id="构造旋转矩阵-R"><a href="#构造旋转矩阵-R" class="headerlink" title="构造旋转矩阵 R"></a>构造旋转矩阵 R</h4><p>$$<br> \begin{bmatrix}<br> Rx &amp; Ry &amp; Rz &amp; 0 \<br> Ux &amp; Uy &amp; Uz  &amp; 0 \<br> -Fx &amp; -Fy &amp; -Fz &amp; 0 \<br> 0 &amp; 0 &amp; 0 &amp; 1<br> \end{bmatrix}<br>$$</p>
+<h4 id="构造平移矩阵-T"><a href="#构造平移矩阵-T" class="headerlink" title="构造平移矩阵 T"></a>构造平移矩阵 T</h4><p>$$<br> \begin{bmatrix}<br> 1 &amp; 0 &amp; 0 &amp; -EyeX \<br> 0 &amp; 1 &amp; 0 &amp; -EyeY \<br> 0 &amp; 1 &amp; 0 &amp; -EyeZ \<br> 0 &amp; 0 &amp; 0 &amp; 1<br> \end{bmatrix}<br>$$</p>
+<p>v &#x3D; R * T</p>
 
                 
               </div>
