@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>理解drawcall</title>
+    <link href="/2025/09/17/%E7%90%86%E8%A7%A3drawcall/"/>
+    <url>/2025/09/17/%E7%90%86%E8%A7%A3drawcall/</url>
+    
+    <content type="html"><![CDATA[<p>老是听到其他大佬提到 drawcall，今天就来确认一下到底什么是 drawcall</p><h2 id="DrawCall"><a href="#DrawCall" class="headerlink" title="DrawCall"></a>DrawCall</h2><p>顾名思义 绘制调用</p><p>用大白话讲就是你向 GPU 下达一个“开画”的指令</p><h3 id="webgpu-渲染流程"><a href="#webgpu-渲染流程" class="headerlink" title="webgpu 渲染流程"></a>webgpu 渲染流程</h3><h4 id="前期准备（cpu-部分处理）"><a href="#前期准备（cpu-部分处理）" class="headerlink" title="前期准备（cpu 部分处理）"></a>前期准备（cpu 部分处理）</h4><ul><li>创建渲染管线</li><li>准备 buffer 数据，绑定组</li></ul><p>（注意，频繁的切换渲染管线也会影响性能）</p><h3 id="下达指令"><a href="#下达指令" class="headerlink" title="下达指令"></a>下达指令</h3><p>在前期准备处理完之后，进行开画就是一个 drawCall，gpu 准备开始忙活</p><h3 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h3><p>gpu 进行搞笑栋渲染工作</p><h3 id="drawcall-的性能问题"><a href="#drawcall-的性能问题" class="headerlink" title="drawcall 的性能问题"></a>drawcall 的性能问题</h3><p>每次 drawcall，cpu 都需要花时间进行准备工作，一次下达太多的 drawcall，cpu 就会很忙，可能来不及准备好前期准备内容，这时候就可能产生卡顿</p><p>所以我们要考虑优化</p><h3 id="drawcall-优化"><a href="#drawcall-优化" class="headerlink" title="drawcall 优化"></a>drawcall 优化</h3><h4 id="合并绘制"><a href="#合并绘制" class="headerlink" title="合并绘制"></a>合并绘制</h4><p>顶点数据合并，把很多小物体（比如小草）的顶点数据合并在一起，一次 drawCall 就画出来，而不是每棵草都调用一次</p><h4 id="实例化绘制"><a href="#实例化绘制" class="headerlink" title="实例化绘制"></a>实例化绘制</h4><p>画大量一模一样的东西（比如子弹，比如我们目前业务上的图元），只用一次 drawcall，告诉 gpu：“把这个模型在这里画 100 次，只是位置不一样”</p><h4 id="使用纹理图集"><a href="#使用纹理图集" class="headerlink" title="使用纹理图集"></a>使用纹理图集</h4><p>把小图片拼成一张大图，画不同物体时就不用频繁的切换贴图（换数据），减少 drawcall</p><h4 id="目前业务上使用的加速纹理"><a href="#目前业务上使用的加速纹理" class="headerlink" title="目前业务上使用的加速纹理"></a>目前业务上使用的加速纹理</h4><p>将图元先绘制到纹理上，后面直接使用纹理进行渲染，减少大量 drawcall，注意这里纹理要考虑分层处理，同时这样做会增加内存压力</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>drawCall 就是 cpu 命令 GPU 按照当前设置好的所有状态（管线、资源等）进行绘制</p><p>调用次数过多会消耗 cpu 资源，是图形性能优化的关键</p><p>cpu 大哥让 gpu 工厂按照开始干活</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>pt-A</title>
     <link href="/2025/08/16/pt-A/"/>
     <url>/2025/08/16/pt-A/</url>
@@ -27,7 +40,7 @@
     <link href="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/"/>
     <url>/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/</url>
     
-    <content type="html"><![CDATA[<p>一直都搞不太明白为什么要这样去设计层索引</p><p><code>level = Math.floor(Math.log2(pxLength))</code></p><p>现在知道了，比如在 pxLength 为 4-8 内的时候，我们都会认为层级为 2，我们生成的纹理大小又是跟 level（pxLength） 挂钩的（影响相机缩放参数），那么就会产生纹理的优化，用低精度的纹理生成高精度的纹理或者高精度生成低精度，也就是在某个范围内，我们都用一个固定大小的纹理</p><p>但是从上面的公式我们能够看出 level 值跟 pxLength 息息相关</p><h2 id="那么-pxLength-又是什么？"><a href="#那么-pxLength-又是什么？" class="headerlink" title="那么 pxLength 又是什么？"></a>那么 pxLength 又是什么？</h2><p>1 物理像素对应的实际显示像素长度</p><p>在放大的时候，pxLength 变小，1 物理像素能表达的显示像素长度变少了 1 &#x2F; scale</p><p>在缩小的时候，pxLength 变大，1 物理像素能表达的显示像素长度变多了 1 &#x2F; scale</p><h2 id="pxLength-与-显示像素之间的转换"><a href="#pxLength-与-显示像素之间的转换" class="headerlink" title="pxLength 与 显示像素之间的转换"></a>pxLength 与 显示像素之间的转换</h2><p>x（实际像素） &#x3D; 512（物理像素）* pxLength</p><p>x (物理像素) &#x3D; 200 (显示像素) \ pxLength &#x3D; 200（显示像素）* scale</p><h2 id="Math-log2"><a href="#Math-log2" class="headerlink" title="Math.log2()"></a>Math.log2()</h2><p>返回一个以 2 为底的对数</p><p>这里我们用的是 Math.log2(pxLength)，2**n &#x3D; pxLength，忘记 &lt;1，这个 n 是怎么求的了，先简单记一下</p><p>todo：&lt;1 如何处理</p><p>列举一下对应的值</p><ul><li><p>pxLength &gt; 1<br><img src="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-14-29.png"></p></li><li><p>pxLenth &lt; 1<br><img src="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-16-06.png"></p></li></ul><p>todo:明天需要看一下在缩放很大，pxLength 很小的时候，层级为负数时是如何处理的，层级只是用来分层存储索引的，渲染的时候还是用的 pxLength，所以不会有负数的情况</p>]]></content>
+    <content type="html"><![CDATA[<p>一直都搞不太明白为什么要这样去设计层索引</p><p><code>level = Math.floor(Math.log2(pxLength))</code></p><p>现在知道了，比如在 pxLength 为 4-8 内的时候，我们都会认为层级为 2，我们生成的纹理大小又是跟 level（pxLength） 挂钩的（影响相机缩放参数），那么就会产生纹理的优化，用低精度的纹理生成高精度的纹理或者高精度生成低精度，也就是在某个范围内，我们都用一个固定大小的纹理</p><p>但是从上面的公式我们能够看出 level 值跟 pxLength 息息相关</p><h2 id="那么-pxLength-又是什么？"><a href="#那么-pxLength-又是什么？" class="headerlink" title="那么 pxLength 又是什么？"></a>那么 pxLength 又是什么？</h2><p>1 物理像素对应的实际显示像素长度</p><p>在放大的时候，pxLength 变小，1 物理像素能表达的显示像素长度变少了 1 &#x2F; scale</p><p>在缩小的时候，pxLength 变大，1 物理像素能表达的显示像素长度变多了 1 &#x2F; scale</p><h2 id="pxLength-与-显示像素之间的转换"><a href="#pxLength-与-显示像素之间的转换" class="headerlink" title="pxLength 与 显示像素之间的转换"></a>pxLength 与 显示像素之间的转换</h2><p>x（实际像素） &#x3D; 512（物理像素）* pxLength</p><p>x (物理像素) &#x3D; 200 (显示像素) \ pxLength &#x3D; 200（显示像素）* scale</p><h2 id="Math-log2"><a href="#Math-log2" class="headerlink" title="Math.log2()"></a>Math.log2()</h2><p>返回一个以 2 为底的对数</p><p>这里我们用的是 Math.log2(pxLength)，2**n &#x3D; pxLength，忘记 &lt;1，这个 n 是怎么求的了，先简单记一下</p><p>todo：&lt;1 如何处理</p><p>列举一下对应的值</p><ul><li><p>pxLength &gt; 1<br><img src="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-14-29.png"></p></li><li><p>pxLenth &lt; 1<br><img src="/2025/08/11/%E5%85%B3%E4%BA%8Ewebgpu%E5%B1%82%E7%BA%A7%E8%AE%BE%E8%AE%A1/2025-08-11-23-16-06.png"></p></li></ul><p>todo:明天需要看一下在缩放很大，pxLength 很小的时候，层级为负数时是如何处理的</p><p>层级只是用来分层存储索引的，渲染的时候还是用的 pxLength，所以不会有负数的情况</p>]]></content>
     
     
     
