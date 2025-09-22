@@ -16,21 +16,22 @@
   <meta name="author" content="Tree">
   <meta name="keywords" content="">
   
-    <meta name="description" content="builtin 简介 用法 属性">
+    <meta name="description" content="HelloTriangele 12345678&#x2F;&#x2F; canvs dom 节点const canvas &#x3D; document.querySelector(&amp;#x27;canvas&amp;#x27;);&#x2F;&#x2F; 获取gpu适配器（物理GPU硬件）const adapter &#x3D; await navigator?.gpu.requestAdapter(&amp;#123;	featureLevel: &amp;#x27;compa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webgpu内置变量">
-<meta property="og:url" content="https://treeu.github.io/2025/09/22/webgpu%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F/index.html">
+<meta property="og:title" content="webgpu案例解读">
+<meta property="og:url" content="https://treeu.github.io/2025/09/22/webgpu%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/index.html">
 <meta property="og:site_name" content="Treeu&#39;s blog">
-<meta property="og:description" content="builtin 简介 用法 属性">
+<meta property="og:description" content="HelloTriangele 12345678&#x2F;&#x2F; canvs dom 节点const canvas &#x3D; document.querySelector(&amp;#x27;canvas&amp;#x27;);&#x2F;&#x2F; 获取gpu适配器（物理GPU硬件）const adapter &#x3D; await navigator?.gpu.requestAdapter(&amp;#123;	featureLevel: &amp;#x27;compa">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-09-22T15:02:17.000Z">
-<meta property="article:modified_time" content="2025-09-22T15:04:06.004Z">
+<meta property="article:published_time" content="2025-09-22T15:12:51.000Z">
+<meta property="article:modified_time" content="2025-09-22T15:45:07.841Z">
 <meta property="article:author" content="Tree">
+<meta property="article:tag" content="webgpu samples">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>webgpu内置变量 - Treeu&#39;s blog</title>
+  <title>webgpu案例解读 - Treeu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="webgpu内置变量"></span>
+            <span id="subtitle" data-typed-text="webgpu案例解读"></span>
           
         </div>
 
@@ -224,7 +225,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-09-22 23:02" pubdate>
+        <time datetime="2025-09-22 23:12" pubdate>
           September 22, 2025 pm
         </time>
       </span>
@@ -236,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13 words
+          619 words
         
       </span>
     
@@ -247,7 +248,7 @@
         
         
         
-          1 mins
+          6 mins
         
       </span>
     
@@ -285,12 +286,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">webgpu内置变量</h1>
+            <h1 style="display: none">webgpu案例解读</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 41 minutes ago
+                    Last updated on a few seconds ago
                   
                 
               </p>
@@ -298,10 +299,26 @@
             
               <div class="markdown-body">
                 
-                <h1>builtin</h1>
-<h2 id="简介">简介</h2>
-<h2 id="用法">用法</h2>
-<h3 id="属性">属性</h3>
+                <h1>HelloTriangele</h1>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// canvs dom 节点</span><br><span class="hljs-keyword">const</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;canvas&#x27;</span>);<br><span class="hljs-comment">// 获取gpu适配器（物理GPU硬件）</span><br><span class="hljs-keyword">const</span> adapter = <span class="hljs-keyword">await</span> navigator?.<span class="hljs-property">gpu</span>.<span class="hljs-title function_">requestAdapter</span>(&#123;<br>	<span class="hljs-attr">featureLevel</span>: <span class="hljs-string">&#x27;compatibility&#x27;</span>,<br>&#125;);<br><span class="hljs-comment">// 获取设备</span><br><span class="hljs-keyword">const</span> device = <span class="hljs-keyword">await</span> adapter.<span class="hljs-title function_">requestDevice</span>();<br></code></pre></td></tr></table></figure>
+<h2 id="navigator-gpu">navigator?.gpu</h2>
+<p>webgpu API 的入口点</p>
+<h3 id="adapter">adapter</h3>
+<p>可以理解为显卡硬件本身</p>
+<h3 id="featureLevel">featureLevel</h3>
+<p>按照官方文档，默认为 ‘core’<br>
+这是一个保留属性，从官方文档上看，不管设置为‘core’还是’compatibility’都没有任何不同</p>
+<h3 id="device">device</h3>
+<p>显卡驱动程序接口，获取得到 device 之后，就可以进行真正的 GPU 操作<br>
+比如创建 buffer，创建管线之类的</p>
+<h4 id="显卡驱动程序接口">显卡驱动程序接口</h4>
+<p>显卡驱动接口是操作系统或应用程序与显卡硬件之间的软件层，它允许软件（如应用程序、游戏或 WebGPU 这样的图形 API）与显卡进行通信，而无需直接处理硬件的复杂性。</p>
+<p>AI 总结</p>
+<p>显卡驱动接口就是：</p>
+<p>🎯 翻译官：将高级 API 调用转换为硬件指令</p>
+<p>🛡️ 安全卫士：防止应用程序直接操作硬件</p>
+<p>📊 资源经理：管理 GPU 内存和计算资源</p>
+<p>🔄 抽象层：让代码能在不同显卡上运行</p>
 
                 
               </div>
@@ -311,6 +328,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/webgpu-samples/">#webgpu samples</a>
+      
+    </div>
+  
 </div>
 
 
@@ -319,8 +343,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>webgpu内置变量</div>
-      <div>https://treeu.github.io/2025/09/22/webgpu内置变量/</div>
+      <div>webgpu案例解读</div>
+      <div>https://treeu.github.io/2025/09/22/webgpu案例解读/</div>
     </div>
     <div class="license-meta">
       
@@ -364,18 +388,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/09/22/webgpu%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/" title="webgpu案例解读">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">webgpu案例解读</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/09/22/host/" title="host">
-                        <span class="hidden-mobile">host</span>
+                      <a href="/2025/09/22/webgpu%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F/" title="webgpu内置变量">
+                        <span class="hidden-mobile">webgpu内置变量</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
