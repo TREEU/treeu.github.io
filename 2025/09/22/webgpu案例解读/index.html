@@ -24,7 +24,7 @@
 <meta property="og:description" content="HelloTriangle12345678&#x2F;&#x2F; canvs dom 节点const canvas &#x3D; document.querySelector(&amp;#x27;canvas&amp;#x27;);&#x2F;&#x2F; 获取gpu适配器（物理GPU硬件）const adapter &#x3D; await navigator?.gpu.requestAdapter(&amp;#123;	featureLevel: &amp;#x27;compati">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-09-22T15:12:51.000Z">
-<meta property="article:modified_time" content="2025-12-10T15:27:58.166Z">
+<meta property="article:modified_time" content="2025-12-16T14:58:59.415Z">
 <meta property="article:author" content="Tree">
 <meta property="article:tag" content="webgpu samples">
 <meta name="twitter:card" content="summary_large_image">
@@ -237,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k words
+          3.9k words
         
       </span>
     
@@ -248,7 +248,7 @@
         
         
         
-          30 mins
+          33 mins
         
       </span>
     
@@ -351,7 +351,11 @@
 <p>注意：为了实现流畅的动画，浏览器会准备多个纹理进行轮换，所以 getCurrentTexture()返回的纹理对象可能是不一样的，所以不能缓存这个纹理供后续使用</p>
 <p>标准使用模式是在每一帧的渲染循环中，都调用这个方法来获取当前帧纹理，然后再作为颜色附件使用</p>
 <p>可以看看引擎怎么做的</p>
-<h1 id="Hello-Triangle-MSAA"><a href="#Hello-Triangle-MSAA" class="headerlink" title="Hello Triangle MSAA"></a>Hello Triangle MSAA</h1><p>除去跟上面一样的部分以外，这个案例的调整在以下几个位置</p>
+<h3 id="创建渲染管线"><a href="#创建渲染管线" class="headerlink" title="创建渲染管线"></a>创建渲染管线</h3><p>device.createRenderPipeline</p>
+<p>这个 api 的详细配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">device.<span class="hljs-title function_">createRenderPipeline</span>(<span class="hljs-params"></span>)&#123;<br><span class="hljs-attr">layout</span>:<span class="hljs-string">&#x27;auto&#x27;</span>,<br><span class="hljs-attr">vertex</span>:&#123;&#125;, <span class="hljs-comment">//顶点配置</span><br><span class="hljs-attr">fragment</span>:&#123;&#125;, <span class="hljs-comment">// 片元着色器配置</span><br><span class="hljs-attr">primitive</span>:&#123;&#125;, <span class="hljs-comment">// 图元配置</span><br><span class="hljs-attr">depthStencil</span>:&#123;&#125;,<span class="hljs-comment">// 深度测试配置</span><br><span class="hljs-attr">multiSample</span>:&#123;&#125; <span class="hljs-comment">// 多重采样设置</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="创建命令编码器"><a href="#创建命令编码器" class="headerlink" title="创建命令编码器"></a>创建命令编码器</h3><h3 id="开启渲染通道"><a href="#开启渲染通道" class="headerlink" title="开启渲染通道"></a>开启渲染通道</h3><h3 id="进行渲染通道配置"><a href="#进行渲染通道配置" class="headerlink" title="进行渲染通道配置"></a>进行渲染通道配置</h3><h4 id="设置渲染管线"><a href="#设置渲染管线" class="headerlink" title="设置渲染管线"></a>设置渲染管线</h4><h4 id="设置绑定组"><a href="#设置绑定组" class="headerlink" title="设置绑定组"></a>设置绑定组</h4><h4 id="设置顶点缓冲"><a href="#设置顶点缓冲" class="headerlink" title="设置顶点缓冲"></a>设置顶点缓冲</h4><h4 id="进行绘制"><a href="#进行绘制" class="headerlink" title="进行绘制"></a>进行绘制</h4><h4 id="绘制结束"><a href="#绘制结束" class="headerlink" title="绘制结束"></a>绘制结束</h4><h3 id="提交命令到-device"><a href="#提交命令到-device" class="headerlink" title="提交命令到 device"></a>提交命令到 device</h3><h1 id="Hello-Triangle-MSAA"><a href="#Hello-Triangle-MSAA" class="headerlink" title="Hello Triangle MSAA"></a>Hello Triangle MSAA</h1><p>除去跟上面一样的部分以外，这个案例的调整在以下几个位置</p>
 <h3 id="渲染管线"><a href="#渲染管线" class="headerlink" title="渲染管线"></a>渲染管线</h3><p>1、在创建渲染管线的时候多进行了一个配置项</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js">device.<span class="hljs-title function_">createRenderPipeline</span>(&#123;<br>	<span class="hljs-attr">layout</span>:<span class="hljs-string">&#x27;auto&#x27;</span>,<br>	<span class="hljs-attr">vertext</span>:&#123;<br>		..<br>	&#125;,<br>	<span class="hljs-attr">fragment</span>:&#123;<br>		..<br>	&#125;,<br>	<span class="hljs-attr">primitive</span>:&#123;<br>		<span class="hljs-attr">topology</span>:<span class="hljs-string">&#x27;triangle-list&#x27;</span>,<br>	&#125;,<br>	<span class="hljs-attr">multisample</span>:&#123;<br>		<span class="hljs-attr">count</span>:sampleCount; <span class="hljs-comment">// 4</span><br>	&#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 
