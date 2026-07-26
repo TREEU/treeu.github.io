@@ -4,6 +4,45 @@
   
   
   <entry>
+    <title>光线追踪</title>
+    <link href="/2026/07/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/"/>
+    <url>/2026/07/26/%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Ray-Tracing-in-one-Weekend"><a href="#Ray-Tracing-in-one-Weekend" class="headerlink" title="Ray Tracing in one Weekend"></a>Ray Tracing in one Weekend</h1><p><a href="https://zhuanlan.zhihu.com/p/128582904">https://zhuanlan.zhihu.com/p/128582904</a></p><h2 id="光线追踪的核心"><a href="#光线追踪的核心" class="headerlink" title="光线追踪的核心"></a>光线追踪的核心</h2><p>从像素发射射线，并计算这些射线的到的颜色</p><p>1、将射线从视点转化微像素坐标<br>2、计算光线是否与场景中的物体相交<br>3、如果有，计算交点的颜色</p><h3 id="简单抗锯齿（多重采样）"><a href="#简单抗锯齿（多重采样）" class="headerlink" title="简单抗锯齿（多重采样）"></a>简单抗锯齿（多重采样）</h3><p>对给定像素，我们发射多条射线进行多次采样，然后我们对颜色结果求一个平均值</p><h3 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h3><p>本质上还是材质<br>漫反射材质</p><p>接受周围环境的光线，在散射的时候使光线变成自己本身的颜色</p><p>其实就是一个光线进来，会被吸收一部分，碰到物体就会发生反射，一直计算，直到没有击中任何物品</p><p>由于可能达到这个终止条件比较困难，所以我们加一个递归限制</p><h4 id="要考虑精度"><a href="#要考虑精度" class="headerlink" title="要考虑精度"></a>要考虑精度</h4><p>有些物体反射的光线会在t&#x3D;0点时候再次击中自己（自相交问题）</p><p>注意代码这里其实就是击中物体后，光线会被吸收一部分，然后随机选择了一个方向然后继续看看会不会击中物体</p><p>这里是随机选一个方向也是有条件约束的</p><h3 id="金属材质"><a href="#金属材质" class="headerlink" title="金属材质"></a>金属材质</h3><p>想让不同的物体，拥有不同的材质</p><p>生成一个抽象材质类</p><p>1、生成散射后的光线（吸收了多少入射光线）<br>2、发生散射，决定光线会变暗多少</p><p>光线如何与表面交互，是由具体的材质决定的，当光线射入一个表面，我们先获取到这个物体的材质，然后由材质函数，决定光线是否发生散射，怎么散射</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>web3D</title>
+    <link href="/2026/06/05/web3D/"/>
+    <url>/2026/06/05/web3D/</url>
+    
+    <content type="html"><![CDATA[<h1 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h1>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>agent</title>
+    <link href="/2026/02/10/agent/"/>
+    <url>/2026/02/10/agent/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Agent"><a href="#Agent" class="headerlink" title="Agent"></a>Agent</h1><p>大模型无法感知或改变外界环境</p><p>接上工具</p><ul><li>读写工具</li><li>查看文件列表</li><li>运行终端命令</li></ul><p>把大模型和一堆工具组装起来就是 agent 了</p><p>能感知，能改变用户环境，就是 agent</p><p>通常用一个机器人来表示 agent</p><p>anget 有很多类型</p><p>开发程度</p><p>制作 app</p><p>cursor 编程类</p><p>manus 比较手机性能</p><h2 id="运行模式"><a href="#运行模式" class="headerlink" title="运行模式"></a>运行模式</h2><p>reAct</p><p>思考 + 行动</p><p>reasoning and acting</p><p>提交任务 -〉思考 -&gt; 需要调用工具 -&gt; 是-&gt; 行动 -&gt; 观察</p><h3 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h3><p>系统提示词</p><ul><li>职责描述</li></ul><h1 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h1><h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h3 id="2-2"><a href="#2-2" class="headerlink" title="2.2"></a>2.2</h3><ul><li>智算中心</li></ul><p>专门为人工智能计算服务的数据中心，其架构，供电和冷却系统都针对AI负载进行优化</p><h3 id="2-3-云与边缘计算基础设施"><a href="#2-3-云与边缘计算基础设施" class="headerlink" title="2.3 云与边缘计算基础设施"></a>2.3 云与边缘计算基础设施</h3><ul><li><p>公有云AI服务<br>由阿里云、腾讯云等提供的弹性AI算力服务</p></li><li><p>边缘计算设备<br>在手机等小型设备上进行AI推理</p></li></ul><h2 id="第三章：核心层-算法模型"><a href="#第三章：核心层-算法模型" class="headerlink" title="第三章：核心层 - 算法模型"></a>第三章：核心层 - 算法模型</h2><h3 id="3-1-基本学习范式"><a href="#3-1-基本学习范式" class="headerlink" title="3.1 基本学习范式"></a>3.1 基本学习范式</h3><p>这个是指机器学习中基础的训练模型方式，决定模型如何获取知识，构建模型</p><ul><li>监督学习<br>算法通过已标注的“特征-标签”数据对进行学习，使用标注好的数据模型训练（如图像分析、情感分析模型），听起来就是指定大前提环境的模型</li></ul><p>监督</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>webgpu案例解读</title>
     <link href="/2025/09/22/webgpu%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/"/>
     <url>/2025/09/22/webgpu%E6%A1%88%E4%BE%8B%E8%A7%A3%E8%AF%BB/</url>
